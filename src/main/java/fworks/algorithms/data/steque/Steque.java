@@ -4,7 +4,7 @@ import fworks.algorithms.data.DataStructure;
 
 /**
  * Steque.<br/>
- * A steque is a data type that supports push, pop and enqueue.
+ * A stack-ended queue or steque is a data type that supports push, pop, and enqueue.
  * 
  * @author flaviolcastro
  *

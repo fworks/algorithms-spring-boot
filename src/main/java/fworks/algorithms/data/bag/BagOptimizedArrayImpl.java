@@ -1,6 +1,6 @@
 package fworks.algorithms.data.bag;
 
-import fworks.algorithms.data.DataStructureArray;
+import fworks.algorithms.data.DataStructureOptimizedArray;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -11,16 +11,19 @@ import lombok.extern.log4j.Log4j2;
  * @param <T> item
  */
 @Log4j2
-public class BagArrayImpl<T> extends DataStructureArray<T> implements Bag<T> {
+public class BagOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> implements Bag<T> {
 
   @Override
   public void add(T item) {
     //
     log.debug("Adding item '{}' to the bag.", item);
-    // resize the array
-    increaseArraySize(true);
+    // if array needs resizing
+    if (array.length == size) {
+      // resize the array doubling the size of it
+      super.increaseArraySize(2 * array.length);
+    }
     // add the new item
-    array[array.length - 1] = item;
+    array[size++] = item;
     //
     log.debug("Item '{}' added to the bag.", item);
   }

@@ -4,8 +4,8 @@ import fworks.algorithms.data.DataStructure;
 
 /**
  * Deque.<br/>
- * A deque, also known as a double-ended queue, is an ordered collection of items similar to the
- * queue. It has two ends, a front and a rear, and the items remain positioned in the collection.
+ * A double-ended queue or deque (pronounced “deck”) is like a stack or a queue but supports adding
+ * and removing items at both ends.
  * 
  * @author flaviolcastro
  *
@@ -18,26 +18,26 @@ public interface Deque<T> extends DataStructure<T> {
    * 
    * @param item to be added
    */
-  void insertAtBack(T item);
+  void pushRight(T item);
 
   /**
    * Add an item at the front of the deque.
    * 
    * @param item to be added
    */
-  void insertAtFront(T item);
+  void pushLeft(T item);
 
   /**
    * Remove the last item of the deque.
    * 
    * @return last item
    */
-  T removeLast();
+  T popRight();
 
   /**
    * Remove the first item of the deque.
    * 
    * @return first item
    */
-  T removeFirst();
+  T popLeft();
 }

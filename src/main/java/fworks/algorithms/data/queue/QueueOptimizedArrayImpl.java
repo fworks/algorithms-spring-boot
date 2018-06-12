@@ -1,6 +1,6 @@
 package fworks.algorithms.data.queue;
 
-import fworks.algorithms.data.DataStructureArray;
+import fworks.algorithms.data.DataStructureOptimizedArray;
 import lombok.extern.log4j.Log4j2;
 
 /**
@@ -11,15 +11,20 @@ import lombok.extern.log4j.Log4j2;
  * @param <T> item
  */
 @Log4j2
-public class QueueArrayImpl<T> extends DataStructureArray<T> implements Queue<T> {
+public class QueueOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> implements Queue<T> {
 
   @Override
   public void enqueue(T item) {
     //
     log.debug("Adding item '{}' to the queue.", item);
-    // resize the array
-    super.increaseArraySize(false);
-    array[0] = item;
+    // if array needs resizing
+    if (array.length == size) {
+      // resize the array doubling the size of it
+      super.increaseArraySize(2 * array.length);
+    }
+    // add the new item
+    int position = size++;
+    array[position] = item;
     //
     log.debug("Item '{}' added to the queue.", item);
   }
@@ -35,15 +40,22 @@ public class QueueArrayImpl<T> extends DataStructureArray<T> implements Queue<T>
       return null;
     }
     // get the item
+    int position = index++;
     @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
-    // resize the array
-    super.decreaseArraySize();
+    T item = (T) array[position];
+    array[position] = null;
+    //size--;
+
+    // if the size is a quarter of the array length - reduce the size of array
+    if (array.length / 4 == size--) {
+      // resize the array by half
+      super.decreaseArraySize(array.length / 2);
+    }
     //
     log.debug("Item '{}' dequeued from the queue.", item);
     return item;
   }
-  
+
   @Override
   public T peek() {
     //

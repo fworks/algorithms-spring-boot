@@ -1,6 +1,7 @@
 package fworks.algorithms.data;
 
 import java.util.Iterator;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Abstract class using array.
@@ -9,6 +10,7 @@ import java.util.Iterator;
  *
  * @param <T> item.
  */
+@Log4j2
 public abstract class DataStructureArray<T> implements DataStructure<T> {
 
   /**
@@ -18,14 +20,40 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
 
   @Override
   public boolean isEmpty() {
-    // is empty when the array is empty
+    // it is empty when the array is empty
     return array.length == 0;
   }
 
   @Override
   public int size() {
-    // size of the array
+    // size is the array length
     return array.length;
+  }
+  
+  /**
+   * Increase the array size by 1.
+   * @param atEnd true, to increase the array at the end (empty position(s) will be at end) <br/>
+   *        false, to increase the array at the beginning (empty position(s) will be at the start)
+   */
+  protected void increaseArraySize(boolean atEnd) {
+    int oldSize = array.length;
+    int newSize = oldSize + 1;
+    log.debug("Increase array by 1 - old size: {} new size: {}", oldSize, newSize);
+    Object[] newArray = new Object[newSize];
+    System.arraycopy(array, 0, newArray, (atEnd ? 0 : 1), oldSize);
+    array = newArray;
+  }
+  
+  /**
+   * Decrease the array size by 1.
+   */
+  protected void decreaseArraySize() {
+    int oldSize = array.length;
+    int newSize = oldSize - 1;
+    log.debug("Decrease array by 1 - old size: {} new size: {}", oldSize, newSize);
+    Object[] newArray = new Object[newSize];
+    System.arraycopy(array, 0, newArray, 0, newSize);
+    array = newArray;
   }
 
   @Override
