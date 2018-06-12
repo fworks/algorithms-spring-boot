@@ -24,4 +24,9 @@ public interface Queue<T> extends DataStructure<T> {
    */
   T dequeue();
 
+  /**
+   * Return the least recently added item, without removing it from the queue.
+   * @return least recently added item
+   */
+  T peek();
 }

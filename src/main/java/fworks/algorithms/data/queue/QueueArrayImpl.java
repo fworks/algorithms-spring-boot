@@ -41,6 +41,18 @@ public class QueueArrayImpl<T> extends DataStructureArray<T> implements Queue<T>
     log.debug("Item '{}' dequeued from the queue.", item);
     return item;
   }
+  
+  @Override
+  public T peek() {
+    //
+    log.debug("Peeking the queue.");
+    // get the item
+    @SuppressWarnings("unchecked")
+    T item = (T) array[array.length - 1];
+    //
+    log.debug("Item '{}' peeked from the queue.", item);
+    return item;
+  }
 
   @Override
   public String toString() {

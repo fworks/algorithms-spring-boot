@@ -53,6 +53,17 @@ public class QueueLinkedListImpl<T> extends DataStructureLinkedList<T> implement
     log.debug("Item '{}' dequeued from the queue.", item);
     return item;
   }
+  
+  @Override
+  public T peek() {
+    //  
+    log.debug("Peeking the queue.");
+    // get the item
+    T item = firstNode.getItem();
+    // 
+    log.debug("Item '{}' peeked from the queue.", item);
+    return item;
+  }
 
   @Override
   public String toString() {
