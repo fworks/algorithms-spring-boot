@@ -58,6 +58,12 @@ public class QueueLinkedListImpl<T> extends DataStructureLinkedList<T> implement
   public T peek() {
     //  
     log.debug("Peeking the queue.");
+    //
+    if (isEmpty()) {
+      //
+      log.debug("Queue is empty. Nothing to peek.");
+      return null;
+    }
     // get the item
     T item = firstNode.getItem();
     // 

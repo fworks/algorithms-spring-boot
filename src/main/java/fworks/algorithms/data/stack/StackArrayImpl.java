@@ -56,7 +56,7 @@ public class StackArrayImpl<T> extends DataStructureArray<T> implements Stack<T>
     //
     if (isEmpty()) {
       //
-      log.debug("Stack is empty. Nothing to pop.");
+      log.debug("Stack is empty. Nothing to peek.");
       return null;
     }
     // get the item

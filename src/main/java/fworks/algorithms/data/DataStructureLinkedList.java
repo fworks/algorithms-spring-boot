@@ -84,7 +84,7 @@ public abstract class DataStructureLinkedList<T> implements DataStructure<T> {
    */
   @Data
   @AllArgsConstructor
-  public static final class Node<T> {
+  protected static final class Node<T> {
     /**
      * item value.
      */

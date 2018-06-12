@@ -51,7 +51,7 @@ public class StackLinkedListImpl<T> extends DataStructureLinkedList<T> implement
     //
     if (isEmpty()) {
       //
-      log.debug("Stack is empty. Nothing to pop.");
+      log.debug("Stack is empty. Nothing to peek.");
       return null;
     }
     // get the item
