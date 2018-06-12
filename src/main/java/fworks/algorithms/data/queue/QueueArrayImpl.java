@@ -27,13 +27,13 @@ public class QueueArrayImpl<T> extends DataStructureArray<T> implements Queue<T>
   @Override
   public T dequeue() {
     //
-    log.debug("Dequeue item from the queue.");
-    //
     if (isEmpty()) {
       //
       log.debug("Queue is empty. Nothing to dequeue.");
       return null;
     }
+    //
+    log.debug("Dequeue item from the queue.");
     // get the item
     @SuppressWarnings("unchecked")
     T item = (T) array[array.length - 1];
@@ -47,13 +47,13 @@ public class QueueArrayImpl<T> extends DataStructureArray<T> implements Queue<T>
   @Override
   public T peek() {
     //
-    log.debug("Peeking the queue.");
-    //
     if (isEmpty()) {
       //
       log.debug("Queue is empty. Nothing to peek.");
       return null;
     }
+    //
+    log.debug("Peeking the queue.");
     // get the item
     @SuppressWarnings("unchecked")
     T item = (T) array[array.length - 1];

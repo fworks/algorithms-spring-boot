@@ -32,6 +32,12 @@ public class StackLinkedListImpl<T> extends DataStructureLinkedList<T> implement
   @Override
   public T pop() {
     //
+    if (isEmpty()) {
+      //
+      log.debug("Stack is empty. Nothing to pop.");
+      return null;
+    }
+    //
     log.debug("Popping item from the stack.");
     // get the item
     T item = firstNode.getItem();
@@ -47,13 +53,13 @@ public class StackLinkedListImpl<T> extends DataStructureLinkedList<T> implement
   @Override
   public T peek() {
     //
-    log.debug("Peeking item from the stack.");
-    //
     if (isEmpty()) {
       //
       log.debug("Stack is empty. Nothing to peek.");
       return null;
     }
+    //
+    log.debug("Peeking item from the stack.");
     // get the item
     T item = firstNode.getItem();
     //

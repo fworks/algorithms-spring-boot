@@ -32,19 +32,19 @@ public class QueueOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
   @Override
   public T dequeue() {
     //
-    log.debug("Dequeue item from the queue.");
-    //
     if (isEmpty()) {
       //
       log.debug("Queue is empty. Nothing to dequeue.");
       return null;
     }
+    //
+    log.debug("Dequeue item from the queue.");
     // get the item
     int position = index++;
     @SuppressWarnings("unchecked")
     T item = (T) array[position];
     array[position] = null;
-    //size--;
+    // size--;
 
     // if the size is a quarter of the array length - reduce the size of array
     if (array.length / 4 == size--) {
@@ -59,16 +59,16 @@ public class QueueOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
   @Override
   public T peek() {
     //
-    log.debug("Peeking the queue.");
-    //
     if (isEmpty()) {
       //
       log.debug("Queue is empty. Nothing to peek.");
       return null;
     }
+    //
+    log.debug("Peeking the queue.");
     // get the item
     @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
+    T item = (T) array[index];
     //
     log.debug("Item '{}' peeked from the queue.", item);
     return item;

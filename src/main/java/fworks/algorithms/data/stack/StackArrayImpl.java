@@ -28,13 +28,13 @@ public class StackArrayImpl<T> extends DataStructureArray<T> implements Stack<T>
   @Override
   public T pop() {
     //
-    log.debug("Popping item from the stack.");
-    //
     if (isEmpty()) {
       //
       log.debug("Stack is empty. Nothing to pop.");
       return null;
     }
+    //
+    log.debug("Popping item from the stack.");
     // get the item
     @SuppressWarnings("unchecked")
     T item = (T) array[array.length - 1];
@@ -48,13 +48,13 @@ public class StackArrayImpl<T> extends DataStructureArray<T> implements Stack<T>
   @Override
   public T peek() {
     //
-    log.debug("Peeking item from the stack.");
-    //
     if (isEmpty()) {
       //
       log.debug("Stack is empty. Nothing to peek.");
       return null;
     }
+    //
+    log.debug("Peeking item from the stack.");
     // get the item
     @SuppressWarnings("unchecked")
     T item = (T) array[array.length - 1];

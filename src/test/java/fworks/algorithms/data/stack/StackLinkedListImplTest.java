@@ -4,26 +4,26 @@ import lombok.extern.log4j.Log4j2;
 import org.junit.Test;
 
 @Log4j2
-public class StackArrayImplTest extends AbstractStackTest {
+public class StackLinkedListImplTest extends AbstractStackTest {
 
   @Test
   public void testStringStack() {
     log.info("####### Testing String stack!");
-    Stack<String> stack = new StackArrayImpl<String>();
+    Stack<String> stack = new StackLinkedListImpl<String>();
     super.validateString(stack, "abcdefghijklmnopqrstuvwxyz");
   }
   
   @Test
   public void testIntegerStack() {
     log.info("####### Testing Integer stack!");
-    Stack<Integer> stackInteger = new StackArrayImpl<Integer>();
+    Stack<Integer> stackInteger = new StackLinkedListImpl<Integer>();
     super.validateInteger(stackInteger, 500);
   }
   
   @Test
   public void testInteger2Stack() {
     log.info("####### Testing Integer stack!");
-    Stack<Integer> stackInteger = new StackArrayImpl<Integer>();
+    Stack<Integer> stackInteger = new StackLinkedListImpl<Integer>();
     super.validateInteger(stackInteger, 50000);
   }
 }

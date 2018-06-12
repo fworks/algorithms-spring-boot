@@ -19,4 +19,11 @@ public class StackOptimizedArrayImplTest extends AbstractStackTest {
     Stack<Integer> stackInteger = new StackOptimizedArrayImpl<Integer>();
     super.validateInteger(stackInteger, 500);
   }
+  
+  @Test
+  public void testInteger2Stack() {
+    log.info("####### Testing Integer stack!");
+    Stack<Integer> stackInteger = new StackOptimizedArrayImpl<Integer>();
+    super.validateInteger(stackInteger, 50000);
+  }
 }

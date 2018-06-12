@@ -19,10 +19,12 @@ public abstract class AbstractQueueTest {
     Assert.assertTrue(queue.isEmpty());
 
     String[] test = word.trim().split("");
+    //
+    boolean logInsideLoop = test.length > 1000 ? false : true;
+    
     for (int i = 0; i < test.length; i++) {
       // add an item
       String item1 = test[i];
-      log.info("");
       log.info("-> Adding item: '{}'", item1);
       queue.enqueue(item1);
       // validate
@@ -33,16 +35,25 @@ public abstract class AbstractQueueTest {
 
     int count = 0;
     while (!queue.isEmpty()) {
-      log.info("");
-      log.info("-> Dequeuing item:");
+      String peek = queue.peek();
       String item = queue.dequeue();
       log.info("-> Item '{}' dequeued.", item);
       Assert.assertEquals(test[count++], item);
-      log.info("-> Queue: {}", queue);
+      Assert.assertEquals(peek, item);
+      //
+      if (logInsideLoop) {
+        log.info("Queue: {}", queue);
+      }
     }
+    log.info("Queue: {}", queue);
+    
+    Assert.assertNull(queue.dequeue());
+    Assert.assertNull(queue.peek());
   }
 
   protected void validateInteger(Queue<Integer> queue, int count) {
+    //
+    boolean logInsideLoop = count > 1000 ? false : true;
     // validate the initial values
     log.info("Queue: {}", queue);
     Assert.assertEquals(0, queue.size(), 0);
@@ -51,23 +62,33 @@ public abstract class AbstractQueueTest {
     for (int i = 0; i < count; i++) {
       // add an item
       Integer item1 = i;
-      log.info("");
       log.info("-> Adding item: '{}'", item1);
       queue.enqueue(item1);
       // validate
       Assert.assertEquals(i + 1, queue.size(), 0);
       Assert.assertFalse(queue.isEmpty());
-      log.info("Queue: {}", queue);
+      //
+      if (logInsideLoop) {
+        log.info("Queue: {}", queue);
+      }
     }
+    log.info("Queue: {}", queue);
 
     int position = 0;
     while (!queue.isEmpty()) {
-      log.info("");
-      log.info("-> Dequeuing item:");
+      Integer peek = queue.peek();
       Integer item = queue.dequeue();
       log.info("-> Item '{}' dequeued.", item);
       Assert.assertEquals(position++, item, 0);
-      log.info("-> Queue: {}", queue);
+      Assert.assertEquals(peek, item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Queue: {}", queue);
+      }
     }
+    log.info("-> Queue: {}", queue);
+    
+    Assert.assertNull(queue.dequeue());
+    Assert.assertNull(queue.peek());
   }
 }

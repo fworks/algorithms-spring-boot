@@ -11,9 +11,9 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="fworks.algorithms.data" level="debug" additivity="false">
+       <!--  <Logger name="fworks.algorithms.data" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
-        </Logger>
+        </Logger> -->
 
         <Root level="info">
             <AppenderRef ref="ConsoleAppender" />

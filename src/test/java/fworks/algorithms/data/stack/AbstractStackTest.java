@@ -19,10 +19,12 @@ public abstract class AbstractStackTest {
     Assert.assertTrue(stack.isEmpty());
 
     String[] test = word.trim().split("");
+    //
+    boolean logInsideLoop = test.length > 1000 ? false : true;
+
     for (int i = 0; i < test.length; i++) {
       // add an item
       String item1 = test[i];
-      log.info("");
       log.info("-> Adding item: '{}'", item1);
       stack.push(item1);
       // validate
@@ -33,18 +35,28 @@ public abstract class AbstractStackTest {
 
     int count = 0;
     while (!stack.isEmpty()) {
-      log.info("");
-      log.info("-> Popping item:");
+      String peek = stack.peek();
       String item = stack.pop();
       log.info("-> Item '{}' popped.", item);
       // validate
       int position = test.length - 1;
       Assert.assertEquals(test[position - count++], item);
-      log.info("-> Stack: {}", stack);
+      Assert.assertEquals(peek, item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Stack: {}", stack);
+      }
     }
+    log.info("-> Stack: {}", stack);
+    
+    Assert.assertNull(stack.pop());
+    Assert.assertNull(stack.peek());
   }
 
   protected void validateInteger(Stack<Integer> stack, int count) {
+    //
+    boolean logInsideLoop = count > 1000 ? false : true;
+
     // validate the initial values
     log.info("Stack: {}", stack);
     Assert.assertEquals(0, stack.size(), 0);
@@ -53,23 +65,33 @@ public abstract class AbstractStackTest {
     for (int i = 0; i < count; i++) {
       // add an item
       Integer item1 = i;
-      log.info("");
       log.info("-> Adding item: '{}'", item1);
       stack.push(item1);
       // validate
       Assert.assertEquals(i + 1, stack.size(), 0);
       Assert.assertFalse(stack.isEmpty());
-      log.info("-> Stack: {}", stack);
+      //
+      if (logInsideLoop) {
+        log.info("-> Stack: {}", stack);
+      }
     }
+    log.info("-> Stack: {}", stack);
 
     while (!stack.isEmpty()) {
-      log.info("");
-      log.info("-> Popping item:");
+      Integer peek = stack.peek();
       Integer item = stack.pop();
       log.info("-> Item '{}' popped.", item);
       // validate
       Assert.assertEquals(--count, item, 0);
-      log.info("-> Stack: {}", stack);
+      Assert.assertEquals(peek, item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Stack: {}", stack);
+      }
     }
+    log.info("-> Stack: {}", stack);
+    
+    Assert.assertNull(stack.pop());
+    Assert.assertNull(stack.peek());
   }
 }

@@ -17,6 +17,13 @@ public class QueueOptimizedArrayImplTest extends AbstractQueueTest {
   public void testIntegerQueue() {
     log.info("####### Testing Integer queue!");
     Queue<Integer> queueInteger = new QueueOptimizedArrayImpl<Integer>();
-    super.validateInteger(queueInteger, 50);
+    super.validateInteger(queueInteger, 500);
+  }
+  
+  @Test
+  public void testInteger2Queue() {
+    log.info("####### Testing Integer queue!");
+    Queue<Integer> queueInteger = new QueueOptimizedArrayImpl<Integer>();
+    super.validateInteger(queueInteger, 50000);
   }
 }

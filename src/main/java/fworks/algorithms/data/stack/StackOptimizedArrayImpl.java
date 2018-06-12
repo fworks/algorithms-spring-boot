@@ -32,13 +32,13 @@ public class StackOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
   @Override
   public T pop() {
     //
-    log.debug("Popping item from the stack.");
-    //
     if (isEmpty()) {
       //
       log.debug("Stack is empty. Nothing to pop.");
       return null;
     }
+    //
+    log.debug("Popping item from the stack.");
     // get the item
     int position = size-- - 1;
     @SuppressWarnings("unchecked")
@@ -57,16 +57,16 @@ public class StackOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
   @Override
   public T peek() {
     //
-    log.debug("Peeking item from the stack.");
-    //
     if (isEmpty()) {
       //
       log.debug("Stack is empty. Nothing to peek.");
       return null;
     }
+    //
+    log.debug("Peeking item from the stack.");
     // get the item
     @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
+    T item = (T) array[size - 1];
     //
     log.debug("Item '{}' peeked from the stack.", item);
     return item;

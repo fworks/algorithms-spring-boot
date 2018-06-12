@@ -41,6 +41,12 @@ public class QueueLinkedListImpl<T> extends DataStructureLinkedList<T> implement
 
   @Override
   public T dequeue() {
+    //
+    if (isEmpty()) {
+      //
+      log.debug("Queue is empty. Nothing to dequeue.");
+      return null;
+    }
     //  
     log.debug("Dequeuing item from the queue.");
     // get the item
@@ -56,14 +62,14 @@ public class QueueLinkedListImpl<T> extends DataStructureLinkedList<T> implement
   
   @Override
   public T peek() {
-    //  
-    log.debug("Peeking the queue.");
     //
     if (isEmpty()) {
       //
       log.debug("Queue is empty. Nothing to peek.");
       return null;
     }
+    //  
+    log.debug("Peeking the queue.");
     // get the item
     T item = firstNode.getItem();
     // 

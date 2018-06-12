@@ -19,4 +19,11 @@ public class BagOptimizedArrayImplTest extends AbstractBagTest {
     Bag<Integer> bagInteger = new BagOptimizedArrayImpl<Integer>();
     super.validateInteger(bagInteger, 500);
   }
+  
+  @Test
+  public void testInteger2Bag() {
+    log.info("####### Testing Integer bag!");
+    Bag<Integer> bagInteger = new BagOptimizedArrayImpl<Integer>();
+    super.validateInteger(bagInteger, 50000);
+  }
 }
