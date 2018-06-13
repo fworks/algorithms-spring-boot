@@ -12,6 +12,11 @@ The idea is to code few of the problems described in the book as spring services
 
 All just for playing around with the spring boot micro service world and at same time recall the basis of computing coding.
 
+## Notes
+
+I know that most of the implementation could be done in static methods, utilities classes, etc.
+But I will probably use spring service just to show how that works.
+
 
 ## Techs:
 
@@ -19,6 +24,7 @@ Technologies in the project:
 
 - Java 10
 - Spring Boot 2
+- String Web (using tomcat at moment, thinking about move to undertow)
 - Spring DevTool (for speeding up the development / restart, etc)
 - Lombok (for avoiding boilerplate code)
 - Swagger-ui (for exposing the rest services in a easy/user friendly web page)
@@ -27,11 +33,11 @@ Technologies in the project:
 
 To be added:
 - Docker (generate docker image, etc)
-- Oauth2 (for authentication)
+- Oauth2 - maybe (for authentication)
 
 ## Algorithms:
 
-Data Structures
+Data Structures (few implementations: array, linked list, optimized array)
 - Bag
 - Queue (FIFO)
 - Stack (LIFO)
@@ -46,8 +52,37 @@ Problems:
 
 ## Running
 
-1) clone the code
-2) run AlgorithmsApplication.java class 
+1) Clone the code
 
-            
-            
+2) Few options:
+
+A) On IDE (STS/Eclipse/IntelliJ):
+```
+run AlgorithmsApplication.java
+```
+B) On IDE/console - using maven = spring boot maven plugin:
+``` 
+mvn spring-boot:run
+```
+C) On console - running the jar:
+
+First generate the jar (skipping the test for speeding up)
+```
+mvn install -Dmaven.test.skip=true
+```
+Now just run it:
+```
+java -jar target/*.jar'
+```
+Note: Replace *.jar for the fullname jar name
+
+D) Using docker: 
+
+First generate the jar and the docker image (skipping the tests for speeding up)
+```
+mvn install docker:build -Dmaven.test.skip=true
+```
+Now just run a container using the image
+```
+docker run --name algorithmsboot -p 80:8080 algorithmsboot
+```
