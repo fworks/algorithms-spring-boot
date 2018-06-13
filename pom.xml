@@ -23,9 +23,12 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>10</java.version>
+		<maven.compiler.target>10</maven.compiler.target>
+		<maven.compiler.source>10</maven.compiler.source>
 	</properties>
 
 	<dependencies>
+		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -47,6 +50,9 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
+			<!-- // TODO: different version from spring for jdk 10 - remove it later 
+				when spring updates the version. -->
+			<version>1.18.0</version>
 			<optional>true</optional>
 		</dependency>
 
@@ -72,11 +78,11 @@
 		<!-- runtime 'javax.xml.bind:jaxb-api:2.3.0' runtime 'com.sun.xml.bind:jaxb-core:2.2.11' 
 			runtime 'com.sun.xml.bind:jaxb-impl:2.2.11' runtime 'javax.activation:activation:1.1.1' -->
 
+		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -86,9 +92,69 @@
 
 	<build>
 		<plugins>
+			<!-- spring boot plugin -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
+			<!-- Copy docker configs to the docker build directory -->
+			<plugin>
+				<artifactId>maven-resources-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>package</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<outputDirectory>${project.build.directory}/docker-resources</outputDirectory>
+							<resources>
+								<!-- copy the docker config -->
+								<resource>
+									<directory>./config/docker</directory>
+									<filtering>false</filtering>
+									<targetPath>/docker</targetPath>
+								</resource>
+								<!-- copy the jar -->
+								<resource>
+									<directory>./target</directory>
+									<filtering>false</filtering>
+									<includes>
+										<include>*.jar</include>
+									</includes>
+									<targetPath>/docker</targetPath>
+								</resource>
+							</resources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Generate the docker image -->
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>docker-maven-plugin</artifactId>
+				<version>0.26.0</version>
+				<configuration>
+					<verbose>true</verbose>
+					<detail>true</detail>
+					<sourceDirectory>./target/docker-resources</sourceDirectory>
+					<dockerHost>tcp://localhost:2375</dockerHost>
+					<!-- Use this for linux/mac -->
+					<!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
+					<images>
+						<image>
+							<name>algorithmsboot</name>
+							<build>
+								<tags>
+									<tag>${project.version}</tag>
+								</tags>
+								<dockerFile>docker/Dockerfile</dockerFile>
+							</build>
+						</image>
+					</images>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
