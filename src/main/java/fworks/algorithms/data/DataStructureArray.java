@@ -32,7 +32,7 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
   
   /**
    * Increase the array size by 1.
-   * @param atEnd true, to increase the array at the end (empty position(s) will be at end) <br/>
+   * @param atEnd true, to increase the array at the end (empty position(s) will be at the end)<br/>
    *        false, to increase the array at the beginning (empty position(s) will be at the start)
    */
   protected void increaseArraySize(boolean atEnd) {
@@ -46,13 +46,15 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
   
   /**
    * Decrease the array size by 1.
+   * @param atEnd true, to decrease the array at the end (remove position at the end) <br/>
+   *        false, to decrease the array at the beginning (remove position at the start)
    */
-  protected void decreaseArraySize() {
+  protected void decreaseArraySize(boolean atEnd) {
     int oldSize = array.length;
     int newSize = oldSize - 1;
     log.debug("Decrease array by 1 - old size: {} new size: {}", oldSize, newSize);
     Object[] newArray = new Object[newSize];
-    System.arraycopy(array, 0, newArray, 0, newSize);
+    System.arraycopy(array, (atEnd ? 0 : 1), newArray, 0, newSize);
     array = newArray;
   }
 

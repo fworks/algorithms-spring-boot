@@ -40,4 +40,18 @@ public interface Deque<T> extends DataStructure<T> {
    * @return first item
    */
   T popLeft();
+  
+  /**
+   * Peek the last item of the deque.
+   * 
+   * @return last item
+   */
+  T peekRight();
+
+  /**
+   * Peek the first item of the deque.
+   * 
+   * @return first item
+   */
+  T peekLeft();
 }

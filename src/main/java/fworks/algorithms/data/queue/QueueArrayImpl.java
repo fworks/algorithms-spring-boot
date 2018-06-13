@@ -38,7 +38,7 @@ public class QueueArrayImpl<T> extends DataStructureArray<T> implements Queue<T>
     @SuppressWarnings("unchecked")
     T item = (T) array[array.length - 1];
     // resize the array
-    super.decreaseArraySize();
+    super.decreaseArraySize(true);
     //
     log.debug("Item '{}' dequeued from the queue.", item);
     return item;

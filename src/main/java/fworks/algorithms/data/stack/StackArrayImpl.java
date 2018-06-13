@@ -39,7 +39,7 @@ public class StackArrayImpl<T> extends DataStructureArray<T> implements Stack<T>
     @SuppressWarnings("unchecked")
     T item = (T) array[array.length - 1];
     // resize the array
-    decreaseArraySize();
+    decreaseArraySize(true);
     //
     log.debug("Item '{}' popped from the stack.", item);
     return item;
