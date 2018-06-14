@@ -1,11 +1,13 @@
 language: java
 sudo: true
+before_install:
+  - chmod +x mvnw
 jobs:
   include:
   - stage: test
     jdk: oraclejdk10
     #script: mvn -q verify -Pcheck-semantic-version -DskipTests=true
-    script: "mvn cobertura:cobertura"
+    script: "mvn install"
     after_success:
     - bash <(curl -s https://codecov.io/bash)
     
