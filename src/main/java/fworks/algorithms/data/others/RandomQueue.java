@@ -53,4 +53,10 @@ public class RandomQueue<T> implements Queue<T> {
     return null;
   }
 
+  @Override
+  public T[] toArray() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }

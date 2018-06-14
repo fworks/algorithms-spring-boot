@@ -45,4 +45,10 @@ public interface DataStructure<T> extends Iterable<T> {
     }
     return string;
   }
+  
+  /**
+   * Return an array of the item of the bag.
+   * @return array of T
+   */
+  T[] toArray();
 }

@@ -95,4 +95,15 @@ public abstract class DataStructureLinkedList<T> implements DataStructure<T> {
     private Node<T> next;
   }
 
+  @Override
+  public T[] toArray() {
+    @SuppressWarnings("unchecked")
+    T[] array = (T[]) new Object[this.size()];
+    Iterator<T> iterator = this.iterator();
+    int i = 0;
+    while (iterator.hasNext()) {
+      array[i++] = iterator.next();
+    }
+    return array;
+  }
 }

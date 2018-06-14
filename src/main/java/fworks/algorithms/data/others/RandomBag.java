@@ -39,4 +39,10 @@ public class RandomBag<T> implements Bag<T> {
     // TODO Auto-generated method stub
   }
 
+  @Override
+  public T[] toArray() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
 }

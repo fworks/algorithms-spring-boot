@@ -16,7 +16,8 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
   /**
    * Array that holds the items.
    */
-  protected Object[] array = {};
+  @SuppressWarnings("unchecked")
+  protected T[] array = (T[]) new Object[0];
 
   @Override
   public boolean isEmpty() {
@@ -39,7 +40,8 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
     int oldSize = array.length;
     int newSize = oldSize + 1;
     log.debug("Increase array by 1 - old size: {} new size: {}", oldSize, newSize);
-    Object[] newArray = new Object[newSize];
+    @SuppressWarnings("unchecked")
+    T[] newArray = (T[]) new Object[newSize];
     System.arraycopy(array, 0, newArray, (atEnd ? 0 : 1), oldSize);
     array = newArray;
   }
@@ -53,11 +55,12 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
     int oldSize = array.length;
     int newSize = oldSize - 1;
     log.debug("Decrease array by 1 - old size: {} new size: {}", oldSize, newSize);
-    Object[] newArray = new Object[newSize];
+    @SuppressWarnings("unchecked")
+    T[] newArray = (T[]) new Object[newSize];
     System.arraycopy(array, (atEnd ? 0 : 1), newArray, 0, newSize);
     array = newArray;
   }
-
+  
   @Override
   public Iterator<T> iterator() {
     return new ArrayIterator(array);
@@ -95,5 +98,10 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
       // get the item and move the position forward
       return (T) this.array[pos++];
     }
+  }
+  
+  @Override
+  public T[] toArray() {
+    return this.array;
   }
 }

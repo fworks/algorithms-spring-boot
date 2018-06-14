@@ -17,7 +17,8 @@ public abstract class DataStructureOptimizedArray<T> implements DataStructure<T>
   /**
    * Array that holds the items.
    */
-  protected Object[] array = {};
+  @SuppressWarnings("unchecked")
+  protected T[] array = (T[]) new Object[0];
   /**
    * Number of items.
    */
@@ -54,7 +55,8 @@ public abstract class DataStructureOptimizedArray<T> implements DataStructure<T>
     int oldSize = array.length;
     log.debug("Increasing array size: old size: {} new size: {}", oldSize, newSize);
     // create new array
-    Object[] newArray = new Object[newSize];
+    @SuppressWarnings("unchecked")
+    T[] newArray = (T[]) new Object[newSize];
     // copy values over
     System.arraycopy(array, 0, newArray, 0, oldSize);
     // update the array
@@ -78,7 +80,8 @@ public abstract class DataStructureOptimizedArray<T> implements DataStructure<T>
     //
     log.debug("Decreasing array size: old size: {} new size: {}", oldSize, newSize);
     // create new array
-    Object[] newArray = new Object[newSize];
+    @SuppressWarnings("unchecked")
+    T[] newArray = (T[]) new Object[newSize];
 
     // verify the index for copy the values over
     int copyFrom = 0;
@@ -115,14 +118,14 @@ public abstract class DataStructureOptimizedArray<T> implements DataStructure<T>
      * iterator position.
      */
     private int pos = 0;
-    private Object[] array;
+    private T[] array;
 
     /**
      * Constructor.
      * 
      * @param array to be iterate
      */
-    public ArrayIterator(Object[] array) {
+    public ArrayIterator(T[] array) {
       this.array = array;
     }
 
@@ -132,11 +135,15 @@ public abstract class DataStructureOptimizedArray<T> implements DataStructure<T>
       return this.array.length > pos;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public T next() {
       // get the item and move the position forward
-      return (T) this.array[pos++];
+      return this.array[pos++];
     }
+  }
+  
+  @Override
+  public T[] toArray() {
+    return this.array;
   }
 }
