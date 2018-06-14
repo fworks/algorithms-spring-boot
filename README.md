@@ -24,7 +24,7 @@ Technologies in the project:
 
 - Java 10
 - Spring Boot 2
-- String Web (using tomcat at moment, thinking about move to undertow)
+- String Web (using tomcat at moment, thinking about move to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
 - Spring DevTool (for speeding up the development / restart, etc)
 - Lombok (for avoiding boilerplate code)
 - Swagger-ui (for exposing the rest services in a easy/user friendly web page)

@@ -36,8 +36,7 @@ public class StackArrayImpl<T> extends DataStructureArray<T> implements Stack<T>
     //
     log.debug("Popping item from the stack.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
+    T item = array[array.length - 1];
     // resize the array
     decreaseArraySize(true);
     //
@@ -56,8 +55,7 @@ public class StackArrayImpl<T> extends DataStructureArray<T> implements Stack<T>
     //
     log.debug("Peeking item from the stack.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
+    T item = array[array.length - 1];
     //
     log.debug("Item '{}' peeked from the stack.", item);
     return item;

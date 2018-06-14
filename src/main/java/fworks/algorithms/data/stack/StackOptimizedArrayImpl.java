@@ -41,8 +41,7 @@ public class StackOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
     log.debug("Popping item from the stack.");
     // get the item
     int position = size-- - 1;
-    @SuppressWarnings("unchecked")
-    T item = (T) array[position];
+    T item = array[position];
     array[position] = null;
     // if the size is a quarter of the array length - reduce the size of array
     if (array.length / 4 == size) {
@@ -65,8 +64,7 @@ public class StackOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
     //
     log.debug("Peeking item from the stack.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[size - 1];
+    T item = array[size - 1];
     //
     log.debug("Item '{}' peeked from the stack.", item);
     return item;

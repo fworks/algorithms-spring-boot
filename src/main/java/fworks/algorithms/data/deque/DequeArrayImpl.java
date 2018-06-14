@@ -48,8 +48,7 @@ public class DequeArrayImpl<T> extends DataStructureArray<T> implements Deque<T>
     //
     log.debug("Popping item from the right of the deque.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
+    T item = array[array.length - 1];
     // resize the array
     decreaseArraySize(true);
     //
@@ -68,8 +67,7 @@ public class DequeArrayImpl<T> extends DataStructureArray<T> implements Deque<T>
     //
     log.debug("Popping item from the left of the deque.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[0];
+    T item = array[0];
     // resize the array
     decreaseArraySize(false);
     //
@@ -88,8 +86,7 @@ public class DequeArrayImpl<T> extends DataStructureArray<T> implements Deque<T>
     //
     log.debug("Peeking item from the right of the deque.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[array.length - 1];
+    T item = array[array.length - 1];
     //
     log.debug("Item '{}' peeked from the deque.", item);
     return item;
@@ -106,8 +103,7 @@ public class DequeArrayImpl<T> extends DataStructureArray<T> implements Deque<T>
     //
     log.debug("Peeking item from the left of the deque.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[0];
+    T item = array[0];
     //
     log.debug("Item '{}' peeked from the deque.", item);
     return item;

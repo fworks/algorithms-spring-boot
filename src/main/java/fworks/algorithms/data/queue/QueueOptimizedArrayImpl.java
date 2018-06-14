@@ -41,8 +41,7 @@ public class QueueOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
     log.debug("Dequeue item from the queue.");
     // get the item
     int position = index++;
-    @SuppressWarnings("unchecked")
-    T item = (T) array[position];
+    T item = array[position];
     array[position] = null;
     // size--;
 
@@ -67,8 +66,7 @@ public class QueueOptimizedArrayImpl<T> extends DataStructureOptimizedArray<T> i
     //
     log.debug("Peeking the queue.");
     // get the item
-    @SuppressWarnings("unchecked")
-    T item = (T) array[index];
+    T item = array[index];
     //
     log.debug("Item '{}' peeked from the queue.", item);
     return item;
