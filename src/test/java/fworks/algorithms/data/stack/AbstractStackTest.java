@@ -25,19 +25,28 @@ public abstract class AbstractStackTest {
     for (int i = 0; i < test.length; i++) {
       // add an item
       String item1 = test[i];
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       stack.push(item1);
       // validate
       Assert.assertEquals(i + 1, stack.size(), 0);
       Assert.assertFalse(stack.isEmpty());
-      log.info("-> Stack: {}", stack);
+      //
+      if (logInsideLoop) {
+        log.info("-> Stack: {}", stack);
+      }
     }
 
     int count = 0;
     while (!stack.isEmpty()) {
       String peek = stack.peek();
       String item = stack.pop();
-      log.info("-> Item '{}' popped.", item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Item '{}' popped.", item);
+      }
       // validate
       int position = test.length - 1;
       Assert.assertEquals(test[position - count++], item);
@@ -48,7 +57,7 @@ public abstract class AbstractStackTest {
       }
     }
     log.info("-> Stack: {}", stack);
-    
+
     Assert.assertNull(stack.pop());
     Assert.assertNull(stack.peek());
   }
@@ -65,7 +74,10 @@ public abstract class AbstractStackTest {
     for (int i = 0; i < count; i++) {
       // add an item
       Integer item1 = i;
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       stack.push(item1);
       // validate
       Assert.assertEquals(i + 1, stack.size(), 0);
@@ -80,7 +92,10 @@ public abstract class AbstractStackTest {
     while (!stack.isEmpty()) {
       Integer peek = stack.peek();
       Integer item = stack.pop();
-      log.info("-> Item '{}' popped.", item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Item '{}' popped.", item);
+      }
       // validate
       Assert.assertEquals(--count, item, 0);
       Assert.assertEquals(peek, item);
@@ -90,7 +105,7 @@ public abstract class AbstractStackTest {
       }
     }
     log.info("-> Stack: {}", stack);
-    
+
     Assert.assertNull(stack.pop());
     Assert.assertNull(stack.peek());
   }

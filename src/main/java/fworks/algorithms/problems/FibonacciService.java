@@ -55,9 +55,9 @@ public class FibonacciService {
     // convert to array
     long[] array = new long[queue.size()];
     Iterator<Long> iterator = queue.iterator();
-    int i = queue.size() - 1;
+    int i = 0;
     while (iterator.hasNext()) {
-      array[i--] = iterator.next();
+      array[i++] = iterator.next();
     }
     return array;
   }

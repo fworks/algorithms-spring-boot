@@ -27,11 +27,18 @@ public class BruteForceSearchServiceImpl implements BruteForceSearchService {
     }
     return -1;
   }
-  
+
   @Override
   public SearchResponse search(SearchRequest request) {
     Instant start = Instant.now();
     int result = search(request.getKey(), request.getArray());
-    return new SearchResponse(result, result, Duration.between(start, Instant.now()).toMillis());
+    SearchResponse searchResult = SearchResponse.builder()
+        .algorithm("BruteForce")
+        .arraySize(request.getArray().length)
+        .index(result)
+        .numberOfKeysAnalized(result != -1 ? result : request.getArray().length)
+        .duration(Duration.between(start, Instant.now()))
+        .build();
+    return searchResult;
   }
 }

@@ -12,6 +12,8 @@ import org.junit.Assert;
 @Log4j2
 public abstract class AbstractQueueTest {
 
+  private static final int MAX_SIZE_FOR_LOGGING_INSIDE_LOOP = 500;
+
   protected void validateString(Queue<String> queue, String word) {
     // validate the initial values
     log.info("Queue: {}", queue);
@@ -20,17 +22,23 @@ public abstract class AbstractQueueTest {
 
     String[] test = word.trim().split("");
     //
-    boolean logInsideLoop = test.length > 1000 ? false : true;
-    
+    boolean logInsideLoop = test.length > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
+
     for (int i = 0; i < test.length; i++) {
       // add an item
       String item1 = test[i];
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       queue.enqueue(item1);
       // validate
       Assert.assertEquals(i + 1, queue.size(), 0);
       Assert.assertFalse(queue.isEmpty());
-      log.info("-> Queue: {}", queue);
+      //
+      if (logInsideLoop) {
+        log.info("-> Queue: {}", queue);
+      }
     }
 
     int count = 0;
@@ -46,14 +54,14 @@ public abstract class AbstractQueueTest {
       }
     }
     log.info("Queue: {}", queue);
-    
+
     Assert.assertNull(queue.dequeue());
     Assert.assertNull(queue.peek());
   }
 
   protected void validateInteger(Queue<Integer> queue, int count) {
     //
-    boolean logInsideLoop = count > 1000 ? false : true;
+    boolean logInsideLoop = count > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
     // validate the initial values
     log.info("Queue: {}", queue);
     Assert.assertEquals(0, queue.size(), 0);
@@ -62,7 +70,10 @@ public abstract class AbstractQueueTest {
     for (int i = 0; i < count; i++) {
       // add an item
       Integer item1 = i;
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       queue.enqueue(item1);
       // validate
       Assert.assertEquals(i + 1, queue.size(), 0);
@@ -78,7 +89,10 @@ public abstract class AbstractQueueTest {
     while (!queue.isEmpty()) {
       Integer peek = queue.peek();
       Integer item = queue.dequeue();
-      log.info("-> Item '{}' dequeued.", item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Item '{}' dequeued.", item);
+      }
       Assert.assertEquals(position++, item, 0);
       Assert.assertEquals(peek, item);
       //
@@ -87,7 +101,7 @@ public abstract class AbstractQueueTest {
       }
     }
     log.info("-> Queue: {}", queue);
-    
+
     Assert.assertNull(queue.dequeue());
     Assert.assertNull(queue.peek());
   }

@@ -12,6 +12,8 @@ import org.junit.Assert;
 @Log4j2
 public abstract class AbstractDequeTest {
 
+  private static final int MAX_SIZE_FOR_LOGGING_INSIDE_LOOP = 500;
+
   protected void validateString(Deque<String> deque, String word) {
     // validate the initial values
     log.info("Deque: {}", deque);
@@ -20,24 +22,33 @@ public abstract class AbstractDequeTest {
 
     String[] test = word.trim().split("");
     //
-    boolean logInsideLoop = test.length > 1000 ? false : true;
+    boolean logInsideLoop = test.length > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
 
     for (int i = 0; i < test.length; i++) {
       // add an item
       String item1 = test[i];
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       deque.pushLeft(item1);
       // validate
       Assert.assertEquals(i + 1, deque.size(), 0);
       Assert.assertFalse(deque.isEmpty());
-      log.info("-> Deque: {}", deque);
+      //
+      if (logInsideLoop) {
+        log.info("-> Deque: {}", deque);
+      }
     }
 
     int count = 0;
     while (!deque.isEmpty()) {
       String peek = deque.peekLeft();
       String item = deque.popLeft();
-      log.info("-> Item '{}' popped.", item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Item '{}' popped.", item);
+      }
       // validate
       int position = test.length - 1;
       Assert.assertEquals(test[position - count++], item);
@@ -48,7 +59,7 @@ public abstract class AbstractDequeTest {
       }
     }
     log.info("-> Deque: {}", deque);
-    
+
     Assert.assertNull(deque.popRight());
     Assert.assertNull(deque.peekRight());
     Assert.assertNull(deque.popLeft());
@@ -57,7 +68,7 @@ public abstract class AbstractDequeTest {
 
   protected void validateInteger(Deque<Integer> deque, int count) {
     //
-    boolean logInsideLoop = count > 1000 ? false : true;
+    boolean logInsideLoop = count > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
 
     // validate the initial values
     log.info("Deque: {}", deque);
@@ -67,7 +78,10 @@ public abstract class AbstractDequeTest {
     for (int i = 0; i < count; i++) {
       // add an item
       Integer item1 = i;
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       deque.pushRight(item1);
       // validate
       Assert.assertEquals(i + 1, deque.size(), 0);
@@ -82,7 +96,10 @@ public abstract class AbstractDequeTest {
     while (!deque.isEmpty()) {
       Integer peek = deque.peekRight();
       Integer item = deque.popRight();
-      log.info("-> Item '{}' popped.", item);
+      //
+      if (logInsideLoop) {
+        log.info("-> Item '{}' popped.", item);
+      }
       // validate
       Assert.assertEquals(--count, item, 0);
       Assert.assertEquals(peek, item);
@@ -92,7 +109,7 @@ public abstract class AbstractDequeTest {
       }
     }
     log.info("-> Deque: {}", deque);
-    
+
     Assert.assertNull(deque.popRight());
     Assert.assertNull(deque.peekRight());
     Assert.assertNull(deque.popLeft());

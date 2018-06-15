@@ -21,11 +21,14 @@ public abstract class AbstractBagTest {
     String[] test = word.trim().split("");
     //
     boolean logInsideLoop = test.length > 1000 ? false : true;
-    
+
     for (int i = 0; i < test.length; i++) {
       // add an item
       String item1 = test[i];
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       bag.add(item1);
       // validate
       Assert.assertEquals(i + 1, bag.size(), 0);
@@ -37,7 +40,7 @@ public abstract class AbstractBagTest {
     }
     log.info("-> Bag: {}", bag);
   }
-  
+
   protected void validateInteger(Bag<Integer> bag, int count) {
     //
     boolean logInsideLoop = count > 1000 ? false : true;
@@ -49,7 +52,10 @@ public abstract class AbstractBagTest {
     for (int i = 0; i < count; i++) {
       // add an item
       Integer item1 = i;
-      log.info("-> Adding item: '{}'", item1);
+      //
+      if (logInsideLoop) {
+        log.info("-> Adding item: '{}'", item1);
+      }
       bag.add(item1);
       // validate
       Assert.assertEquals(i + 1, bag.size(), 0);

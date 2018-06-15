@@ -34,7 +34,7 @@ public class FibonacciServiceTest {
   
   @Test
   public void calculateFibonacciSequenceTest2() {
-    long[] calculateFibonacci = fibonacciService.calculateFibonacciSequence(50);
+    long[] calculateFibonacci = fibonacciService.calculateFibonacciSequence(10);
     log.info("Fibonacci: {}", calculateFibonacci);
   }
   
