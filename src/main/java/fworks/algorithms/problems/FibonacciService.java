@@ -72,7 +72,7 @@ public class FibonacciService {
   private long fibonacciOptimized(int number, long[] fibonacciCache) {
     long cachedValue = fibonacciCache[number];
     if (cachedValue != 0) {
-      log.info("fibonacciOptimized {{}}={}(cached)", number, cachedValue);
+      log.debug("fibonacciOptimized {{}}={}(cached)", number, cachedValue);
       return cachedValue;
     }
     if (number == 0 || number == 1) {
@@ -82,7 +82,7 @@ public class FibonacciService {
     long result = fibonacciOptimized(number - 1, fibonacciCache)
         + fibonacciOptimized(number - 2, fibonacciCache);
     fibonacciCache[number] = result;
-    log.info("fibonacciOptimized {{}}={}", number, result);
+    log.debug("fibonacciOptimized {{}}={}", number, result);
     return result;
   }
 

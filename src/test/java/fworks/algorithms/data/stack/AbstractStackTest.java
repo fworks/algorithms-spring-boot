@@ -12,6 +12,8 @@ import org.junit.Assert;
 @Log4j2
 public abstract class AbstractStackTest {
 
+  private static final int MAX_SIZE_FOR_LOGGING_INSIDE_LOOP = 50;
+
   protected void validateString(Stack<String> stack, String word) {
     // validate the initial values
     log.info("Stack: {}", stack);
@@ -20,7 +22,7 @@ public abstract class AbstractStackTest {
 
     String[] test = word.trim().split("");
     //
-    boolean logInsideLoop = test.length > 1000 ? false : true;
+    boolean logInsideLoop = test.length > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
 
     for (int i = 0; i < test.length; i++) {
       // add an item
@@ -64,7 +66,7 @@ public abstract class AbstractStackTest {
 
   protected void validateInteger(Stack<Integer> stack, int count) {
     //
-    boolean logInsideLoop = count > 1000 ? false : true;
+    boolean logInsideLoop = count > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
 
     // validate the initial values
     log.info("Stack: {}", stack);

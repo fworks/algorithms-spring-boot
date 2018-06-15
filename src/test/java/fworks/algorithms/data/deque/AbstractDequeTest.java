@@ -12,7 +12,7 @@ import org.junit.Assert;
 @Log4j2
 public abstract class AbstractDequeTest {
 
-  private static final int MAX_SIZE_FOR_LOGGING_INSIDE_LOOP = 500;
+  private static final int MAX_SIZE_FOR_LOGGING_INSIDE_LOOP = 50;
 
   protected void validateString(Deque<String> deque, String word) {
     // validate the initial values

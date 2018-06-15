@@ -12,6 +12,8 @@ import org.junit.Assert;
 @Log4j2
 public abstract class AbstractBagTest {
 
+  private static final int MAX_SIZE_FOR_LOGGING_INSIDE_LOOP = 50;
+
   protected void validateString(Bag<String> bag, String word) {
     // validate the initial values
     log.info("Bag: {}", bag);
@@ -20,7 +22,7 @@ public abstract class AbstractBagTest {
 
     String[] test = word.trim().split("");
     //
-    boolean logInsideLoop = test.length > 1000 ? false : true;
+    boolean logInsideLoop = test.length > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
 
     for (int i = 0; i < test.length; i++) {
       // add an item
@@ -43,7 +45,7 @@ public abstract class AbstractBagTest {
 
   protected void validateInteger(Bag<Integer> bag, int count) {
     //
-    boolean logInsideLoop = count > 1000 ? false : true;
+    boolean logInsideLoop = count > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
     // validate the initial values
     log.info("Bag: {}", bag);
     Assert.assertEquals(0, bag.size(), 0);
