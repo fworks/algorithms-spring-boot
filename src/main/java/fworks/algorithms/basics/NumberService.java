@@ -1,8 +1,5 @@
 package fworks.algorithms.basics;
 
-import fworks.algorithms.data.bag.Bag;
-import fworks.algorithms.data.queue.Queue;
-
 /**
  * Implements few number related operations.
  * 
@@ -43,7 +40,7 @@ public interface NumberService {
    * @param number max
    * @return Bag with the numbers
    */
-  Bag<Integer> findAllPrimes(long number);
+  long[] findAllPrimes(long number);
 
   /**
    * Count all prime numbers until a passed number.
@@ -54,12 +51,23 @@ public interface NumberService {
   long countAllPrimes(long number);
 
   /**
-   * Factor a number.
+   * Factor a number.<br/>
+   * "Prime Factorization" is finding which prime numbers we need to multiply to get the original
+   * number.
    * 
    * @param number to be factored.
    * @return Queue with the factors of the number.
    */
-  Queue<Long> factor(long number);
+  long[] primeFactor(long number);
+
+  /**
+   * Get all divisor of a number.<br/>
+   * 
+   * 
+   * @param number to be factored.
+   * @return Queue with the factors of the number.
+   */
+  long[] getNumberDivisors(long number);
 
   /**
    * Calculate the square root for perfect square root.
@@ -107,5 +115,23 @@ public interface NumberService {
    * @return perimeter value
    */
   double getRightTriangulePerimeter(double sideA, double sideB);
+
+  /**
+   * Get the Greatest Common Divisor between 2 numbers.
+   * 
+   * @param first number
+   * @param second number
+   * @return gcd value
+   */
+  long getGcd(long first, long second);
+
+  /**
+   * Get the Least Common Multiple between 2 numbers.
+   * 
+   * @param first number
+   * @param second number
+   * @return lcm value
+   */
+  long getLcm(long first, long second);
 
 }

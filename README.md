@@ -48,6 +48,16 @@ Problems:
 - Balanced Parentheses (using stack)
 - Binary Representation (using stack)
 - Josephus Problem (using queue)
+- Fibonacci
+
+Searching:
+- Binary Search
+- Brute Force
+
+Sorting:
+- Merge Sort
+- Bubble Sort
+
 
 
 ## Running

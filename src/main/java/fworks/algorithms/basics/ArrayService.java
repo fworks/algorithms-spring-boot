@@ -2,7 +2,12 @@ package fworks.algorithms.basics;
 
 import java.util.Comparator;
 
-
+/**
+ * Implements few array related operations.
+ * 
+ * @author flaviolcastro
+ *
+ */
 public interface ArrayService {
 
   /**
@@ -21,7 +26,7 @@ public interface ArrayService {
    * @return max value
    */
   double getMax(double[] array);
-  
+
   /**
    * Get the min value from an array.
    * 
@@ -61,5 +66,13 @@ public interface ArrayService {
    * @return copied array
    */
   double[] copy(double[] array);
+
+  /**
+   * Check if array is sorted.
+   * 
+   * @param array to be checked.
+   * @return true, if sorted, false otherwise.
+   */
+  boolean isSorted(double[] array);
 
 }

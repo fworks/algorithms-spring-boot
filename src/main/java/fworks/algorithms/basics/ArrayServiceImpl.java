@@ -27,7 +27,7 @@ public class ArrayServiceImpl implements ArrayService {
     }
     return max;
   }
-  
+
   @Override
   public double getMin(double[] array) {
     double min = array[0];
@@ -47,12 +47,12 @@ public class ArrayServiceImpl implements ArrayService {
     }
     return sum;
   }
-  
+
   @Override
   public double getAvg(double[] array) {
     return getSum(array) / array.length;
   }
-  
+
   @Override
   public double[] reverse(double[] array) {
     double[] reversed = new double[array.length];
@@ -61,7 +61,7 @@ public class ArrayServiceImpl implements ArrayService {
     }
     return reversed;
   }
-  
+
   @Override
   public double[] copy(double[] array) {
     double[] copied = new double[array.length];
@@ -71,4 +71,14 @@ public class ArrayServiceImpl implements ArrayService {
     return copied;
   }
 
+  @Override
+  public boolean isSorted(double[] array) {
+    for (int i = 1; i < array.length; i++) {
+      if (array[i - 1] > array[i]) {
+        // if before value is bigger than actual value - not sorted
+        return false;
+      }
+    }
+    return true;
+  }
 }

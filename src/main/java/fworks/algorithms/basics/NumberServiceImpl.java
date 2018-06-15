@@ -4,6 +4,9 @@ import fworks.algorithms.data.bag.Bag;
 import fworks.algorithms.data.bag.BagLinkedListImpl;
 import fworks.algorithms.data.queue.Queue;
 import fworks.algorithms.data.queue.QueueLinkedListImpl;
+import fworks.algorithms.data.stack.Stack;
+import fworks.algorithms.data.stack.StackLinkedListImpl;
+import java.util.Iterator;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -49,14 +52,21 @@ public class NumberServiceImpl implements NumberService {
   }
 
   @Override
-  public Bag<Integer> findAllPrimes(long number) {
-    Bag<Integer> bag = new BagLinkedListImpl<>();
-    for (int i = 2; i < number; i++) {
+  public long[] findAllPrimes(long number) {
+    Bag<Long> bag = new BagLinkedListImpl<>();
+    for (long i = 2; i < number; i++) {
       if (isPrime(i)) {
         bag.add(i);
       }
     }
-    return bag;
+    // convert to array
+    long[] array = new long[bag.size()];
+    Iterator<Long> iterator = bag.iterator();
+    int i = bag.size() - 1;
+    while (iterator.hasNext()) {
+      array[i--] = iterator.next();
+    }
+    return array;
   }
 
   @Override
@@ -71,7 +81,7 @@ public class NumberServiceImpl implements NumberService {
   }
 
   @Override
-  public Queue<Long> factor(long number) {
+  public long[] primeFactor(long number) {
     long calc = number;
     Queue<Long> bag = new QueueLinkedListImpl<>();
     for (long i = 2; i <= calc; i++) {
@@ -81,7 +91,38 @@ public class NumberServiceImpl implements NumberService {
         calc = factor;
       }
     }
-    return bag;
+    // convert to array
+    long[] array = new long[bag.size()];
+    Iterator<Long> iterator = bag.iterator();
+    int i = 0;
+    while (iterator.hasNext()) {
+      array[i++] = iterator.next();
+    }
+    return array;
+  }
+
+  @Override
+  public long[] getNumberDivisors(long number) {
+    if (number < 0) {
+      // just calculate for positive integer/long
+      return null;
+    }
+    // stack the divisors
+    Stack<Long> bag = new StackLinkedListImpl<>();
+    for (long i = 1; i <= number / 2; i++) {
+      if (number % i == 0) {
+        bag.push(i);
+      }
+    }
+    bag.push(number);
+    // convert to array
+    long[] array = new long[bag.size()];
+    Iterator<Long> iterator = bag.iterator();
+    int i = 0;
+    while (iterator.hasNext()) {
+      array[i++] = iterator.next();
+    }
+    return array;
   }
 
   @Override
@@ -97,10 +138,10 @@ public class NumberServiceImpl implements NumberService {
     }
 
     // calculate factors
-    Queue<Long> queue = factor(number);
+    long[] queue = primeFactor(number);
     log.info("Factor: {}", queue);
 
-    if (queue.size() % 2 != 0) {
+    if (queue.length % 2 != 0) {
       // if not an even number - it will not be perfect
       log.info("Not a perfect square: {} - Factor: {}", number, queue);
       return Double.NaN;
@@ -108,11 +149,10 @@ public class NumberServiceImpl implements NumberService {
 
     // go through the factors and calculate the value
     double value = 0;
-    Long old = null;
-    while (!queue.isEmpty()) {
-      Long dequeue = queue.dequeue();
-      if (!dequeue.equals(old)) {
-        if (old != null) {
+    long old = -1;
+    for (long dequeue : queue) {
+      if (dequeue != old) {
+        if (old != -1) {
           // not a perfect square
           log.info("Not a perfect square: {}", number);
           return Double.NaN;
@@ -126,7 +166,7 @@ public class NumberServiceImpl implements NumberService {
         }
         value *= dequeue;
         // clean the old value
-        old = null;
+        old = -1;
       }
     }
     log.info("Perfect square: {}", value);
@@ -175,4 +215,26 @@ public class NumberServiceImpl implements NumberService {
     return perimeter;
   }
 
+  @Override
+  public long getGcd(long first, long second) {
+    // get factor
+    long[] factor1 = getNumberDivisors(first);
+    long[] factor2 = getNumberDivisors(second);
+    for (long long1 : factor1) {
+      for (long long2 : factor2) {
+        if (long2 == long1) {
+          return long2;
+        }
+      }
+    }
+    return 1;
+  }
+
+  @Override
+  public long getLcm(long first, long second) {
+    // find the gcd
+    long gcd = getGcd(first, second);
+    // multiply the numbers and divide by the gcd
+    return first * second / gcd;
+  }
 }

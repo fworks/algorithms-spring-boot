@@ -1,7 +1,5 @@
 package fworks.algorithms.basics;
 
-import fworks.algorithms.basics.NumberServiceImpl;
-import fworks.algorithms.data.bag.Bag;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Before;
@@ -44,23 +42,22 @@ public class NumberServiceImplTest {
 
   @Test
   public void findAllPrimesTest() {
-    Bag<Integer> findAllPrimes = numberService.findAllPrimes(100);
-    int[] testResult = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
+    long[] findAllPrimes = numberService.findAllPrimes(100);
+    long[] testResult = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
         73, 79, 83, 89, 97};
-    Assert.assertEquals(testResult.length,findAllPrimes.size(), 0);
-    
+    Assert.assertArrayEquals(testResult,findAllPrimes);
     
     //   10,000  1,229
-    Bag<Integer> findAllPrimesTenThousands = this.validate(10_000, 1_229);
+    long[] findAllPrimesTenThousands = this.validate(10_000, 1_229);
     log.debug(findAllPrimesTenThousands);
     //   100,000 9,592
-    Bag<Integer> findAllPrimesOneHundredThousand = this.validate(100_000, 9_592);
+    long[] findAllPrimesOneHundredThousand = this.validate(100_000, 9_592);
     log.debug(findAllPrimesOneHundredThousand);
   }
 
-  private Bag<Integer> validate(int maxNumber, int size) {
-    Bag<Integer> findAllPrimes = numberService.findAllPrimes(maxNumber);
-    Assert.assertEquals(size, findAllPrimes.size(), 0);
+  private long[] validate(int maxNumber, int size) {
+    long[] findAllPrimes = numberService.findAllPrimes(maxNumber);
+    Assert.assertEquals(size, findAllPrimes.length, 0);
     return findAllPrimes;
   }
   
@@ -88,14 +85,14 @@ public class NumberServiceImplTest {
   
   @Test
   public void squareRootTest() {
-    log.info(numberService.factor(0));
-    log.info(numberService.factor(1));
-    log.info(numberService.factor(2));
-    log.info(numberService.factor(3));
-    log.info(numberService.factor(4));
-    log.info(numberService.factor(8));
-    log.info(numberService.factor(10));
-    log.info(numberService.factor(12));
+    log.info(numberService.primeFactor(0));
+    log.info(numberService.primeFactor(1));
+    log.info(numberService.primeFactor(2));
+    log.info(numberService.primeFactor(3));
+    log.info(numberService.primeFactor(4));
+    log.info(numberService.primeFactor(8));
+    log.info(numberService.primeFactor(10));
+    log.info(numberService.primeFactor(12));
     
     Assert.assertEquals(2, numberService.squareRootNewtons(4), 0);
     Assert.assertEquals(2, numberService.perfectSquareRoot(4), 0);
@@ -131,5 +128,25 @@ public class NumberServiceImplTest {
     double rightTriangulePerimeter = numberService.getRightTriangulePerimeter(4, 2);
     log.info(rightTriangulePerimeter);
     Assert.assertEquals(10.47, rightTriangulePerimeter, 0.01);
+  }
+  
+  @Test
+  public void getGcdTest() {
+    long gcd = numberService.getGcd(6, 8);
+    log.info(gcd);
+    Assert.assertEquals(2, gcd, 0);
+    
+    gcd = numberService.getGcd(25, 69);
+    log.info(gcd);
+    Assert.assertEquals(1, gcd, 0);
+    
+    gcd = numberService.getGcd(25, 100);
+    log.info(gcd);
+    Assert.assertEquals(25, gcd, 0);
+    
+    gcd = numberService.getGcd(1_111_111, 1_234_567);
+    log.info(gcd);
+    Assert.assertEquals(1, gcd, 0);
+
   }
 }

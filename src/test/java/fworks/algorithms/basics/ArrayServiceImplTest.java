@@ -9,7 +9,7 @@ import org.junit.Test;
 @Log4j2
 public class ArrayServiceImplTest {
 
-  ArrayServiceImpl arrayService;
+  ArrayService arrayService;
 
   @Before
   public void setUp() {
@@ -87,6 +87,4 @@ public class ArrayServiceImplTest {
     log.info("Original array: {}", array);
     log.info("Copy array: {}", copy);
   }
-
-
 }
