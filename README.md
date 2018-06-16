@@ -1,4 +1,5 @@
-# Algorithms Spring Boot Application
+# Algorithms Spring Boot Application 
+[![Build Status](https://travis-ci.org/fworks/algorithms-spring-boot.svg?branch=master)](https://travis-ci.org/fworks/algorithms-spring-boot)
 
 An implementation of basic algorithms and data structures on a spring boot application.
 
