@@ -103,6 +103,17 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<!-- Sets the VM argument line used when unit tests are run. -->
+					<argLine>${surefireArgLine}</argLine>
+					<failIfNoTests>false</failIfNoTests>
+					<reportFormat>plain</reportFormat>
+				</configuration>
+			</plugin>
 
 			<!-- code coverage -->
 			<plugin>
