@@ -24,6 +24,6 @@ public class BagLinkedListImplTest extends AbstractBagTest {
   public void testInteger2Bag() {
     log.info("####### Testing Integer bag!");
     Bag<Integer> bagInteger = new BagLinkedListImpl<Integer>();
-    super.validateInteger(bagInteger, 50000);
+    super.validateInteger(bagInteger, 5000);
   }
 }

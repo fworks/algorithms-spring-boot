@@ -24,6 +24,6 @@ public class StackArrayImplTest extends AbstractStackTest {
   public void testInteger2Stack() {
     log.info("####### Testing Integer stack!");
     Stack<Integer> stackInteger = new StackArrayImpl<Integer>();
-    super.validateInteger(stackInteger, 50000);
+    super.validateInteger(stackInteger, 5000);
   }
 }

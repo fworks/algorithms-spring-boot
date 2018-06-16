@@ -24,6 +24,6 @@ public class QueueArrayImplTest extends AbstractQueueTest {
   public void testInteger2Queue() {
     log.info("####### Testing Integer queue!");
     Queue<Integer> queueInteger = new QueueArrayImpl<Integer>();
-    super.validateInteger(queueInteger, 50000);
+    super.validateInteger(queueInteger, 5000);
   }
 }

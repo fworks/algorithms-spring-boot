@@ -24,6 +24,6 @@ public class DequeArrayImplTest extends AbstractDequeTest {
   public void testInteger2Deque() {
     log.info("####### Testing Integer deque!");
     Deque<Integer> dequeInteger = new DequeArrayImpl<Integer>();
-    super.validateInteger(dequeInteger, 50000);
+    super.validateInteger(dequeInteger, 5000);
   }
 }

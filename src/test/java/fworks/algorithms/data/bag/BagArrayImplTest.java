@@ -24,6 +24,6 @@ public class BagArrayImplTest extends AbstractBagTest {
   public void testInteger2Bag() {
     log.info("####### Testing Integer bag!");
     Bag<Integer> bagInteger = new BagArrayImpl<Integer>();
-    super.validateInteger(bagInteger, 50000);
+    super.validateInteger(bagInteger, 5000);
   }
 }
