@@ -15,7 +15,7 @@ All just for playing around with the spring boot micro service world and at same
 
 ## Notes
 
-I know that most of the implementation could be done in static methods, utilities classes, etc.
+I know that most of the implementation could be done in static methods, utility classes, etc.
 But I will probably use spring service just to show how that works.
 
 
@@ -25,10 +25,10 @@ Technologies in the project:
 
 - Java 10
 - Spring Boot 2
-- String Web (using tomcat at moment, thinking about move to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
-- Spring DevTool (for speeding up the development / restart, etc)
+- String Web (using tomcat at moment, thinking about moving to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
+- Spring DevTool (for speeding up the development/restart, etc)
 - Lombok (for avoiding boilerplate code)
-- Swagger-ui (for exposing the rest services in a easy/user friendly web page)
+- Swagger-ui (for exposing the rest services in an easy/user-friendly web page)
 - Log4j2 (for logging)
 - jUnit (for testing)
 
@@ -64,19 +64,28 @@ Sorting:
 - Quick Sort
 
 
-## Code Structure:
+## Code Structure / Sub projects:
 
-> app-algorithms
+For making thing easier, all microservices project are subproject/modules from this maven project. That will make things easier than have separated git repositories for each one.
 
-http://127.0.0.1:8080/swagger-ui.html
+### app-algorithms
 
-> searching-service
+Sub project for the app gateway project.
 
-http://127.0.0.1:8081/swagger-ui.html
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 
-> sorting-service
+### searching-service
 
-http://127.0.0.1:8082/swagger-ui.html
+Sub project for the searching service.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/searching-service)
+
+
+### sorting-service
+
+Sub project for the sorting service.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/sorting-service)
 
 
 ## Running
@@ -107,7 +116,7 @@ Note: Replace *.jar for the fullname jar name
 
 D) Using docker: 
 
-First generate the jar and the docker image (skipping the tests for speeding up)
+First, generate the jar and the docker image (skipping the tests for speeding up)
 ```
 mvn install docker:build -Dmaven.test.skip=true
 ```
