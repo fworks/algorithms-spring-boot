@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.fworks</groupId>
-	<artifactId>algorithms</artifactId>
+	<artifactId>algorithms-spring-boot</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+	<packaging>pom</packaging>
 
-	<name>algorithms</name>
+	<name>algorithms-spring-boot</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -26,199 +26,17 @@
 		<java.version>10</java.version>
 		<maven.compiler.target>10</maven.compiler.target>
 		<maven.compiler.source>10</maven.compiler.source>
-		
-		<!-- code coverage - jacoco properties -->
-		<jacoco.it.execution.data.file>${project.build.directory}/coverage-reports/jacoco-it.exec</jacoco.it.execution.data.file>
-		<jacoco.ut.execution.data.file>${project.build.directory}/coverage-reports/jacoco-ut.exec</jacoco.ut.execution.data.file>
-		<jacoco.skip>false</jacoco.skip>
 	</properties>
 
 	<dependencies>
-		<!-- spring boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-logging</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-
-		<!-- log4j2 -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
-
-		<!-- lombok -->
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<!-- // TODO: different version from spring for jdk 10 - remove it later 
-				when spring updates the version. -->
-			<version>1.18.0</version>
-			<optional>true</optional>
-		</dependency>
-
-		<!-- swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.8.0</version>
-		</dependency>
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.8.0</version>
-		</dependency>
-
-		<!-- // TODO: remove it later - fixing jaxb on java 10 -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-
-		<!-- runtime 'javax.xml.bind:jaxb-api:2.3.0' runtime 'com.sun.xml.bind:jaxb-core:2.2.11' 
-			runtime 'com.sun.xml.bind:jaxb-impl:2.2.11' runtime 'javax.activation:activation:1.1.1' -->
-
-		<!-- spring boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-devtools</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 	</dependencies>
 
 	<build>
-		<plugins>
-			<!-- spring boot plugin -->
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<!-- Sets the VM argument line used when unit tests are run. -->
-					<argLine>${surefireArgLine}</argLine>
-					<failIfNoTests>false</failIfNoTests>
-					<reportFormat>plain</reportFormat>
-				</configuration>
-			</plugin>
-
-			<!-- code coverage -->
-			<plugin>
-				<groupId>org.jacoco</groupId>
-				<artifactId>jacoco-maven-plugin</artifactId>
-				<version>0.8.1</version>
-				<executions>
-					<!-- Prepares the property pointing to the JaCoCo runtime agent which 
-						is passed as VM argument when Maven the Surefire plugin is executed. -->
-					<execution>
-						<id>pre-unit-test</id>
-						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-						<configuration>
-							<!-- Sets the path to the file which contains the execution data. -->
-							<destFile>${jacoco.ut.execution.data.file}</destFile>
-							<!-- Sets the name of the property containing the settings for JaCoCo 
-								runtime agent. -->
-							<propertyName>surefireArgLine</propertyName>
-							<skip>${jacoco.skip}</skip>
-						</configuration>
-					</execution>
-					<!-- Ensures that the code coverage report for unit tests is created 
-						after unit tests have been run. -->
-					<execution>
-						<id>post-unit-test</id>
-						<phase>test</phase>
-						<goals>
-							<goal>report</goal>
-						</goals>
-						<configuration>
-							<!-- Sets the path to the file which contains the execution data. -->
-							<dataFile>${jacoco.ut.execution.data.file}</dataFile>
-							<!-- Sets the output directory for the code coverage report. -->
-							<outputDirectory>${project.reporting.outputDirectory}/jacoco-ut</outputDirectory>
-							<skip>${jacoco.skip}</skip>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- Copy docker configs to the docker build directory -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-resources</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.build.directory}/docker-resources</outputDirectory>
-							<resources>
-								<!-- copy the docker config -->
-								<resource>
-									<directory>./config/docker</directory>
-									<filtering>false</filtering>
-									<targetPath>docker</targetPath>
-								</resource>
-								<!-- copy the jar -->
-								<resource>
-									<directory>./target</directory>
-									<filtering>false</filtering>
-									<includes>
-										<include>*.jar</include>
-									</includes>
-									<targetPath>docker</targetPath>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-			<!-- Generate the docker image -->
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>docker-maven-plugin</artifactId>
-				<version>0.26.0</version>
-				<configuration>
-					<verbose>true</verbose>
-					<detail>true</detail>
-					<sourceDirectory>./target/docker-resources</sourceDirectory>
-					<dockerHost>tcp://localhost:2375</dockerHost>
-					<!-- Use this for linux/mac -->
-					<!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
-					<images>
-						<image>
-							<name>algorithmsboot</name>
-							<build>
-								<args>
-									<JAR_FILE>${project.artifactId}-${project.version}.jar</JAR_FILE>
-								</args>
-								<tags>
-									<tag>${project.version}</tag>
-								</tags>
-								<dockerFile>docker/Dockerfile</dockerFile>
-							</build>
-						</image>
-					</images>
-				</configuration>
-			</plugin>
-		</plugins>
 	</build>
 
-
+	<modules>
+		<module>app-algorithms</module>
+		<module>searching-service</module>
+		<module>sorting-service</module>
+	</modules>
 </project>
