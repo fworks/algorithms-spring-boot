@@ -2,6 +2,11 @@ package fworks.algorithms.sorting.api;
 
 import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.sorting.insertion.InsertionSortService;
+import fworks.algorithms.sorting.selection.SelectionSortService;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +33,11 @@ public class SortingController {
   protected static final String SORTING_ALL = "/allComparative";
   protected static final String SORTING_ALL_FILE = "/allComparativeFile";
   
+  protected static final int NUMBER_OF_ALGORITHMS = 2;
+
+  private final InsertionSortService insertionSortService;
+  private final SelectionSortService selectionSortService;
+
   /**
    * Constructor default.<br/>
    * Autowiring the constructor instead of the properties for easing the service mocking on the
@@ -35,7 +45,11 @@ public class SortingController {
    * 
    */
   @Autowired
-  public SortingController() {}
+  public SortingController(InsertionSortService insertionSortService,
+      SelectionSortService selectionSortService) {
+    this.insertionSortService = insertionSortService;
+    this.selectionSortService = selectionSortService;
+  }
 
   /**
    * Execute a sorting algorithm comparative.
@@ -46,7 +60,10 @@ public class SortingController {
   @PostMapping(SORTING_ALL)
   public SortingResponse[] sortingAll(@RequestBody @Validated SortingRequest sortingRequest) {
     log.info("Sorting all! {}", sortingRequest);
-    return new SortingResponse[] {};
+    SortingResponse[] responses = new SortingResponse[NUMBER_OF_ALGORITHMS];
+    responses[0] = insertionSortService.sort(sortingRequest);
+    responses[1] = selectionSortService.sort(sortingRequest);
+    return responses;
   }
 
   /**
@@ -59,7 +76,21 @@ public class SortingController {
   public SortingResponse[] sortingAllFile(
       @RequestPart(required = true) @NotNull MultipartFile uploadfile) {
     log.info("Sorting all! {}", uploadfile.getName());
-    return new SortingResponse[] {};
+    long[] array;
+    try {
+      log.info("Sorting all! Request: File:{}", uploadfile.getName());
+      // get file
+      Path uploadedTempFile = Files.createTempFile("upload", ".txt");
+      uploadfile.transferTo(uploadedTempFile.toFile());
+      // read the file
+      List<String> readAllLines = Files.readAllLines(uploadedTempFile);
+      array = readAllLines.stream().mapToLong(t -> Long.parseLong(t)).toArray();
+    } catch (Exception e) {
+      log.error("Error reading array from file!", e);
+      throw new RuntimeException("Error reading the file!", e);
+    }
+    SortingRequest sortingRequest = new SortingRequest(array);
+    return this.sortingAll(sortingRequest);
   }
 
 

@@ -1,6 +1,5 @@
 package fworks.algorithms.searching.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fworks.algorithms.searching.SearchRequest;
 import fworks.algorithms.searching.SearchResponse;
 import java.io.IOException;
@@ -20,7 +19,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -38,12 +36,6 @@ public class SearchControllerIt {
 
   @Autowired
   protected TestRestTemplate template;
-
-  @Autowired
-  protected ObjectMapper mapper;
-
-  @Autowired
-  protected MappingJackson2HttpMessageConverter httpMessageConverter;
 
   /**
    * Setup the test rest template.<br/>
@@ -67,7 +59,7 @@ public class SearchControllerIt {
         template.postForEntity(url, searchRequest, SearchResponse[].class);
 
     SearchResponse[] searchAll = response.getBody();
-    Assert.assertEquals(3, searchAll.length, 0);
+    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
     for (SearchResponse searchResponse : searchAll) {
       Assert.assertEquals(1, searchResponse.getIndex(), 0);
     }
@@ -91,7 +83,7 @@ public class SearchControllerIt {
         template.postForEntity(url, requestEntity, SearchResponse[].class);
 
     SearchResponse[] searchAll = response.getBody();
-    Assert.assertEquals(3, searchAll.length, 0);
+    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
     for (SearchResponse searchResponse : searchAll) {
       Assert.assertEquals(10, searchResponse.getIndex(), 0);
     }

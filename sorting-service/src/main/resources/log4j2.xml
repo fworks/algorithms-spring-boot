@@ -11,7 +11,7 @@
         </Console>
     </Appenders>
     <Loggers>
-        <Logger name="fworks.algorithms.searching" level="debug" additivity="false">
+        <Logger name="fworks.algorithms" level="info" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>
 

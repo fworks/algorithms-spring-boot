@@ -2,10 +2,13 @@ package fworks.algorithms.sorting.api;
 
 import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.sorting.insertion.InsertionSortService;
+import fworks.algorithms.sorting.selection.SelectionSortService;
 import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
 
@@ -13,7 +16,8 @@ public class SortingControllerTest {
 
   private SortingController sortingController;
 
-  // private BruteForceSortingService bruteForceSortingService;
+  private InsertionSortService insertionSortService;
+  private SelectionSortService selectionSortService;
 
   /**
    * Setup the test with the mock services.
@@ -21,22 +25,24 @@ public class SortingControllerTest {
   @Before
   public void setUp() {
     // mock services
-    // bruteForceSortingService = Mockito.mock(BruteForceSortingService.class);
-    sortingController = new SortingController();
+    insertionSortService = Mockito.mock(InsertionSortService.class);
+    selectionSortService = Mockito.mock(SelectionSortService.class);
+    sortingController = new SortingController(insertionSortService, selectionSortService);
   }
 
   @Test
   public void sortingAllTest() {
     // request
     long[] array = {0, 10};
-    SortingRequest sortingRequest = new SortingRequest(10, array);
+    SortingRequest sortingRequest = new SortingRequest(array);
 
     // mock services
     SortingResponse sortingResponseMocked = new SortingResponse();
-    //Mockito.when(bruteForceSortingService.sorting(sortingRequest)).thenReturn(sortingResponseMocked);
+    Mockito.when(insertionSortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
+    Mockito.when(selectionSortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
 
     SortingResponse[] sortingAll = sortingController.sortingAll(sortingRequest);
-    Assert.assertEquals(0, sortingAll.length, 0);
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
       Assert.assertEquals(sortingResponseMocked, sortingResponse);
     }
@@ -46,13 +52,14 @@ public class SortingControllerTest {
   public void sortingAllFileTest() throws IOException {
     // mock services
     SortingResponse sortingResponseMocked = new SortingResponse();
-    //Mockito.when(bruteForceSortingService.sorting(Mockito.any())).thenReturn(sortingResponseMocked);
+    Mockito.when(insertionSortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
+    Mockito.when(selectionSortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
 
     MockMultipartFile mockMultipartFile = new MockMultipartFile("test.txt",
-        new ClassPathResource("arraylong0to50_000.txt").getInputStream());
+        new ClassPathResource("arrayLongUnsorted200.txt").getInputStream());
 
     SortingResponse[] sortingAll = sortingController.sortingAllFile(mockMultipartFile);
-    Assert.assertEquals(0, sortingAll.length, 0);
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
       Assert.assertEquals(sortingResponseMocked, sortingResponse);
     }

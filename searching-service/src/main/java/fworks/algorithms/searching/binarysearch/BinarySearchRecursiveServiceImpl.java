@@ -1,10 +1,6 @@
 package fworks.algorithms.searching.binarysearch;
 
 import fworks.algorithms.searching.Counter;
-import fworks.algorithms.searching.SearchRequest;
-import fworks.algorithms.searching.SearchResponse;
-import java.time.Duration;
-import java.time.Instant;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -21,30 +17,13 @@ public class BinarySearchRecursiveServiceImpl implements BinarySearchRecursiveSe
   private static final String BINARY_SEARCH_RECURSIVE = "BinarySearchRecursive";
 
   @Override
-  public int search(long key, long[] sortedArray) {
-    int result = this.executeSearch(key, sortedArray, 0, new Counter());
-    // log.debug("Search for {} on {} = {}", key, sortedArray, result);
-    return result;
+  public String getAlgorithmName() {
+    return BINARY_SEARCH_RECURSIVE;
   }
-
+  
   @Override
-  public SearchResponse search(SearchRequest request) {
-    long key = request.getKey();
-    long[] array = request.getArray();
-    Counter counter = new Counter();
-    // execute the search marking the time
-    Instant start = Instant.now();
-    int result = this.executeSearch(key, array, 0, counter);
-    Duration duration = Duration.between(start, Instant.now());
-    // return the result
-    // log.debug("Search for {} on {} = {}", request.getKey(), request.getArray(), result);
-    SearchResponse searchResult = SearchResponse.builder() //
-        .algorithm(BINARY_SEARCH_RECURSIVE) //
-        .arraySize(array.length) //
-        .index(result).numberOfKeysAnalized(counter.getCounter()) //
-        .duration(duration) //
-        .build();
-    return searchResult;
+  public int search(long key, long[] array, Counter counter) {
+    return this.executeSearch(key, array, 0, counter);
   }
 
   /**
@@ -53,7 +32,7 @@ public class BinarySearchRecursiveServiceImpl implements BinarySearchRecursiveSe
    * @param key to be found
    * @param array array to search into
    * @param indexCount accumulate position of the index
-   * @param counter of key analysed
+   * @param counter of analysed key
    * @return index position of the key, or -1 if not found
    */
   private int executeSearch(long key, long[] array, int indexCount, Counter counter) {

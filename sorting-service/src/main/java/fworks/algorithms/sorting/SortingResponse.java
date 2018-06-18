@@ -18,22 +18,17 @@ public class SortingResponse {
   private String algorithm;
   
   /**
-   * Size of the search array.
+   * Sorted array response
    */
-  private long arraySize;
+  private long[] sortedArray;
   
   /**
-   * Index position of the key. It will be -1 if not found.
+   * Number of positions exchanging during the sorting. 
    */
-  private int index;
+  private long numberOfExchanges;
   
   /**
-   * Number of keys analysed during the search. 
-   */
-  private long numberOfKeysAnalized;
-  
-  /**
-   * Duration of the search in ms. 
+   * Duration of the sorting in ms. 
    */
   private Duration duration;
   

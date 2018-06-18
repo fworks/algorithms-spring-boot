@@ -1,6 +1,5 @@
 package fworks.algorithms.sorting.api;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
 import java.io.IOException;
@@ -20,7 +19,6 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -39,12 +37,6 @@ public class SortingControllerIt {
   @Autowired
   protected TestRestTemplate template;
 
-  @Autowired
-  protected ObjectMapper mapper;
-
-  @Autowired
-  protected MappingJackson2HttpMessageConverter httpMessageConverter;
-
   /**
    * Setup the test rest template.<br/>
    * Set the root url.
@@ -60,23 +52,23 @@ public class SortingControllerIt {
   public void sortingAllTest() {
     // request
     long[] array = {0, 10};
-    SortingRequest sortingRequest = new SortingRequest(10, array);
+    SortingRequest sortingRequest = new SortingRequest(array);
 
     String url = SortingController.API + SortingController.SORTING_ALL;
     ResponseEntity<SortingResponse[]> response =
         template.postForEntity(url, sortingRequest, SortingResponse[].class);
 
     SortingResponse[] sortingAll = response.getBody();
-    Assert.assertEquals(0, sortingAll.length, 0);
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
-      Assert.assertEquals(1, sortingResponse.getIndex(), 0);
+     // Assert.assertEquals(1, sortingResponse.getIndex(), 0);
     }
   }
 
   @Test
   public void sortingAllFileTest() throws IOException {
     // request
-    Resource fileTest = new ClassPathResource("arraylong0to50_000.txt");
+    Resource fileTest = new ClassPathResource("arrayLongUnsorted200.txt");
 
     MultiValueMap<String, Object> bodyMap = new LinkedMultiValueMap<>(2);
     bodyMap.add("uploadfile", fileTest);
@@ -91,9 +83,9 @@ public class SortingControllerIt {
         template.postForEntity(url, requestEntity, SortingResponse[].class);
 
     SortingResponse[] sortingAll = response.getBody();
-    Assert.assertEquals(0, sortingAll.length, 0);
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
-      Assert.assertEquals(10, sortingResponse.getIndex(), 0);
+     // Assert.assertEquals(10, sortingResponse.getIndex(), 0);
     }
   }
 }

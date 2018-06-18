@@ -12,12 +12,7 @@ import lombok.NoArgsConstructor;
 public class SortingRequest {
 
   /**
-   * Key to be found.
-   */
-  private long key;
-  
-  /**
-   * Array to be searched.
+   * Array to be sorted.
    */
   private long[] array;
 

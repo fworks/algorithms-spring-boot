@@ -1,4 +1,4 @@
-package fworks.algorithms.searching;
+package fworks.algorithms.sorting;
 
 import lombok.Getter;
 

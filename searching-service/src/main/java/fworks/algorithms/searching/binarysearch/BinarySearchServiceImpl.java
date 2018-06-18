@@ -1,10 +1,6 @@
 package fworks.algorithms.searching.binarysearch;
 
 import fworks.algorithms.searching.Counter;
-import fworks.algorithms.searching.SearchRequest;
-import fworks.algorithms.searching.SearchResponse;
-import java.time.Duration;
-import java.time.Instant;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
@@ -21,30 +17,14 @@ public class BinarySearchServiceImpl implements BinarySearchService {
   private static final String BINARY_SEARCH_LOOP = "BinarySearchLoop";
 
   @Override
-  public int search(long key, long[] array) {
-    // execute the search
-    return this.executeSearch(key, array, new Counter());
+  public String getAlgorithmName() {
+    return BINARY_SEARCH_LOOP;
   }
-
+  
   @Override
-  public SearchResponse search(SearchRequest request) {
-    long key = request.getKey();
-    long[] array = request.getArray();
-    Counter counter = new Counter();
-    // execute the search marking the time
-    Instant start = Instant.now();
-    int result = this.executeSearch(key, array, counter);
-    Duration duration = Duration.between(start, Instant.now());
-    // return the result
-    SearchResponse searchResponse = SearchResponse.builder() //
-        .algorithm(BINARY_SEARCH_LOOP) //
-        .arraySize(array.length) //
-        .index(result) //
-        .numberOfKeysAnalized(counter.getCounter()) //
-        .duration(duration) //
-        .build();
-    log.debug("Search for key: {} on arraySize: {} = {}", key, array.length, result);
-    return searchResponse;
+  public int search(long key, long[] array, Counter counter) {
+    // execute the search
+    return this.executeSearch(key, array, counter);
   }
 
   /**
@@ -76,6 +56,4 @@ public class BinarySearchServiceImpl implements BinarySearchService {
     }
     return -1;
   }
-
-
 }

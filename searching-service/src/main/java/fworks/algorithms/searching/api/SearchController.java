@@ -37,10 +37,12 @@ public class SearchController {
   protected static final String SEARCH_BRUTE_FORCE = "/bruteForce";
   protected static final String SEARCH_BINARY_LOOP = "/binaryLoop";
   protected static final String SEARCH_BINARY_RECURSIVE = "/binaryRecursive";
+  
+  protected static final int NUMBER_OF_ALGORITHMS = 3;
 
-  private BruteForceSearchService bruteForceSearchService;
-  private BinarySearchService binarySearch;
-  private BinarySearchRecursiveService binarySearchRecursiveService;
+  private final BruteForceSearchService bruteForceSearchService;
+  private final BinarySearchService binarySearch;
+  private final BinarySearchRecursiveService binarySearchRecursiveService;
 
   /**
    * Constructor default.<br/>
@@ -69,11 +71,11 @@ public class SearchController {
   public SearchResponse[] searchAll(@RequestBody @Validated SearchRequest searchRequest) {
     log.info("Searching all! Request {}", searchRequest);
     // return a comparative between all algorithms
-    SearchResponse[] bag = new SearchResponse[3];
-    bag[0] = bruteForceSearchService.search(searchRequest);
-    bag[1] = binarySearch.search(searchRequest);
-    bag[2] = binarySearchRecursiveService.search(searchRequest);
-    return bag;
+    SearchResponse[] responses = new SearchResponse[NUMBER_OF_ALGORITHMS];
+    responses[0] = bruteForceSearchService.search(searchRequest);
+    responses[1] = binarySearch.search(searchRequest);
+    responses[2] = binarySearchRecursiveService.search(searchRequest);
+    return responses;
   }
 
   /**

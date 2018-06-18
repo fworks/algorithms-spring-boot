@@ -48,7 +48,7 @@ public class SearchControllerTest {
         .thenReturn(searchResponseMocked);
 
     SearchResponse[] searchAll = searchController.searchAll(searchRequest);
-    Assert.assertEquals(3, searchAll.length, 0);
+    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
     for (SearchResponse searchResponse : searchAll) {
       Assert.assertEquals(searchResponseMocked, searchResponse);
     }
@@ -67,7 +67,7 @@ public class SearchControllerTest {
         new ClassPathResource("arraylong0to50_000.txt").getInputStream());
 
     SearchResponse[] searchAll = searchController.searchAllFile(mockMultipartFile, 10);
-    Assert.assertEquals(3, searchAll.length, 0);
+    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
     for (SearchResponse searchResponse : searchAll) {
       Assert.assertEquals(searchResponseMocked, searchResponse);
     }
