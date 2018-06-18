@@ -39,10 +39,10 @@ To be added:
 ## Algorithms:
 
 Data Structures (few implementations: array, linked list, optimized array)
-- Bag ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
-- Queue (FIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
-- Stack (LIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
-- Deque ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Bag ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Queue (FIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Stack (LIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Deque ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Steque
 
 Problems:
@@ -52,13 +52,13 @@ Problems:
 - Fibonacci
 
 Searching:
-- Brute Force / Sequential ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
-- Binary Search ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Brute Force / Sequential ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Binary Search ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 
 Sorting:
 - Bubble Sort
-- Selection Sort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
-- Insertion Sort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Selection Sort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Insertion Sort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Shell Sort
 - Merge Sort
 - Quick Sort
