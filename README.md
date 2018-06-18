@@ -39,10 +39,10 @@ To be added:
 ## Algorithms:
 
 Data Structures (few implementations: array, linked list, optimized array)
-- Bag
-- Queue (FIFO)
-- Stack (LIFO)
-- Deque
+- Bag ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Queue (FIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Stack (LIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Deque ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
 - Steque
 
 Problems:
@@ -52,13 +52,13 @@ Problems:
 - Fibonacci
 
 Searching:
-- Brute Force / Sequential
-- Binary Search
+- Brute Force / Sequential ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Binary Search ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
 
 Sorting:
 - Bubble Sort
-- Selection Sort
-- Insertion Sort
+- Selection Sort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
+- Insertion Sort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-24.png "Done")
 - Shell Sort
 - Merge Sort
 - Quick Sort
@@ -124,3 +124,4 @@ Now just run a container using the image
 ```
 docker run --name algorithmsboot -p 80:8080 algorithmsboot
 ```
+
