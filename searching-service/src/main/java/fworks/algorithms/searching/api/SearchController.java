@@ -1,4 +1,4 @@
-package fworks.algorithms.api;
+package fworks.algorithms.searching.api;
 
 import fworks.algorithms.searching.SearchRequest;
 import fworks.algorithms.searching.SearchResponse;
@@ -8,10 +8,10 @@ import fworks.algorithms.searching.bruteforce.BruteForceSearchService;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import javax.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,6 +32,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class SearchController {
 
   protected static final String API = "/search";
+  protected static final String SEARCH_ALL = "/allComparative";
+  protected static final String SEARCH_ALL_FILE = "/allComparativeFile";
+  protected static final String SEARCH_BRUTE_FORCE = "/bruteForce";
+  protected static final String SEARCH_BINARY_LOOP = "/binaryLoop";
+  protected static final String SEARCH_BINARY_RECURSIVE = "/binaryRecursive";
 
   private BruteForceSearchService bruteForceSearchService;
   private BinarySearchService binarySearch;
@@ -60,19 +65,15 @@ public class SearchController {
    * @param searchRequest request
    * @return list of search results
    */
-  @PostMapping("/allComparative")
-  public ResponseEntity<?> searchAll(@RequestBody SearchRequest searchRequest) {
-    try {
-      // TODO: return a comparative between all algorithms
-      SearchResponse[] bag = new SearchResponse[3];
-      bag[0] = bruteForceSearchService.search(searchRequest);
-      bag[1] = binarySearch.search(searchRequest);
-      bag[2] = binarySearchRecursiveService.search(searchRequest);
-      return ResponseEntity.ok(bag);
-    } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+  @PostMapping(SEARCH_ALL)
+  public SearchResponse[] searchAll(@RequestBody @Validated SearchRequest searchRequest) {
+    log.info("Searching all! Request {}", searchRequest);
+    // return a comparative between all algorithms
+    SearchResponse[] bag = new SearchResponse[3];
+    bag[0] = bruteForceSearchService.search(searchRequest);
+    bag[1] = binarySearch.search(searchRequest);
+    bag[2] = binarySearchRecursiveService.search(searchRequest);
+    return bag;
   }
 
   /**
@@ -82,74 +83,61 @@ public class SearchController {
    * @param key to be found
    * @return list of search results
    */
-  @PostMapping("/allComparativeFile")
-  public ResponseEntity<?> searchAllFile(@RequestPart(required = true) MultipartFile uploadfile,
-      @RequestParam long key) {
+  @PostMapping(SEARCH_ALL_FILE)
+  public SearchResponse[] searchAllFile(
+      @RequestPart(required = true) @NotNull MultipartFile uploadfile,
+      @RequestParam @NotNull long key) {
+
+    long[] array;
     try {
+      log.info("Searching all! Request: File:{} Key:{}", uploadfile.getName(), key);
       // get file
       Path uploadedTempFile = Files.createTempFile("upload", ".txt");
       uploadfile.transferTo(uploadedTempFile.toFile());
       // read the file
       List<String> readAllLines = Files.readAllLines(uploadedTempFile);
-      long[] array = readAllLines.stream().mapToLong(t -> Long.parseLong(t)).toArray();
-      SearchRequest searchRequest = SearchRequest.builder().key(key).array(array).build();
-      return this.searchAll(searchRequest);
+      array = readAllLines.stream().mapToLong(t -> Long.parseLong(t)).toArray();
     } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+      log.error("Error reading array from file!", e);
+      throw new RuntimeException("Error reading the file!", e);
     }
+    SearchRequest searchRequest = SearchRequest.builder().key(key).array(array).build();
+    return this.searchAll(searchRequest);
   }
-
-
 
   /**
    * Execute a search using bruteForce.
    * 
    * @param searchRequest request
-   * @return index position
+   * @return search response object
    */
-  @PostMapping("/bruteForce")
-  public ResponseEntity<?> searchBruteForce(@RequestBody SearchRequest searchRequest) {
-    try {
-      SearchResponse result = bruteForceSearchService.search(searchRequest);
-      return ResponseEntity.ok(result);
-    } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+  @PostMapping(SEARCH_BRUTE_FORCE)
+  public SearchResponse searchBruteForce(@RequestBody @Validated SearchRequest searchRequest) {
+    log.info("Searching brute force! Request {}", searchRequest);
+    return bruteForceSearchService.search(searchRequest);
   }
 
   /**
-   * Execute a search using binary search.
+   * Execute a search using binary search internal loop implementation.
    * 
    * @param searchRequest request
-   * @return index position
+   * @return search response object
    */
-  @PostMapping("/binaryLoop")
-  public ResponseEntity<?> searchBinary(@RequestBody SearchRequest searchRequest) {
-    try {
-      SearchResponse result = binarySearch.search(searchRequest);
-      return ResponseEntity.ok(result);
-    } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+  @PostMapping(SEARCH_BINARY_LOOP)
+  public SearchResponse searchBinary(@RequestBody @Validated SearchRequest searchRequest) {
+    log.info("Searching binary loop! Request {}", searchRequest);
+    return binarySearch.search(searchRequest);
   }
 
   /**
-   * Execute a search using binary search.
+   * Execute a search using binary search recursive implementation.
    * 
    * @param searchRequest request
-   * @return index position
+   * @return search response object
    */
-  @PostMapping("/binaryRecursive")
-  public ResponseEntity<?> searchBinaryRecursive(@RequestBody SearchRequest searchRequest) {
-    try {
-      SearchResponse result = binarySearchRecursiveService.search(searchRequest);
-      return ResponseEntity.ok(result);
-    } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+  @PostMapping(SEARCH_BINARY_RECURSIVE)
+  public SearchResponse searchBinaryRecursive(@RequestBody @Validated SearchRequest searchRequest) {
+    log.info("Searching binary recursive! Request {}", searchRequest);
+    return binarySearchRecursiveService.search(searchRequest);
   }
 }

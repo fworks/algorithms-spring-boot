@@ -25,4 +25,5 @@ public interface SearchService {
    * @return search response
    */
   SearchResponse search(SearchRequest request);
+  
 }

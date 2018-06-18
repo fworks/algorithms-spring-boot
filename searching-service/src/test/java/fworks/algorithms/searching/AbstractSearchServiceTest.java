@@ -13,13 +13,23 @@ public abstract class AbstractSearchServiceTest {
 
   protected void validateNotExistentKey(SearchService searchService, int key, long[] array) {
     // search for not existent key
-    Assert.assertEquals(-1, searchService.search(key, array), 0);
+    SearchRequest searchRequest = SearchRequest.builder() //
+        .array(array) //
+        .key(key) //
+        .build();
+    SearchResponse searchResponse = searchService.search(searchRequest);
+    Assert.assertEquals(-1, searchResponse.getIndex(), 0);
   }
 
   protected void validateExistentKey(SearchService searchService, long key, long[] array,
       int index) {
     // search for existent key
-    Assert.assertEquals(index, searchService.search(key, array), 0);
+    SearchRequest searchRequest = SearchRequest.builder() //
+        .array(array) //
+        .key(key) //
+        .build();
+    SearchResponse searchResponse = searchService.search(searchRequest);
+    Assert.assertEquals(index, searchResponse.getIndex(), 0);
   }
 
   protected void executeCommonTests(SearchService searchService) {

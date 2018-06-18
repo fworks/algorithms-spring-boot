@@ -4,15 +4,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Algorithms boot application.
+ * Searching Service spring boot application.
  * 
  * @author flaviolcastro
  *
  */
 @SpringBootApplication
-public class AlgorithmsApplication {
+public class SearchingServiceApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(AlgorithmsApplication.class, args);
+    SpringApplication.run(SearchingServiceApplication.class, args);
   }
 }
