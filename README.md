@@ -106,7 +106,7 @@ C) On console - running the jar:
 
 First generate the jar (skipping the test for speeding up)
 ```
-mvn install -Dmaven.test.skip=true
+.\mvnw install -Dmaven.test.skip=true
 ```
 Now just run it:
 ```
@@ -118,7 +118,7 @@ D) Using docker:
 
 First, generate the jar and the docker image (skipping the tests for speeding up)
 ```
-mvn install docker:build -Dmaven.test.skip=true
+.\mvnw install docker:build -Dmaven.test.skip=true
 ```
 Now just run a container using the image
 ```
