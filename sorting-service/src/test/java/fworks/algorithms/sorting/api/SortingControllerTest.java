@@ -43,6 +43,7 @@ public class SortingControllerTest {
     SortingResponse sortingResponseMocked = new SortingResponse();
     Mockito.when(insertionSortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
     Mockito.when(selectionSortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
+    Mockito.when(shellsortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
 
     SortingResponse[] sortingAll = sortingController.sortingAll(sortingRequest);
     Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
@@ -57,6 +58,7 @@ public class SortingControllerTest {
     SortingResponse sortingResponseMocked = new SortingResponse();
     Mockito.when(insertionSortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
     Mockito.when(selectionSortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
+    Mockito.when(shellsortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
 
     MockMultipartFile mockMultipartFile = new MockMultipartFile("test.txt",
         new ClassPathResource("arrayLongUnsorted200.txt").getInputStream());

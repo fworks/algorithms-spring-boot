@@ -61,7 +61,7 @@ public class SortingControllerIt {
     SortingResponse[] sortingAll = response.getBody();
     Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
-     // Assert.assertEquals(1, sortingResponse.getIndex(), 0);
+      Assert.assertArrayEquals(array, sortingResponse.getSortedArray());
     }
   }
 
@@ -85,7 +85,7 @@ public class SortingControllerIt {
     SortingResponse[] sortingAll = response.getBody();
     Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
-     // Assert.assertEquals(10, sortingResponse.getIndex(), 0);
+      //Assert.assertTrue(sortingResponse.getNumberOfExchanges() > 0);
     }
   }
 }
