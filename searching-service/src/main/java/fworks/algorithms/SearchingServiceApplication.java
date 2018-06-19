@@ -2,6 +2,7 @@ package fworks.algorithms;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 /**
  * Searching Service spring boot application.
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author flaviolcastro
  *
  */
+@EnableEurekaClient
 @SpringBootApplication
 public class SearchingServiceApplication {
 
