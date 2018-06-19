@@ -85,7 +85,7 @@ public class SortingControllerIt {
     SortingResponse[] sortingAll = response.getBody();
     Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
-      //Assert.assertTrue(sortingResponse.getNumberOfExchanges() > 0);
+      Assert.assertTrue(sortingResponse.getNumberOfExchanges() > 0);
     }
   }
 }
