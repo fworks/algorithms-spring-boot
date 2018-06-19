@@ -39,8 +39,9 @@ public interface SortingService {
   default SortingResponse sort(SortingRequest request) {
     Counter counter = new Counter();
     // sort the array marking the time
+    var array = request.getArray();
     Instant start = Instant.now();
-    long[] sorted = this.sort(request.getArray(), counter);
+    var sorted = this.sort(array, counter);
     Duration duration = Duration.between(start, Instant.now());
     // return the result
     SortingResponse sortingResponse = SortingResponse.builder() //
@@ -79,7 +80,7 @@ public interface SortingService {
    * @param position2 position 2
    */
   default <T> void exchange(T[] array, int position1, int position2) {
-    T position1Value = array[position1];
+    var position1Value = array[position1];
     array[position1] = array[position2];
     array[position2] = position1Value;
   }
@@ -92,7 +93,7 @@ public interface SortingService {
    * @param position2 position 2
    */
   default void exchange(long[] array, int position1, int position2) {
-    long position1Value = array[position1];
+    var position1Value = array[position1];
     array[position1] = array[position2];
     array[position2] = position1Value;
   }

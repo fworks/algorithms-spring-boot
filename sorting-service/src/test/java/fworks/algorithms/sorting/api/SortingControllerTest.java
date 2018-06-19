@@ -4,6 +4,7 @@ import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
 import fworks.algorithms.sorting.insertion.InsertionSortService;
 import fworks.algorithms.sorting.selection.SelectionSortService;
+import fworks.algorithms.sorting.shellsort.ShellsortService;
 import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -18,6 +19,7 @@ public class SortingControllerTest {
 
   private InsertionSortService insertionSortService;
   private SelectionSortService selectionSortService;
+  private ShellsortService shellsortService;
 
   /**
    * Setup the test with the mock services.
@@ -27,7 +29,8 @@ public class SortingControllerTest {
     // mock services
     insertionSortService = Mockito.mock(InsertionSortService.class);
     selectionSortService = Mockito.mock(SelectionSortService.class);
-    sortingController = new SortingController(insertionSortService, selectionSortService);
+    shellsortService = Mockito.mock(ShellsortService.class);
+    sortingController = new SortingController(insertionSortService, selectionSortService, shellsortService);
   }
 
   @Test

@@ -47,13 +47,13 @@ public class InsertionSortServiceImpl implements InsertionSortService {
       // as it will compare against all the left values of i
 
       // get current item
-      long current = array[i];
+      var current = array[i];
 
       // compare the current against all left values
       for (int j = i; j > 0; j--) {
 
         // left item
-        long leftItem = array[j - 1];
+        var leftItem = array[j - 1];
 
         // if current less than left item
         if (less(current, leftItem)) {
@@ -89,8 +89,7 @@ public class InsertionSortServiceImpl implements InsertionSortService {
    * @param counter of positions exchanges
    * @return sorted array
    */
-  @SuppressWarnings("rawtypes")
-  private Comparable[] executeSorting(Comparable[] array, Counter counter) {
+  private Comparable<?>[] executeSorting(Comparable<?>[] array, Counter counter) {
     // for all items
     for (int i = 1; i < array.length; i++) {
 
@@ -98,13 +97,13 @@ public class InsertionSortServiceImpl implements InsertionSortService {
       // as it will compare against all the left values of i
 
       // get current item
-      Comparable current = array[i];
+      var current = array[i];
 
       // compare the current against all left values
       for (int j = i; j > 0; j--) {
 
         // left item
-        Comparable leftItem = array[j - 1];
+        var leftItem = array[j - 1];
 
         // if current less than left item
         if (less(current, leftItem)) {

@@ -4,6 +4,7 @@ import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
 import fworks.algorithms.sorting.insertion.InsertionSortService;
 import fworks.algorithms.sorting.selection.SelectionSortService;
+import fworks.algorithms.sorting.shellsort.ShellsortService;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -33,10 +34,12 @@ public class SortingController {
   protected static final String SORTING_ALL = "/allComparative";
   protected static final String SORTING_ALL_FILE = "/allComparativeFile";
   
-  protected static final int NUMBER_OF_ALGORITHMS = 2;
+  protected static final int NUMBER_OF_ALGORITHMS = 3;
 
   private final InsertionSortService insertionSortService;
   private final SelectionSortService selectionSortService;
+  private final ShellsortService shellsortService; 
+  
 
   /**
    * Constructor default.<br/>
@@ -46,9 +49,10 @@ public class SortingController {
    */
   @Autowired
   public SortingController(InsertionSortService insertionSortService,
-      SelectionSortService selectionSortService) {
+      SelectionSortService selectionSortService, ShellsortService shellsortService) {
     this.insertionSortService = insertionSortService;
     this.selectionSortService = selectionSortService;
+    this.shellsortService = shellsortService;
   }
 
   /**
@@ -63,6 +67,7 @@ public class SortingController {
     SortingResponse[] responses = new SortingResponse[NUMBER_OF_ALGORITHMS];
     responses[0] = insertionSortService.sort(sortingRequest);
     responses[1] = selectionSortService.sort(sortingRequest);
+    responses[2] = shellsortService.sort(sortingRequest);
     return responses;
   }
 

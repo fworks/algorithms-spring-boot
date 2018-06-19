@@ -48,16 +48,16 @@ public class SelectionSortServiceImpl implements SelectionSortService {
       // find the smallest item
 
       // keep track of the minimum position
-      int minPos = i;
+      var minPos = i;
 
       // compare against the others (right values)
       for (int j = i + 1; j < array.length; j++) {
 
         // get current item
-        long current = array[minPos];
+        var current = array[minPos];
 
         // next value
-        long nextItem = array[j];
+        var nextItem = array[j];
 
 
         // if next is less than current
@@ -92,24 +92,23 @@ public class SelectionSortServiceImpl implements SelectionSortService {
    * @param counter of positions exchanges
    * @return sorted array
    */
-  @SuppressWarnings("rawtypes")
-  private Comparable[] executeSorting(Comparable[] array, Counter counter) {
+  private Comparable<?>[] executeSorting(Comparable<?>[] array, Counter counter) {
     // for all items
     for (int i = 0; i < array.length; i++) {
       
       // find the smallest item
       
       // keep track of the minimum position
-      int minPos = i;
+      var minPos = i;
       
       // compare against the others (right values)
       for (int j = i + 1; j < array.length; j++) {
         
         // get current item
-        Comparable current = array[minPos];
+        var current = array[minPos];
         
         // next value
-        Comparable nextItem = array[j];
+        var nextItem = array[j];
         
         
         // if next is less than current
