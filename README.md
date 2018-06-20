@@ -141,7 +141,7 @@ Getting the code and compiling and running it.
 ###### Step 2) Open a terminal/powershell, go to project root directory and run maven to generate the jars
 
 ```
-.\mvnw install docker:build -Dmaven.test.skip=true
+.\mvnw install docker:build -D maven.test.skip=true
 ```
 Note: skipping the testing for speeding up
 

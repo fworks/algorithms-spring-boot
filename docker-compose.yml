@@ -1,0 +1,70 @@
+version: "3.2"
+
+services:
+
+  # service-discovery - Eureka
+  service-discovery:
+    image: fworks/algorithmsboot-discovery
+    ports:
+      - 8761:8761
+    restart: always
+    networks:
+      - net
+    hostname: service-discovery
+    container_name: service-discovery  
+    
+  # app-algorithms
+  app-algorithms:
+    image: fworks/algorithmsboot-app
+    ports:
+      - 8080:8080
+    restart: always
+    networks:
+      - net
+    hostname: app-algorithms
+    container_name: app-algorithms      
+
+  # searching-service
+  searching-service:
+    image: fworks/algorithmsboot-searching
+    ports:
+      - 8081:8081
+    restart: always
+    networks:
+      - net
+    hostname: searching-service
+    container_name: searching-service          
+
+  # sorting-service
+  sorting-service:
+    image: fworks/algorithmsboot-sorting
+    ports:
+      - 8082:8082
+    restart: always
+    networks:
+      - net
+    hostname: sorting-service
+    container_name: sorting-service          
+    
+  # problems-service
+  problems-service:
+    image: fworks/algorithmsboot-problems
+    ports:
+      - 8083:8083
+    restart: always
+    networks:
+      - net
+    hostname: problems-service
+    container_name: problems-service          
+
+
+networks:
+  net:
+    driver: bridge
+
+#volumes:
+#  mongodb_data:
+#    driver: local
+#  elk-data:
+#    driver: local
+    
