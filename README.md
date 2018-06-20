@@ -91,7 +91,7 @@ Sub project for the app gateway micro service project.
 
 ### data-structures
 
-Sub project with data structures library implementation.
+Sub project with data structures implementation. Just a library.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/data-structures)
 
@@ -116,38 +116,38 @@ Sub project for the sorting micro service.
 
 ## Running
 
-1) Clone the code
+#### Option A) 
 
-2) Few options:
+Faster way, running using the docker images that the last successful build generated.
 
-A) On IDE (STS/Eclipse/IntelliJ):
-```
-run AlgorithmsApplication.java
-```
-B) On IDE/console - using maven = spring boot maven plugin:
-``` 
-mvn spring-boot:run
-```
-C) On console - running the jar:
+###### Step 1) Download the file docker-compose.yml
 
-First generate the jar (skipping the test for speeding up)
-```
-.\mvnw install -Dmaven.test.skip=true
-```
-Now just run it:
-```
-java -jar target/*.jar'
-```
-Note: Replace *.jar for the fullname jar name
+###### Step 2) Open a terminal/powershell, go to the directory of the docker-compose.yml file and run:
 
-D) Using docker: 
+```
+docker-compose up
+```
 
-First, generate the jar and the docker image (skipping the tests for speeding up)
+It should start up all the services.
+That is it. Play around and have fun! :)
+
+
+#### Option B)
+
+Getting the code and compiling and running it.
+
+###### Step 1) Clone the code
+
+###### Step 2) Open a terminal/powershell, go to project root directory and run maven to generate the jars
+
 ```
 .\mvnw install docker:build -Dmaven.test.skip=true
 ```
-Now just run a container using the image
+Note: skipping the testing for speeding up
+
+###### Step 3) Run docker compose to start up all the services  
+
 ```
-docker run --name algorithmsboot -p 80:8080 algorithmsboot
+docker-compose up
 ```
 

@@ -1,5 +1,5 @@
-## Problems Service
+## Data Structures
 
-Problems microservice application.
+Data structures library.
 
-http://127.0.0.1:8083/swagger-ui.html
+That is just a library (jar) to be used on the other services.
