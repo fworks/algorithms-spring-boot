@@ -51,12 +51,19 @@ Data Structures (few implementations: array, linked list, optimized array)
 - Stack (LIFO) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Deque ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Steque
+- Priority Queue
+- Generalized Queue
+- Random Queue
+- Random Bag
+- Buffer
+- Ring Buffer
 
 Problems:
-- Balanced Parentheses (using stack)
+- Balanced Parentheses (using stack) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Binary Representation (using stack)
-- Josephus Problem (using queue)
-- Fibonacci
+- Josephus Problem (using queue) ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Fibonacci ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Prime Numbers ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 
 Searching:
 - Brute Force / Sequential ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
@@ -68,6 +75,7 @@ Sorting:
 - Shellsort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Mergesort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Quicksort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
+- Quick3way ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Bubblesort
 - Heapsort
 
@@ -81,18 +89,17 @@ Sub project for the app gateway project.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 
+### data-structures
+
+Sub project with data structures implementation.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/data-structures)
+
 ### searching-service
 
 Sub project for the searching service.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/searching-service)
-
-
-### sorting-service
-
-Sub project for the sorting service.
-
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/sorting-service)
 
 ### service-discovery
 
@@ -100,6 +107,11 @@ Sub project for the service discovery - eureka server/service.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/service-discovery)
 
+### sorting-service
+
+Sub project for the sorting service.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/sorting-service)
 
 
 ## Running

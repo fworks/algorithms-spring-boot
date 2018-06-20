@@ -53,7 +53,7 @@ public class Quick3wayServiceImpl implements Quick3wayService {
     var value = array[leftPosition];
 
     while (i <= gt) {
-
+      
       var test = array[i];
 
       if (less(test, value)) {
@@ -98,7 +98,7 @@ public class Quick3wayServiceImpl implements Quick3wayService {
     var value = array[leftPosition];
 
     while (i <= gt) {
-
+      
       var test = array[i];
 
       if (less(test, value)) {
@@ -111,7 +111,6 @@ public class Quick3wayServiceImpl implements Quick3wayService {
 
       } else {
         i++;
-
       }
     }
 

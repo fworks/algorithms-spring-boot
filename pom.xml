@@ -35,10 +35,12 @@
 	</build>
 
 	<modules>
+		<module>service-discovery</module>
+
 		<module>app-algorithms</module>
 		<module>searching-service</module>
 		<module>sorting-service</module>
-		
-		<module>service-discovery</module>
+		<module>problems-service</module>
+		<module>data-structures</module>
 	</modules>
 </project>
