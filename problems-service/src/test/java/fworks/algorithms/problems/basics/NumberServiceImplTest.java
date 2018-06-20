@@ -19,6 +19,7 @@ public class NumberServiceImplTest {
   public void getAbsTest() {
     Assert.assertEquals(12, numberService.getAbs(-12.0), 0);
     Assert.assertEquals(12, numberService.getAbs(12.0), 0);
+    Assert.assertEquals(12, numberService.getAbs(-12L), 0);
     Assert.assertEquals(12, numberService.getAbs(12L), 0);
   }
   

@@ -62,7 +62,7 @@ public class FibonacciController {
    * @return fibonacci value
    */
   @GetMapping(FUNCTION_NON_RECURSIVE)
-  public long fibonacciNonRecursiveFuntion(@RequestParam @NotNull int number) {
+  public long fibonacciNonRecursiveFunction(@RequestParam @NotNull int number) {
     log.info("fibonacciNonRecursiveService function[{}]", number);
     return fibonacciNonRecursiveService.fibonacci(number);
   }
@@ -74,7 +74,7 @@ public class FibonacciController {
    * @return fibonacci value
    */
   @GetMapping(FUNCTION_SIMPLE)
-  public long fibonacciSimpleFuntion(@RequestParam @NotNull int number) {
+  public long fibonacciSimpleFunction(@RequestParam @NotNull int number) {
     log.info("fibonacciSimpleService function[{}]", number);
     if (number > 20) {
       throw new ValidationException("Number of Iterations cannot be greater than 20");
@@ -89,7 +89,7 @@ public class FibonacciController {
    * @return fibonacci value
    */
   @GetMapping(FUNCTION_OPTIMIZED)
-  public long fibonacciOptimizedFuntion(@RequestParam @NotNull int number) {
+  public long fibonacciOptimizedFunction(@RequestParam @NotNull int number) {
     log.info("fibonacciOptimizedService function[{}]", number);
     // non recursive
     return fibonacciOptimizedService.fibonacci(number);

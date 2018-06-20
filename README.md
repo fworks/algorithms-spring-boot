@@ -85,19 +85,19 @@ For making thing easier, all microservices project are subproject/modules from t
 
 ### app-algorithms
 
-Sub project for the app gateway project.
+Sub project for the app gateway micro service project.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 
 ### data-structures
 
-Sub project with data structures implementation.
+Sub project with data structures library implementation.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/data-structures)
 
 ### searching-service
 
-Sub project for the searching service.
+Sub project for the searching micro service.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/searching-service)
 
@@ -109,7 +109,7 @@ Sub project for the service discovery - eureka server/service.
 
 ### sorting-service
 
-Sub project for the sorting service.
+Sub project for the sorting micro service.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/sorting-service)
 

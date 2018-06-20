@@ -1,15 +1,13 @@
 package fworks.algorithms;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class SortingServiceApplicationTests {
 
   @Test
-  public void contextLoads() {}
+  public void contextLoads() {
+    // for coverage
+    SortingServiceApplication.main(new String[] {});
+  }
 
 }

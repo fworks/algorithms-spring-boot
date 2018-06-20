@@ -17,12 +17,15 @@ public class StackService {
    * @param integer number.
    * @return String with 0 and 1
    */
-  public String getBinaryRepresentation(Integer integer) {
+  public String getBinaryRepresentation(int integer) {
     //
     log.debug("Integer: {}", integer);
     //
-    if (integer == null) {
-      return null;
+    if (integer < 0) {
+      integer = -integer;
+    }
+    if (integer == 0) {
+      return "0";
     }
     // use a stack to hold the values
     Stack<Integer> stack = new StackArrayImpl<>();
@@ -33,9 +36,9 @@ public class StackService {
     }
     // mount the binary representation
     StringBuilder stringBuilder = new StringBuilder();
-    stack.forEach(t -> {
-      stringBuilder.append(t);
-    });
+    while (!stack.isEmpty()) {
+      stringBuilder.append(stack.pop());
+    }
     String result = stringBuilder.toString();
     //
     log.debug("Integer: {} Binary: {}", integer, result);

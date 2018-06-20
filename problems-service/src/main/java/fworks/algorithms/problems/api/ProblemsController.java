@@ -2,12 +2,13 @@ package fworks.algorithms.problems.api;
 
 import fworks.algorithms.problems.balancedparentheses.ParenthesesService;
 import fworks.algorithms.problems.basics.StackService;
+import javax.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -18,16 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @Log4j2
 @RestController
-@RequestMapping(value = DataStructureController.API)
-public class DataStructureController {
+@RequestMapping(value = ProblemsController.API)
+public class ProblemsController {
 
-  protected static final String API = "/dataStructure";
+  protected static final String API = "/problems";
+  
+  protected static final String BINARY_REPRESENTATION = "/binaryRepresentation";
+  protected static final String BALANCED_PARENTHESES = "/verifyBalancedParentheses";
 
   private StackService stackService;
   private ParenthesesService paranthesesService;
 
   @Autowired
-  public DataStructureController(StackService stackService, ParenthesesService paranthesesService) {
+  public ProblemsController(StackService stackService, ParenthesesService paranthesesService) {
     this.stackService = stackService;
     this.paranthesesService = paranthesesService;
   }
@@ -38,30 +42,21 @@ public class DataStructureController {
    * @param number integer
    * @return binary representation string
    */
-  @PostMapping("/binaryRepresentation")
-  public ResponseEntity<?> binaryRepresentation(Integer number) {
-    try {
-      String result = stackService.getBinaryRepresentation(number);
-      return ResponseEntity.ok(result);
-    } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+  @PostMapping(BINARY_REPRESENTATION)
+  public String binaryRepresentation(@RequestParam int number) {
+    log.info("Binary representation for {}.", number);
+    return stackService.getBinaryRepresentation(number);
   }
 
   /**
    * Api method which verify if an input with parentheses is balanced.
+   * 
    * @param parenthesesInput to be verified
    * @return true if balanced, false otherwise
    */
-  @PostMapping("/verifyBalancedParentheses")
-  public ResponseEntity<?> verifyBalancedParentheses(String parenthesesInput) {
-    try {
-      boolean result = paranthesesService.isBalanced(parenthesesInput);
-      return ResponseEntity.ok(result);
-    } catch (Exception e) {
-      log.error("Error", e);
-      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
-    }
+  @PostMapping(BALANCED_PARENTHESES)
+  public boolean verifyBalancedParentheses(@RequestBody @NotNull String parenthesesInput) {
+    log.info("Verify balanced parentheses: {}.", parenthesesInput);
+    return paranthesesService.isBalanced(parenthesesInput);
   }
 }

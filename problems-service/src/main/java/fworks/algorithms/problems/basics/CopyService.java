@@ -22,12 +22,25 @@ public class CopyService {
    * 
    * @param original to be copied.
    * @return copied version
+   * @throws Exception if something goes wrong
    */
-  public <T> Queue<T> copy(Queue<T> original) {
+  @SuppressWarnings("unchecked")
+  public <T> Queue<T> copyQueue(Queue<T> original) throws Exception {
     //
     log.debug("Copying queue: {}", original);
-    // TODO: finish it
-    return original;
+    try {
+      Queue<T> aux = original.getClass().getDeclaredConstructor().newInstance();
+      original.forEach(t -> aux.enqueue(t));
+
+      // using an aux queue - TODO: revisit it to improve that part
+      Queue<T> copied = original.getClass().getDeclaredConstructor().newInstance();
+      aux.forEach(t -> copied.enqueue(t));
+      
+      return copied;
+    } catch (Exception e) {
+      log.error("Error copying queue!", e);
+      throw e;
+    }
   }
 
   /**
@@ -35,25 +48,41 @@ public class CopyService {
    * 
    * @param original to be copied.
    * @return copied version
+   * @throws Exception  if something goes wrong
    */
-  public <T> Stack<T> copy(Stack<T> original) {
+  public <T> Stack<T> copyStack(Stack<T> original) throws Exception {
     //
     log.debug("Copying stack: {}", original);
-    // TODO: finish it
-    return original;
+    try {
+      @SuppressWarnings("unchecked")
+      Stack<T> copied = original.getClass().getDeclaredConstructor().newInstance();
+      original.forEach(t -> copied.push(t));
+      return copied;
+    } catch (Exception e) {
+      log.error("Error copying stack!", e);
+      throw e;
+    }
   }
-  
+
   /**
    * Copy a bag.
    * 
    * @param original to be copied.
    * @return copied version
+   * @throws Exception  if something goes wrong
    */
-  public <T> Bag<T> copy(Bag<T> original) {
+  public <T> Bag<T> copyBag(Bag<T> original) throws Exception {
     //
     log.debug("Copying bag: {}", original);
-    // TODO: finish it
-    return original;
+    try {
+      @SuppressWarnings("unchecked")
+      Bag<T> copied = original.getClass().getDeclaredConstructor().newInstance();
+      original.forEach(t -> copied.add(t));
+      return copied;
+    } catch (Exception e) {
+      log.error("Error copying bag!", e);
+      throw e;
+    }
   }
 
 }
