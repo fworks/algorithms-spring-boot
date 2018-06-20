@@ -69,15 +69,6 @@ public interface SortingService {
    */
   @SuppressWarnings({"rawtypes", "unchecked"})
   default boolean less(Comparable a, Comparable b) {
-    if(a == null && b == null) {
-      return false;
-    }
-    if(a == null && b != null) {
-      return true;
-    }
-    if(a != null && b == null) {
-      return false;
-    }
     return a.compareTo(b) < 0;
   }
 

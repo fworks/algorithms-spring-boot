@@ -11,6 +11,7 @@
         </Console>
     </Appenders>
     <Loggers>
+        <!-- change for debug to see the debug logs for the algorithms -->
         <Logger name="fworks.algorithms.searching" level="debug" additivity="false">
             <AppenderRef ref="ConsoleAppender" />
         </Logger>

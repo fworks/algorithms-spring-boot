@@ -1,6 +1,7 @@
 package fworks.algorithms.searching;
 
 import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Abstract test class for search service. <br/>
@@ -11,6 +12,13 @@ import org.junit.Assert;
  */
 public abstract class AbstractSearchServiceTest {
 
+  /**
+   * Validate the search service against an non existent key.
+   * 
+   * @param searchService to be tested
+   * @param key to be found
+   * @param array to be searched
+   */
   protected void validateNotExistentKey(SearchService searchService, int key, long[] array) {
     // search for not existent key
     SearchRequest searchRequest = SearchRequest.builder() //
@@ -21,6 +29,14 @@ public abstract class AbstractSearchServiceTest {
     Assert.assertEquals(-1, searchResponse.getIndex(), 0);
   }
 
+  /**
+   * Validate the search service against an existent key.
+   * 
+   * @param searchService to be tested
+   * @param key to be found
+   * @param array to be searched
+   * @param index of the key on the array
+   */
   protected void validateExistentKey(SearchService searchService, long key, long[] array,
       int index) {
     // search for existent key
@@ -32,20 +48,19 @@ public abstract class AbstractSearchServiceTest {
     Assert.assertEquals(index, searchResponse.getIndex(), 0);
   }
 
-  protected void executeCommonTests(SearchService searchService) {
-    // array length 1
-    this.searchSizeOneArrayTest(searchService);
-    // array length 2
-    this.searchSizeTwoArrayTest(searchService);
-    // array length 3
-    this.searchSizeThreeArrayTest(searchService);
-    // array length 10
-    this.searchArrayTest(searchService);
-    // array length 500
-    this.searchBigArrayTest(searchService);
-  }
+  /**
+   * Get the search service to be tested.
+   * 
+   * @return SearchService
+   */
+  protected abstract SearchService getSearchService();
 
-  private void searchSizeOneArrayTest(SearchService searchService) {
+  /**
+   * Search on an array length 1.
+   */
+  @Test
+  public void searchSizeOneArrayTest() {
+    SearchService searchService = getSearchService();
     long[] array = {0};
     // search for not existent key
     validateNotExistentKey(searchService, 10, array);
@@ -53,7 +68,12 @@ public abstract class AbstractSearchServiceTest {
     validateExistentKey(searchService, 0, array, 0);
   }
 
-  private void searchSizeTwoArrayTest(SearchService searchService) {
+  /**
+   * Search on an array length 2.
+   */
+  @Test
+  public void searchSizeTwoArrayTest() {
+    SearchService searchService = getSearchService();
     long[] array = {0, 10};
     // search for not existent key
     validateNotExistentKey(searchService, 12, array);
@@ -62,7 +82,12 @@ public abstract class AbstractSearchServiceTest {
     validateExistentKey(searchService, 10, array, 1);
   }
 
-  private void searchSizeThreeArrayTest(SearchService searchService) {
+  /**
+   * Search on an array length 3.
+   */
+  @Test
+  public void searchSizeThreeArrayTest() {
+    SearchService searchService = getSearchService();
     long[] array = {0, 10, 25};
     // search for not existent key
     validateNotExistentKey(searchService, 12, array);
@@ -72,7 +97,12 @@ public abstract class AbstractSearchServiceTest {
     validateExistentKey(searchService, 25, array, 2);
   }
 
-  private void searchArrayTest(SearchService searchService) {
+  /**
+   * Search on an array length 10.
+   */
+  @Test
+  public void searchArrayTest() {
+    SearchService searchService = getSearchService();
     long[] array = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
     // search for not existent key
     validateNotExistentKey(searchService, 12, array);
@@ -90,7 +120,12 @@ public abstract class AbstractSearchServiceTest {
     validateExistentKey(searchService, 10, array, 9);
   }
 
-  private void searchBigArrayTest(SearchService searchService) {
+  /**
+   * Search on an array length 500.
+   */
+  @Test
+  public void searchBigArrayTest() {
+    SearchService searchService = getSearchService();
     int count = 500;
     long[] array = new long[count];
     for (int i = 1; i <= count; i++) {
@@ -110,7 +145,6 @@ public abstract class AbstractSearchServiceTest {
     validateExistentKey(searchService, 8, array, 7);
     validateExistentKey(searchService, 9, array, 8);
     validateExistentKey(searchService, 10, array, 9);
-
     validateExistentKey(searchService, count, array, count - 1);
   }
 }

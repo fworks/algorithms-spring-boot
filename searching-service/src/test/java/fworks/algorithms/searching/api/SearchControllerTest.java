@@ -13,6 +13,12 @@ import org.mockito.Mockito;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
 
+/**
+ * Unit test for SearchController.
+ * 
+ * @author flaviolcastro
+ *
+ */
 public class SearchControllerTest {
 
   private SearchController searchController;

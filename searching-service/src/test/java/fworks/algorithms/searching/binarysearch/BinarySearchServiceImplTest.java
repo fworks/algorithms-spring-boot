@@ -1,10 +1,8 @@
 package fworks.algorithms.searching.binarysearch;
 
 import fworks.algorithms.searching.AbstractSearchServiceTest;
-import fworks.algorithms.searching.binarysearch.BinarySearchService;
-import fworks.algorithms.searching.binarysearch.BinarySearchServiceImpl;
+import fworks.algorithms.searching.SearchService;
 import org.junit.Before;
-import org.junit.Test;
 
 public class BinarySearchServiceImplTest extends AbstractSearchServiceTest {
 
@@ -15,8 +13,8 @@ public class BinarySearchServiceImplTest extends AbstractSearchServiceTest {
     binarySearch = new BinarySearchServiceImpl();
   }
 
-  @Test
-  public void commonTest() {
-    super.executeCommonTests(binarySearch);
+  @Override
+  protected SearchService getSearchService() {
+    return binarySearch;
   }
 }

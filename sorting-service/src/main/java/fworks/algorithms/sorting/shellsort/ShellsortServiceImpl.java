@@ -81,14 +81,11 @@ public class ShellsortServiceImpl implements ShellsortService {
             // as them are already sorted
             break;
           }
-
         }
-        
-        // update h
-        h = h / 3;
-
       }
-
+      
+      // update h
+      h = h / 3;
     }
 
     // return sorted array
@@ -144,14 +141,11 @@ public class ShellsortServiceImpl implements ShellsortService {
             // as them are already sorted
             break;
           }
-
-          // update h
-          h = h / 3;
-
         }
-
       }
-
+      
+      // update h
+      h = h / 3;
     }
 
     // return sorted array

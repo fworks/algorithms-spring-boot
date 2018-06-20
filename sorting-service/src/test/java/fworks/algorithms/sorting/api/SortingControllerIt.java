@@ -23,10 +23,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-@RunWith(SpringRunner.class)
+/**
+ * Integration testing for the SortingController.
+ * 
+ * @author flaviolcastro
+ *
+ */
 @Log4j2
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = "spring.profiles.include=test")
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SortingControllerIt {
 
   @LocalServerPort
@@ -48,10 +53,13 @@ public class SortingControllerIt {
     template.setUriTemplateHandler(new RootUriTemplateHandler(url));
   }
 
+  /**
+   * Execute the sorting all endpoint.
+   */
   @Test
   public void sortingAllTest() {
     // request
-    long[] array = {0, 10};
+    long[] array = {0, 10, 20, 30, 45};
     SortingRequest sortingRequest = new SortingRequest(array);
 
     String url = SortingController.API + SortingController.SORTING_ALL;
@@ -65,6 +73,11 @@ public class SortingControllerIt {
     }
   }
 
+  /**
+   * Execute the sorting all file endpoint.
+   * 
+   * @throws IOException
+   */
   @Test
   public void sortingAllFileTest() throws IOException {
     // request

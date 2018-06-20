@@ -2,7 +2,6 @@ package fworks.algorithms.searching.api;
 
 import fworks.algorithms.searching.SearchRequest;
 import fworks.algorithms.searching.SearchResponse;
-import java.io.IOException;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,10 +22,15 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
-@RunWith(SpringRunner.class)
+/**
+ * Integration test for SearchController.
+ * 
+ * @author flaviolcastro
+ *
+ */
 @Log4j2
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-    properties = "spring.profiles.include=test")
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SearchControllerIt {
 
   @LocalServerPort
@@ -48,6 +52,9 @@ public class SearchControllerIt {
     template.setUriTemplateHandler(new RootUriTemplateHandler(url));
   }
 
+  /**
+   * Test search all endpoint.
+   */
   @Test
   public void searchAllTest() {
     // request
@@ -65,8 +72,11 @@ public class SearchControllerIt {
     }
   }
 
+  /**
+   * Test search all file endpoint.
+   */
   @Test
-  public void searchAllFileTest() throws IOException {
+  public void searchAllFileTest() {
     // request
     Resource fileTest = new ClassPathResource("arraylong0to50_000.txt");
 
@@ -89,6 +99,9 @@ public class SearchControllerIt {
     }
   }
 
+  /**
+   * Test binary search loop endpoint.
+   */
   @Test
   public void searchBinaryTest() {
     // request
@@ -104,6 +117,9 @@ public class SearchControllerIt {
     Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
   }
 
+  /**
+   * Test binary search recursive endpoint.
+   */
   @Test
   public void searchBinaryRecursiveTest() {
     // request
@@ -119,6 +135,9 @@ public class SearchControllerIt {
     Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
   }
 
+  /**
+   * Test brute force endpoint.
+   */
   @Test
   public void searchBruteForceTest() {
     // request

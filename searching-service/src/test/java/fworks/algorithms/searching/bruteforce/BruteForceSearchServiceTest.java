@@ -1,8 +1,8 @@
 package fworks.algorithms.searching.bruteforce;
 
 import fworks.algorithms.searching.AbstractSearchServiceTest;
+import fworks.algorithms.searching.SearchService;
 import org.junit.Before;
-import org.junit.Test;
 
 public class BruteForceSearchServiceTest extends AbstractSearchServiceTest {
 
@@ -13,8 +13,8 @@ public class BruteForceSearchServiceTest extends AbstractSearchServiceTest {
     bruteForce = new BruteForceSearchServiceImpl();
   }
 
-  @Test
-  public void commonTest() {
-    super.executeCommonTests(bruteForce);
+  @Override
+  protected SearchService getSearchService() {
+    return bruteForce;
   }
 }

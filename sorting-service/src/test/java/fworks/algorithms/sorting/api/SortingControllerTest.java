@@ -16,6 +16,12 @@ import org.mockito.Mockito;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockMultipartFile;
 
+/**
+ * Unit testing the SortingController.
+ * 
+ * @author flaviolcastro
+ *
+ */
 public class SortingControllerTest {
 
   private SortingController sortingController;

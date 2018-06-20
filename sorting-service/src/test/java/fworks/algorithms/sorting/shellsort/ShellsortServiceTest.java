@@ -1,9 +1,15 @@
 package fworks.algorithms.sorting.shellsort;
 
 import fworks.algorithms.sorting.AbstractSortingServiceTest;
+import fworks.algorithms.sorting.SortingService;
 import org.junit.Before;
-import org.junit.Test;
 
+/**
+ * Testing the ShellsortService.
+ * 
+ * @author flaviolcastro
+ *
+ */
 public class ShellsortServiceTest extends AbstractSortingServiceTest {
 
   private ShellsortService sortingService;
@@ -13,14 +19,8 @@ public class ShellsortServiceTest extends AbstractSortingServiceTest {
     sortingService = new ShellsortServiceImpl();
   }
 
-
-  @Test
-  public void commonTest() {
-    super.executeLongPrimitiveTest(sortingService);
-  }
-
-  @Test
-  public void common2Test() {
-    super.executeStringTest(sortingService);
+  @Override
+  protected SortingService getSortingService() {
+    return sortingService;
   }
 }

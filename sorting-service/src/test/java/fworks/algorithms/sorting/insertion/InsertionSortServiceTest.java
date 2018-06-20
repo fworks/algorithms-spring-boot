@@ -1,9 +1,15 @@
 package fworks.algorithms.sorting.insertion;
 
 import fworks.algorithms.sorting.AbstractSortingServiceTest;
+import fworks.algorithms.sorting.SortingService;
 import org.junit.Before;
-import org.junit.Test;
 
+/**
+ * Testing the InsertionSortService.
+ * 
+ * @author flaviolcastro
+ *
+ */
 public class InsertionSortServiceTest extends AbstractSortingServiceTest {
 
   private InsertionSortService sortingService;
@@ -13,13 +19,9 @@ public class InsertionSortServiceTest extends AbstractSortingServiceTest {
     sortingService = new InsertionSortServiceImpl();
   }
 
-  @Test
-  public void commonTest() {
-    super.executeLongPrimitiveTest(sortingService);
+  @Override
+  protected SortingService getSortingService() {
+    return sortingService;
   }
-  
-  @Test
-  public void common2Test() {
-    super.executeStringTest(sortingService);
-  }
+
 }

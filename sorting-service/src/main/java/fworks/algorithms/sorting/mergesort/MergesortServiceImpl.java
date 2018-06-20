@@ -153,7 +153,7 @@ public class MergesortServiceImpl implements MergesortService {
           left = leftArray.length > leftPos ? leftArray[leftPos] : null;
           right = rightArray.length > rightPos ? rightArray[rightPos] : null;
           
-          if(less(left, right)) {
+          if(left != null && less(left, right)) {
             array[i] = left;
             leftPos++;
           } else {
