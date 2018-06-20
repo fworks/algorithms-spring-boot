@@ -125,18 +125,18 @@ public class MergesortServiceImpl implements MergesortService {
       int half = array.length / 2;
       int rest = array.length % 2;
       
-      long[] leftArray = new long[half];
+      Comparable<?>[] leftArray = new Comparable<?>[half];
       System.arraycopy(array, 0, leftArray, 0, half);
       
       leftArray = executeSorting(leftArray, counter);
       
-      long[] rightArray = new long[half+rest];
+      Comparable<?>[] rightArray = new Comparable<?>[half+rest];
       System.arraycopy(array, half, rightArray, 0, half+rest);
       
       rightArray = executeSorting(rightArray, counter);
       
-      long right = rightArray[0];
-      long left = leftArray[leftArray.length-1];
+      Comparable<?> right = rightArray[0];
+      Comparable<?> left = leftArray[leftArray.length-1];
       
       if(less(left, right)) {
 
@@ -150,8 +150,8 @@ public class MergesortServiceImpl implements MergesortService {
         int rightPos = 0;
         for (int i = 0; i < array.length; i++) {
           
-          left = leftArray.length > leftPos ? leftArray[leftPos] : Long.MAX_VALUE;
-          right = rightArray.length > rightPos ? rightArray[rightPos] : Long.MAX_VALUE;
+          left = leftArray.length > leftPos ? leftArray[leftPos] : null;
+          right = rightArray.length > rightPos ? rightArray[rightPos] : null;
           
           if(less(left, right)) {
             array[i] = left;
