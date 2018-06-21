@@ -28,7 +28,7 @@ services:
   searching-service:
     image: fworks/algorithmsboot-searching
     ports:
-      - 8081:8081
+      - 8081:8080
     restart: always
     networks:
       - net
@@ -39,7 +39,7 @@ services:
   sorting-service:
     image: fworks/algorithmsboot-sorting
     ports:
-      - 8082:8082
+      - 8082:8080
     restart: always
     networks:
       - net
@@ -50,7 +50,7 @@ services:
   problems-service:
     image: fworks/algorithmsboot-problems
     ports:
-      - 8083:8083
+      - 8083:8080
     restart: always
     networks:
       - net
