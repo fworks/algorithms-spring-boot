@@ -10,4 +10,10 @@ import fworks.algorithms.sorting.SortingService;
  */
 public interface QuicksortService extends SortingService {
 
+  public static final String QUICKSORT = "Quicksort";
+
+  @Override
+  default String getAlgorithmName() {
+    return QUICKSORT;
+  }
 }

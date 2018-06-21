@@ -18,7 +18,7 @@ public interface SortingService {
    * @param counter of exchanges 
    * @return sorted array.
    */
-  long[] sort(long[] array, Counter counter);
+  long[] sort(long[] array, final Counter counter);
   
   /**
    * Execute a sort on an array.
@@ -27,7 +27,7 @@ public interface SortingService {
    * @return sorted array.
    */
   @SuppressWarnings("rawtypes")
-  Comparable[] sort(Comparable[] array, Counter counter);
+  Comparable[] sort(Comparable[] array, final Counter counter);
   
   
   /**
@@ -36,7 +36,7 @@ public interface SortingService {
    * @param request params to sort
    * @return sort response
    */
-  default SortingResponse sort(SortingRequest request) {
+  default SortingResponse sort(final SortingRequest request) {
     Counter counter = new Counter();
     // sort the array marking the time
     var array = request.getArray();

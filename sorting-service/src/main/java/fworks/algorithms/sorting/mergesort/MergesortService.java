@@ -10,4 +10,10 @@ import fworks.algorithms.sorting.SortingService;
  */
 public interface MergesortService extends SortingService {
 
+  public static final String MERGESORT = "Mergesort";
+
+  @Override
+  default String getAlgorithmName() {
+    return MERGESORT;
+  }
 }

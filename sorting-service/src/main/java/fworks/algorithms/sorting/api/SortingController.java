@@ -2,6 +2,7 @@ package fworks.algorithms.sorting.api;
 
 import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.sorting.bubblesort.BubblesortService;
 import fworks.algorithms.sorting.insertion.InsertionSortService;
 import fworks.algorithms.sorting.mergesort.MergesortService;
 import fworks.algorithms.sorting.quicksort.Quick3wayService;
@@ -38,7 +39,7 @@ public class SortingController {
   protected static final String SORTING_ALL = "/allComparative";
   protected static final String SORTING_ALL_FILE = "/allComparativeFile";
 
-  protected static final int NUMBER_OF_ALGORITHMS = 6;
+  protected static final int NUMBER_OF_ALGORITHMS = 7;
 
   private final InsertionSortService insertionSortService;
   private final SelectionSortService selectionSortService;
@@ -46,6 +47,7 @@ public class SortingController {
   private final MergesortService mergesortService;
   private final QuicksortService quicksortService;
   private final Quick3wayService quick3wayService;
+  private final BubblesortService bubblesortService;
 
 
   /**
@@ -58,13 +60,14 @@ public class SortingController {
   public SortingController(InsertionSortService insertionSortService,
       SelectionSortService selectionSortService, ShellsortService shellsortService,
       MergesortService mergesortService, QuicksortService quicksortService,
-      Quick3wayService quick3wayService) {
+      Quick3wayService quick3wayService, BubblesortService bubblesortService) {
     this.insertionSortService = insertionSortService;
     this.selectionSortService = selectionSortService;
     this.shellsortService = shellsortService;
     this.mergesortService = mergesortService;
     this.quicksortService = quicksortService;
     this.quick3wayService = quick3wayService;
+    this.bubblesortService = bubblesortService;
   }
 
   /**
@@ -76,19 +79,30 @@ public class SortingController {
   @PostMapping(SORTING_ALL)
   public SortingResponse[] sortingAll(@RequestBody @Validated SortingRequest sortingRequest) {
     log.info("Sorting all! {}", sortingRequest);
+    // keep the original
+    long[] original = sortingRequest.getArray();
     SortingResponse[] responses = new SortingResponse[NUMBER_OF_ALGORITHMS];
-    long[] copyOf = Arrays.copyOf(sortingRequest.getArray(), sortingRequest.getArray().length);
+    // insertion sort
+    long[] copyOf = Arrays.copyOf(original, original.length);
     responses[0] = insertionSortService.sort(new SortingRequest(copyOf));
-    copyOf = Arrays.copyOf(sortingRequest.getArray(), sortingRequest.getArray().length);
+    // selection sort
+    copyOf = Arrays.copyOf(original, original.length);
     responses[1] = selectionSortService.sort(new SortingRequest(copyOf));
-    copyOf = Arrays.copyOf(sortingRequest.getArray(), sortingRequest.getArray().length);
+    // shellsort
+    copyOf = Arrays.copyOf(original, original.length);
     responses[2] = shellsortService.sort(new SortingRequest(copyOf));
-    copyOf = Arrays.copyOf(sortingRequest.getArray(), sortingRequest.getArray().length);
+    // mergesort
+    copyOf = Arrays.copyOf(original, original.length);
     responses[3] = mergesortService.sort(new SortingRequest(copyOf));
-    copyOf = Arrays.copyOf(sortingRequest.getArray(), sortingRequest.getArray().length);
+    // quicksort
+    copyOf = Arrays.copyOf(original, original.length);
     responses[4] = quicksortService.sort(new SortingRequest(copyOf));
-    copyOf = Arrays.copyOf(sortingRequest.getArray(), sortingRequest.getArray().length);
+    // quick3way sort
+    copyOf = Arrays.copyOf(original, original.length);
     responses[5] = quick3wayService.sort(new SortingRequest(copyOf));
+    // bubble sort
+    copyOf = Arrays.copyOf(original, original.length);
+    responses[6] = bubblesortService.sort(new SortingRequest(copyOf));
     return responses;
   }
 

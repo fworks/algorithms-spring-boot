@@ -10,4 +10,10 @@ import fworks.algorithms.sorting.SortingService;
  */
 public interface SelectionSortService extends SortingService {
 
+  public static final String SELECTION_SORT = "SelectionSort";
+
+  @Override
+  default String getAlgorithmName() {
+    return SELECTION_SORT;
+  }
 }

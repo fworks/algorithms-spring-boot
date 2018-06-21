@@ -2,6 +2,7 @@ package fworks.algorithms.sorting.api;
 
 import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.sorting.quicksort.Quick3wayService;
 import java.io.IOException;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
@@ -59,7 +60,29 @@ public class SortingControllerIt {
   @Test
   public void sortingAllTest() {
     // request
-    long[] array = {0, 10, 20, 30, 45};
+    long[] array = {10, 2, 5, 86, 99, 1, 6, 0};
+    long[] sorted = {0, 1, 2, 5, 6, 10, 86, 99};
+    SortingRequest sortingRequest = new SortingRequest(array);
+
+    String url = SortingController.API + SortingController.SORTING_ALL;
+    ResponseEntity<SortingResponse[]> response =
+        template.postForEntity(url, sortingRequest, SortingResponse[].class);
+
+    SortingResponse[] sortingAll = response.getBody();
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
+    for (SortingResponse sortingResponse : sortingAll) {
+      Assert.assertArrayEquals(sorted, sortingResponse.getSortedArray());
+      log.info(sortingResponse);
+    }
+  }
+
+  /**
+   * Execute the sorting all endpoint.
+   */
+  @Test
+  public void sortingAllSortedTest() {
+    // request
+    long[] array = {0, 10, 20, 30, 45, 68, 89, 112, 896};
     SortingRequest sortingRequest = new SortingRequest(array);
 
     String url = SortingController.API + SortingController.SORTING_ALL;
@@ -70,6 +93,10 @@ public class SortingControllerIt {
     Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
     for (SortingResponse sortingResponse : sortingAll) {
       Assert.assertArrayEquals(array, sortingResponse.getSortedArray());
+      log.info(sortingResponse);
+      if (!Quick3wayService.QUICK3WAY.equals(sortingResponse.getAlgorithm())) {
+        Assert.assertEquals(0, sortingResponse.getNumberOfExchanges());
+      }
     }
   }
 

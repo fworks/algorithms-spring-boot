@@ -2,6 +2,7 @@ package fworks.algorithms.sorting.api;
 
 import fworks.algorithms.sorting.SortingRequest;
 import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.sorting.bubblesort.BubblesortService;
 import fworks.algorithms.sorting.insertion.InsertionSortService;
 import fworks.algorithms.sorting.mergesort.MergesortService;
 import fworks.algorithms.sorting.quicksort.Quick3wayService;
@@ -32,6 +33,7 @@ public class SortingControllerTest {
   private MergesortService mergesortService;
   private QuicksortService quicksortService;
   private Quick3wayService quick3wayService;
+  private BubblesortService bubblesortService;
 
   /**
    * Setup the test with the mock services.
@@ -45,8 +47,9 @@ public class SortingControllerTest {
     mergesortService = Mockito.mock(MergesortService.class);
     quicksortService = Mockito.mock(QuicksortService.class);
     quick3wayService = Mockito.mock(Quick3wayService.class);
+    bubblesortService = Mockito.mock(BubblesortService.class);
     sortingController = new SortingController(insertionSortService, selectionSortService,
-        shellsortService, mergesortService, quicksortService, quick3wayService);
+        shellsortService, mergesortService, quicksortService, quick3wayService, bubblesortService);
   }
 
   @Test
@@ -63,6 +66,7 @@ public class SortingControllerTest {
     Mockito.when(mergesortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
     Mockito.when(quicksortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
     Mockito.when(quick3wayService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
+    Mockito.when(bubblesortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
 
     SortingResponse[] sortingAll = sortingController.sortingAll(sortingRequest);
     Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
@@ -81,6 +85,7 @@ public class SortingControllerTest {
     Mockito.when(mergesortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
     Mockito.when(quicksortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
     Mockito.when(quick3wayService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
+    Mockito.when(bubblesortService.sort(Mockito.any())).thenReturn(sortingResponseMocked);
 
     MockMultipartFile mockMultipartFile = new MockMultipartFile("test.txt",
         new ClassPathResource("arrayLongUnsorted200.txt").getInputStream());

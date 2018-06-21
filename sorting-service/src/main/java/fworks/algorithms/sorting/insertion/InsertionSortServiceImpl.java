@@ -14,21 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class InsertionSortServiceImpl implements InsertionSortService {
 
-  private static final String INSERTION_SORT = "InsertionSort";
-  
   @Override
-  public String getAlgorithmName() {
-    return INSERTION_SORT;
-  }
-
-  @Override
-  public long[] sort(long[] array, Counter counter) {
+  public long[] sort(long[] array, final Counter counter) {
     return executeSorting(array, counter);
   }
 
   @Override
   @SuppressWarnings("rawtypes")
-  public Comparable[] sort(Comparable[] array, Counter counter) {
+  public Comparable[] sort(Comparable[] array, final Counter counter) {
     return executeSorting(array, counter);
   }
 
@@ -39,7 +32,7 @@ public class InsertionSortServiceImpl implements InsertionSortService {
    * @param counter of positions exchanges
    * @return sorted array
    */
-  private long[] executeSorting(long[] array, Counter counter) {
+  private long[] executeSorting(long[] array, final Counter counter) {
     // for all items
     for (int i = 1; i < array.length; i++) {
 
@@ -89,7 +82,7 @@ public class InsertionSortServiceImpl implements InsertionSortService {
    * @param counter of positions exchanges
    * @return sorted array
    */
-  private Comparable<?>[] executeSorting(Comparable<?>[] array, Counter counter) {
+  private Comparable<?>[] executeSorting(Comparable<?>[] array, final Counter counter) {
     // for all items
     for (int i = 1; i < array.length; i++) {
 

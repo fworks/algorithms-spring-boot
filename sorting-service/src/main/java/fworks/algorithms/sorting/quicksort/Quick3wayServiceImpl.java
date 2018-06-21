@@ -12,21 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class Quick3wayServiceImpl implements Quick3wayService {
 
-  private static final String QUICK3WAY = "Quick3way";
-
   @Override
-  public String getAlgorithmName() {
-    return QUICK3WAY;
-  }
-
-  @Override
-  public long[] sort(long[] array, Counter counter) {
+  public long[] sort(long[] array, final Counter counter) {
     return executeSorting(array, 0, array.length - 1, counter);
   }
 
   @Override
   @SuppressWarnings("rawtypes")
-  public Comparable[] sort(Comparable[] array, Counter counter) {
+  public Comparable[] sort(Comparable[] array, final Counter counter) {
     return executeSorting(array, 0, array.length - 1, counter);
   }
 
@@ -38,7 +31,7 @@ public class Quick3wayServiceImpl implements Quick3wayService {
    * @return sorted array
    */
   private long[] executeSorting(long[] array, int leftPosition, int rightPosition,
-      Counter counter) {
+      final Counter counter) {
 
     if (rightPosition <= leftPosition) {
       //
@@ -57,12 +50,19 @@ public class Quick3wayServiceImpl implements Quick3wayService {
       var test = array[i];
 
       if (less(test, value)) {
+        
         exchange(array, lt++, i++);
         counter.increaseCounter();
 
       } else if (less(value, test)) {
-        exchange(array, i, gt--);
-        counter.increaseCounter();
+        
+        // don't exchange if it is the same position
+        if(gt != i) {
+          exchange(array, i, gt--);
+          counter.increaseCounter();
+        } else {
+          gt--;
+        }
 
       } else {
         i++;
@@ -84,7 +84,7 @@ public class Quick3wayServiceImpl implements Quick3wayService {
    * @return sorted array
    */
   private Comparable<?>[] executeSorting(Comparable<?>[] array, int leftPosition, int rightPosition,
-      Counter counter) {
+      final Counter counter) {
     if (rightPosition <= leftPosition) {
       //
       return array;
@@ -102,15 +102,29 @@ public class Quick3wayServiceImpl implements Quick3wayService {
       var test = array[i];
 
       if (less(test, value)) {
-        exchange(array, lt++, i++);
-        counter.increaseCounter();
+        
+        // don't exchange if it is the same position
+        if(lt != i) {
+          exchange(array, lt++, i++);
+          counter.increaseCounter();
+        } else {
+          lt++;
+          i++;
+        }
 
       } else if (less(value, test)) {
-        exchange(array, i, gt--);
-        counter.increaseCounter();
+        
+        // don't exchange if it is the same position
+        if(gt != i) {
+          exchange(array, i, gt--);
+          counter.increaseCounter();
+        } else {
+          gt--;
+        }
 
       } else {
         i++;
+
       }
     }
 

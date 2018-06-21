@@ -14,21 +14,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class SelectionSortServiceImpl implements SelectionSortService {
 
-  private static final String SELECTION_SORT = "SelectionSort";
-
   @Override
-  public String getAlgorithmName() {
-    return SELECTION_SORT;
-  }
-  
-  @Override
-  public long[] sort(long[] array, Counter counter) {
+  public long[] sort(long[] array, final Counter counter) {
     return executeSorting(array, counter);
   }
 
   @Override
   @SuppressWarnings("rawtypes")
-  public Comparable[] sort(Comparable[] array, Counter counter) {
+  public Comparable[] sort(Comparable[] array, final Counter counter) {
     return executeSorting(array, counter);
   }
 
@@ -39,7 +32,7 @@ public class SelectionSortServiceImpl implements SelectionSortService {
    * @param counter of positions exchanges
    * @return sorted array
    */
-  private long[] executeSorting(long[] array, Counter counter) {
+  private long[] executeSorting(long[] array, final Counter counter) {
     
     
     // for all items
@@ -73,9 +66,11 @@ public class SelectionSortServiceImpl implements SelectionSortService {
 
       log.debug("Exchanging positions {}-{} Array: {}", i, minPos, array.length > 20 ? "" : array);
 
-      // exchange the current position with the min position
-      exchange(array, i, minPos);
-      counter.increaseCounter();
+      if(minPos != i) {
+        // exchange the current position with the min position
+        exchange(array, i, minPos);
+        counter.increaseCounter();
+      }
 
       log.debug("Positions Exchanged - Array: {}", array.length > 20 ? "" : array);
 
@@ -92,7 +87,7 @@ public class SelectionSortServiceImpl implements SelectionSortService {
    * @param counter of positions exchanges
    * @return sorted array
    */
-  private Comparable<?>[] executeSorting(Comparable<?>[] array, Counter counter) {
+  private Comparable<?>[] executeSorting(Comparable<?>[] array, final Counter counter) {
     // for all items
     for (int i = 0; i < array.length; i++) {
       
@@ -124,9 +119,11 @@ public class SelectionSortServiceImpl implements SelectionSortService {
       
       log.debug("Exchanging positions {}-{} Array: {}", i, minPos, array.length > 20 ? "" : array);
       
-      // exchange the current position with the min position
-      exchange(array, i, minPos);
-      counter.increaseCounter();
+      if(minPos != i) {
+        // exchange the current position with the min position
+        exchange(array, i, minPos);
+        counter.increaseCounter();
+      }
       
       log.debug("Positions Exchanged - Array: {}", array.length > 20 ? "" : array);
       

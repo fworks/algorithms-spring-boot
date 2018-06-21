@@ -10,4 +10,10 @@ import fworks.algorithms.sorting.SortingService;
  */
 public interface InsertionSortService extends SortingService {
 
+  public static final String INSERTION_SORT = "InsertionSort";
+
+  @Override
+  default String getAlgorithmName() {
+    return INSERTION_SORT;
+  }
 }

@@ -10,4 +10,10 @@ import fworks.algorithms.sorting.SortingService;
  */
 public interface ShellsortService extends SortingService {
 
+  public static final String SHELLSORT = "Shellsort";
+
+  @Override
+  default String getAlgorithmName() {
+    return SHELLSORT;
+  }
 }

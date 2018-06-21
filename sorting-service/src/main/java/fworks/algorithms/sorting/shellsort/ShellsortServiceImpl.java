@@ -14,13 +14,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShellsortServiceImpl implements ShellsortService {
 
-  private static final String SHELLSORT = "Shellsort";
-
-  @Override
-  public String getAlgorithmName() {
-    return SHELLSORT;
-  }
-
   @Override
   public long[] sort(long[] array, Counter counter) {
     return executeSorting(array, counter);

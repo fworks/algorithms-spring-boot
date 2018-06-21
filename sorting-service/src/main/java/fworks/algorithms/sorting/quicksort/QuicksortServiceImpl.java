@@ -12,21 +12,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class QuicksortServiceImpl implements QuicksortService {
 
-  private static final String QUICKSORT = "Quicksort";
-
   @Override
-  public String getAlgorithmName() {
-    return QUICKSORT;
-  }
-
-  @Override
-  public long[] sort(long[] array, Counter counter) {
+  public long[] sort(long[] array, final Counter counter) {
     return executeSorting(array, 0, array.length - 1, counter);
   }
 
   @Override
   @SuppressWarnings("rawtypes")
-  public Comparable[] sort(Comparable[] array, Counter counter) {
+  public Comparable[] sort(Comparable[] array, final Counter counter) {
     return executeSorting(array, 0, array.length - 1, counter);
   }
 
@@ -38,7 +31,7 @@ public class QuicksortServiceImpl implements QuicksortService {
    * @return sorted array
    */
   private long[] executeSorting(long[] array, int leftPosition, int rightPosition,
-      Counter counter) {
+      final Counter counter) {
 
     if (rightPosition <= leftPosition) {
       //
@@ -54,7 +47,7 @@ public class QuicksortServiceImpl implements QuicksortService {
     return array;
   }
 
-  private int partition(long[] array, int leftPosition, int rightPosition, Counter counter) {
+  private int partition(long[] array, int leftPosition, int rightPosition, final Counter counter) {
 
     // get first value
     var value = array[leftPosition];
@@ -89,9 +82,11 @@ public class QuicksortServiceImpl implements QuicksortService {
 
     }
 
-    // exchange the left position with the right position
-    exchange(array, leftPosition, j);
-    counter.increaseCounter();
+    if (leftPosition != j) {
+      // exchange the left position with the right position
+      exchange(array, leftPosition, j);
+      counter.increaseCounter();
+    }
 
     // return right position
     return j;
@@ -105,7 +100,7 @@ public class QuicksortServiceImpl implements QuicksortService {
    * @return sorted array
    */
   private Comparable<?>[] executeSorting(Comparable<?>[] array, int leftPosition, int rightPosition,
-      Counter counter) {
+      final Counter counter) {
 
     if (rightPosition <= leftPosition) {
       //
@@ -122,7 +117,7 @@ public class QuicksortServiceImpl implements QuicksortService {
   }
 
   @SuppressWarnings("rawtypes")
-  private int partition(Comparable[] array, int leftPosition, int rightPosition, Counter counter) {
+  private int partition(Comparable[] array, int leftPosition, int rightPosition, final Counter counter) {
 
     // get first value
     var value = array[leftPosition];
@@ -157,9 +152,11 @@ public class QuicksortServiceImpl implements QuicksortService {
 
     }
 
-    // exchange the left position with the right position
-    exchange(array, leftPosition, j);
-    counter.increaseCounter();
+    if (leftPosition != j) {
+      // exchange the left position with the right position
+      exchange(array, leftPosition, j);
+      counter.increaseCounter();
+    }
 
     // return right position
     return j;
