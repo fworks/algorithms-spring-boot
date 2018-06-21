@@ -23,7 +23,7 @@ C) On console - running the jar:
 First generate the jar (skipping the test for speeding up)
 
 ```
-.\mvnw install -Dmaven.test.skip=true
+.\mvnw install -D maven.test.skip=true
 ```
 
 Now just run it:
@@ -40,13 +40,13 @@ D) Using docker (building the image locally):
 First, generate the jar and the docker image (skipping the tests for speeding up)
 
 ```
-.\mvnw install docker:build -Dmaven.test.skip=true
+.\mvnw install docker:build -D maven.test.skip=true
 ```
 
 Now just run a container using the image
 
 ```
-docker run --name algorithmsboot-sorting -p 8082:8082 fworks/algorithmsboot-sorting
+docker run --name algorithmsboot-sorting -p 8082:8080 fworks/algorithmsboot-sorting
 ```
 
 ### Accessing:

@@ -46,7 +46,7 @@ First, generate the jar and the docker image (skipping the tests for speeding up
 Now just run a container using the image
 
 ```
-docker run --name algorithmsboot-searching -p 8081:8081 fworks/algorithmsboot-searching
+docker run --name algorithmsboot-searching -p 8081:8080 fworks/algorithmsboot-searching
 ```
 
 ### Accessing:
