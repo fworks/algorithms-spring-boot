@@ -13,7 +13,7 @@ I'm using the book Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne, 
 
 The idea is to code few of the problems described in the book as spring services, adding some rest controller for testing and execution. I will be using Swagger UI, which will show all the endpoints in a user-friendly way.
 
-All just for playing around with the spring boot micro service world and at same time recall the basis of computing coding.
+All just for playing around with the spring boot microservice world and at same time recall the basis of computing coding.
 
 
 ## Notes
@@ -32,16 +32,16 @@ Technologies in the project:
 - Java 10 (yes I know, should I wait for the 11, but it will be nice)
 - Spring Boot 2
 - String Web (using tomcat at moment, thinking about moving to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
-- Spring Cloud (eureka, etc.)
+- Spring Cloud (eureka, zuul, etc.)
 - Spring DevTool / Actuator (for speeding up the development/restart, etc)
 - Lombok (for avoiding boilerplate code)
-- Swagger-ui (for exposing the rest services in an easy/user-friendly web page)
+- Swagger-ui / OpenApi (for exposing the rest services in an easy/user-friendly web page)
 - Log4j2 (for logging)
 - jUnit (for testing)
 - Docker (generate docker image for the microservices, run the application, etc)
 
 To be added:
-- Oauth2 - maybe (for authentication)
+- Spring Security / Oauth2 - maybe (for authentication)
 
 ## Algorithms:
 
@@ -76,7 +76,7 @@ Sorting:
 - Mergesort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Quicksort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Quick3way ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
-- Bubblesort
+- Bubblesort ![alt text](https://cdn4.iconfinder.com/data/icons/universal-7/614/11_-_Valid-16.png "Done")
 - Heapsort
 
 ## Code Structure / Sub projects:

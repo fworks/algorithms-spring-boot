@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = ProblemsController.API)
 public class ProblemsController {
 
-  protected static final String API = "/problems";
+  protected static final String API = "/common";
   
   protected static final String BINARY_REPRESENTATION = "/binaryRepresentation";
   protected static final String BALANCED_PARENTHESES = "/verifyBalancedParentheses";

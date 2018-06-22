@@ -35,7 +35,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = SortingController.API)
 public class SortingController {
 
-  protected static final String API = "/sorting";
+  protected static final String API = "/";
   protected static final String SORTING_ALL = "/allComparative";
   protected static final String SORTING_ALL_FILE = "/allComparativeFile";
 

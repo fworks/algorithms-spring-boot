@@ -31,7 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 @RequestMapping(value = SearchController.API)
 public class SearchController {
 
-  protected static final String API = "/search";
+  protected static final String API = "/";
   protected static final String SEARCH_ALL = "/allComparative";
   protected static final String SEARCH_ALL_FILE = "/allComparativeFile";
   protected static final String SEARCH_BRUTE_FORCE = "/bruteForce";
