@@ -4,7 +4,7 @@ import fworks.algorithms.data.queue.Queue;
 import java.util.Iterator;
 
 /**
- * Random Queue.<br/>
+ * Random Queue.<br>
  * Based on: Write a class RandomQueue that implements this API. Hint: Use an array representation
  * (with resizing). To remove an item, swap one at a random position (indexed 0 through N-1) with
  * the one at the last position (index N-1). Then delete and return the last object, as in

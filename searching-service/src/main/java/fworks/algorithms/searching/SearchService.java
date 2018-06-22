@@ -17,7 +17,7 @@ public interface SearchService {
    * @param key to be searched
    * @param array to find
    * @param counter of analysed key
-   * @return index of the key if found,<br/>
+   * @return index of the key if found,<br>
    *         -1 if not found.
    */
   int search(long key, long[] array, Counter counter);

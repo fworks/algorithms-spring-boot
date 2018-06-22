@@ -10,4 +10,10 @@ import fworks.algorithms.searching.SearchService;
  */
 public interface BruteForceSearchService extends SearchService {
 
+  public static final String BRUTE_FORCE = "BruteForce";
+
+  @Override
+  default String getAlgorithmName() {
+    return BRUTE_FORCE;
+  }
 }

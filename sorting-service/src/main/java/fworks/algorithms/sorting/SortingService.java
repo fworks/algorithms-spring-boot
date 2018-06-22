@@ -64,7 +64,7 @@ public interface SortingService {
    * 
    * @param a value
    * @param b value
-   * @return true, if a < b<br/>
+   * @return true, if a < b<br>
    *         false, otherwise
    */
   @SuppressWarnings({"rawtypes", "unchecked"})

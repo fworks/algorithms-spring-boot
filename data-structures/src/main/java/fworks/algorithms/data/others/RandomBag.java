@@ -4,7 +4,7 @@ import fworks.algorithms.data.bag.Bag;
 import java.util.Iterator;
 
 /**
- * RandomBag.<br/>
+ * RandomBag.<br>
  * Based on: Write a class RandomBag that implements the same as for Bag, except for the adjective
  * random, which indicates that the iteration should provide the items in random order (all N!
  * permutations equally likely, for each iterator). Hint: Put the items in an array and randomize

@@ -45,7 +45,7 @@ public class SearchController {
   private final BinarySearchRecursiveService binarySearchRecursiveService;
 
   /**
-   * Constructor default.<br/>
+   * Constructor default.<br>
    * Autowiring the constructor instead of the properties for easing the service mocking on the
    * tests.
    * 

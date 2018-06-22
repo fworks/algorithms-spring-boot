@@ -3,7 +3,7 @@ package fworks.algorithms.data.priorityqueue;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Priority Queue.<br/>
+ * Priority Queue.<br>
  * 
  * @author flaviolcastro
  *

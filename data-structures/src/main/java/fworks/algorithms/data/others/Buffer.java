@@ -1,7 +1,7 @@
 package fworks.algorithms.data.others;
 
 /**
- * Buffer.<br/>
+ * Buffer.<br>
  * Based on: Develop a data type for a buffer in a text editor that implements the following API.
  * Hint: Use two stacks
  * 

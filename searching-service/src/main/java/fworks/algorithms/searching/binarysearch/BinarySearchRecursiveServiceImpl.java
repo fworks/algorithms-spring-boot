@@ -14,13 +14,6 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class BinarySearchRecursiveServiceImpl implements BinarySearchRecursiveService {
 
-  private static final String BINARY_SEARCH_RECURSIVE = "BinarySearchRecursive";
-
-  @Override
-  public String getAlgorithmName() {
-    return BINARY_SEARCH_RECURSIVE;
-  }
-  
   @Override
   public int search(long key, long[] array, Counter counter) {
     return this.executeSearch(key, array, 0, counter);
@@ -36,8 +29,9 @@ public class BinarySearchRecursiveServiceImpl implements BinarySearchRecursiveSe
    * @return index position of the key, or -1 if not found
    */
   private int executeSearch(long key, long[] array, int indexCount, Counter counter) {
-    // validate first and last positon
     log.debug("Recursive: key: {} indexCount: {} arraySize: {}", key, indexCount, array.length);
+    
+    // validate first and last positon
     long min = array[0];
     long max = array[array.length - 1];
     if (key < min || key > max) {

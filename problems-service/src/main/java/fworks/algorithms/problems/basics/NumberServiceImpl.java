@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 /**
- * Number service class.<br/>
+ * Number service class.<br>
  * Implements few number related operations.
  * 
  * @author flaviolcastro

@@ -38,7 +38,7 @@ public class FibonacciController {
   private FibonacciOptimizedService fibonacciOptimizedService;
 
   /**
-   * Constructor default.<br/>
+   * Constructor default.<br>
    * Autowiring the constructor instead of the properties for easing the service mocking on the
    * tests.
    * 

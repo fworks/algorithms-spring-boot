@@ -50,7 +50,7 @@ public interface DataStructure<T> extends Iterable<T> {
   /**
    * Return an array of the item of the bag.
    * 
-   * @return array of T if not empty,<br/>
+   * @return array of T if not empty,<br>
    *         null otherwise
    */
   T[] toArray();

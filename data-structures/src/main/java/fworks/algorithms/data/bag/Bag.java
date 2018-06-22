@@ -3,7 +3,7 @@ package fworks.algorithms.data.bag;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Bag.<br/>
+ * Bag.<br>
  * A bag is a collection where removing items is not supported — its purpose is to provide clients
  * with the ability to collect items and then to iterate through the collected items.
  * 

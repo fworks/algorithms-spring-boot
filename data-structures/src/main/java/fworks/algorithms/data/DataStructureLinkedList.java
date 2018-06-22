@@ -6,7 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
- * Abstract class using linked list.<br/>
+ * Abstract class using linked list.<br>
  * Definition. A linked list is a recursive data structure that is either empty (null) or a
  * reference to a node having a generic item and a reference to a linked list.
  * 

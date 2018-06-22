@@ -7,7 +7,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 /**
- * Copy service.<br/>
+ * Copy service.<br>
  * Execute copy of data structures.
  * 
  * @author flaviolcastro

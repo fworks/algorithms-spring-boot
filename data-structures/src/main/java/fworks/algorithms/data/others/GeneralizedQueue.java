@@ -3,7 +3,7 @@ package fworks.algorithms.data.others;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Generalized Queue.<br/>
+ * Generalized Queue.<br>
  * 
  * @author flaviolcastro
  *

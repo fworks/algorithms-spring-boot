@@ -14,13 +14,6 @@ import org.springframework.stereotype.Service;
 @Log4j2
 public class BruteForceSearchServiceImpl implements BruteForceSearchService {
 
-  private static final String BRUTE_FORCE = "BruteForce";
-  
-  @Override
-  public String getAlgorithmName() {
-    return BRUTE_FORCE;
-  }
-  
   @Override
   public int search(long key, long[] array, Counter counter) {
     return this.executeSearch(key, array, counter);

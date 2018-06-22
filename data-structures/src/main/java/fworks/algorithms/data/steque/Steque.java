@@ -3,7 +3,7 @@ package fworks.algorithms.data.steque;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Steque.<br/>
+ * Steque.<br>
  * A stack-ended queue or steque is a data type that supports push, pop, and enqueue.
  * 
  * @author flaviolcastro

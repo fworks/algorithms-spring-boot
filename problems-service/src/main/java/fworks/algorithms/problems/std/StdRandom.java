@@ -1,7 +1,7 @@
 package fworks.algorithms.problems.std;
 
 /**
- * Version of the StdRandom from the book.<br/>
+ * Version of the StdRandom from the book.<br>
  * Described as: apI for our library of static methods for random numbers.
  * 
  * @author flaviolcastro

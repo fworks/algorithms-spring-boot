@@ -33,7 +33,7 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
   
   /**
    * Increase the array size by 1.
-   * @param atEnd true, to increase the array at the end (empty position(s) will be at the end)<br/>
+   * @param atEnd true, to increase the array at the end (empty position(s) will be at the end)<br>
    *        false, to increase the array at the beginning (empty position(s) will be at the start)
    */
   protected void increaseArraySize(boolean atEnd) {
@@ -48,7 +48,7 @@ public abstract class DataStructureArray<T> implements DataStructure<T> {
   
   /**
    * Decrease the array size by 1.
-   * @param atEnd true, to decrease the array at the end (remove position at the end) <br/>
+   * @param atEnd true, to decrease the array at the end (remove position at the end) <br>
    *        false, to decrease the array at the beginning (remove position at the start)
    */
   protected void decreaseArraySize(boolean atEnd) {

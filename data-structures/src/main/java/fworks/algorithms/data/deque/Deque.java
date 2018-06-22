@@ -3,7 +3,7 @@ package fworks.algorithms.data.deque;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Deque.<br/>
+ * Deque.<br>
  * A double-ended queue or deque (pronounced “deck”) is like a stack or a queue but supports adding
  * and removing items at both ends.
  * 

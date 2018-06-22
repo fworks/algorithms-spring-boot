@@ -3,7 +3,7 @@ package fworks.algorithms.data.stack;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Stack.<br/>
+ * Stack.<br>
  * A pushdown stack is a collection that is based on the last-in-first-out (LIFO) policy
  * 
  * @author flaviolcastro

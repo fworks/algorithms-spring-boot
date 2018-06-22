@@ -25,7 +25,7 @@ public interface NumberService {
   double getAbs(double number);
 
   /**
-   * Verify if number is a prime number.<br/>
+   * Verify if number is a prime number.<br>
    * Prime definition: An integer greater than one is called a prime number if its only positive
    * divisors (factors) are one and itself.
    * 
@@ -51,7 +51,7 @@ public interface NumberService {
   long countAllPrimes(long number);
 
   /**
-   * Factor a number.<br/>
+   * Factor a number.<br>
    * "Prime Factorization" is finding which prime numbers we need to multiply to get the original
    * number.
    * 
@@ -61,7 +61,7 @@ public interface NumberService {
   long[] primeFactor(long number);
 
   /**
-   * Get all divisor of a number.<br/>
+   * Get all divisor of a number.<br>
    * 
    * 
    * @param number to be factored.
@@ -73,13 +73,13 @@ public interface NumberService {
    * Calculate the square root for perfect square root.
    * 
    * @param number to calculate
-   * @return square root value if number is a perfect square root,<br/>
+   * @return square root value if number is a perfect square root,<br>
    *         NaN if not a perfect square root.
    */
   double perfectSquareRoot(long number);
 
   /**
-   * Calculate the square root using Newton's method.<br/>
+   * Calculate the square root using Newton's method.<br>
    * Note: Copied from the book.
    * 
    * @param number to calculate
@@ -97,7 +97,7 @@ public interface NumberService {
   double getRightTrianguleHypotenuse(double sideA, double sideB);
 
   /**
-   * Calculate the area of a right triangule.<br/>
+   * Calculate the area of a right triangule.<br>
    * A = ab/2
    * 
    * @param sideA side A
@@ -107,7 +107,7 @@ public interface NumberService {
   double getRightTrianguleArea(double sideA, double sideB);
 
   /**
-   * Calculate the perimeter of a right triangule.<br/>
+   * Calculate the perimeter of a right triangule.<br>
    * P = a+b+sqrt(a2+b2)
    * 
    * @param sideA side A

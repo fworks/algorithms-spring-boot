@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Abstract test class for search service. <br/>
+ * Abstract test class for search service. <br>
  * Have some common tests already implemented.
  * 
  * @author flaviolcastro

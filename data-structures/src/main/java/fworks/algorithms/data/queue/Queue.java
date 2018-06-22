@@ -3,7 +3,7 @@ package fworks.algorithms.data.queue;
 import fworks.algorithms.data.DataStructure;
 
 /**
- * Queue.<br/>
+ * Queue.<br>
  * A FIFO queue is a collection that is based on the first-in-first-out (FIFO) policy.
  * 
  * @author flaviolcastro

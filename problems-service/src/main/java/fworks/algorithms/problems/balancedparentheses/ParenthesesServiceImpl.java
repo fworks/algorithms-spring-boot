@@ -74,7 +74,7 @@ public class ParenthesesServiceImpl implements ParenthesesService {
    * 
    * @param left parentheses
    * @param right parentheses
-   * @return true, if them match<br/>
+   * @return true, if them match<br>
    *         false, otherwise
    */
   private boolean matchesLast(String left, String right) {

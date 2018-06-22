@@ -42,7 +42,7 @@ public class SearchControllerIt {
   protected TestRestTemplate template;
 
   /**
-   * Setup the test rest template.<br/>
+   * Setup the test rest template.<br>
    * Set the root url.
    */
   @Before

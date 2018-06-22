@@ -5,7 +5,7 @@ import java.util.Iterator;
 import lombok.extern.log4j.Log4j2;
 
 /**
- * Abstract class using array.<br/>
+ * Abstract class using array.<br>
  * Few optimizations like: reducing the number of array resizing
  * 
  * @author flaviolcastro
