@@ -1,5 +1,12 @@
-{"properties": [{
-  "name": "spring.application.description",
-  "type": "java.lang.String",
-  "description": "Simple Application description."
-}]}
+{"properties": [
+  {
+    "name": "app.description",
+    "type": "java.lang.String",
+    "description": "Simple Application description."
+  },
+  {
+    "name": "app.version",
+    "type": "java.lang.String",
+    "description": "Application version."
+  }
+]}

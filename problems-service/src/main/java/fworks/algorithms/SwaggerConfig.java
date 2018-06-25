@@ -41,13 +41,15 @@ public class SwaggerConfig {
         .groupName(appName);
   }
 
-  @Value("${management.context-path:admin}")
+  @Value("${management.context-path:/admin}")
   String adminPath;
-  @Value("${app.version:SNAPSHOT}")
-  String version;
+  @Value("${management.endpoints.web.base-path:/actuator}")
+  String actuatorPath;
   @Value("${spring.application.name}")
   String appName;
-  @Value("${spring.application.description}")
+  @Value("${app.version:SNAPSHOT}")
+  String version;
+  @Value("${app.description}")
   String appDescription;
 
   /**
@@ -76,8 +78,8 @@ public class SwaggerConfig {
   public Docket actuatorApi() {
     return new Docket(DocumentationType.SWAGGER_2) //
         .select() //
-        .apis(RequestHandlerSelectors.basePackage("org.springframework.boot.actuate")) //
-        .paths(PathSelectors.any()) //
+        .apis(RequestHandlerSelectors.any()) //
+        .paths(PathSelectors.ant(actuatorPath + "/*")) //
         .build() //
         .apiInfo(apiInfo(String.format(" - %s", "actuator"))) //
         .pathMapping("/") //
