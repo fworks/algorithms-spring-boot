@@ -1,7 +1,8 @@
-package fworks.algorithms.sorting.api;
+package fworks.algorithms.api;
 
-import fworks.algorithms.sorting.SortingRequest;
-import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.api.SortingController;
+import fworks.algorithms.api.model.SortingRequest;
+import fworks.algorithms.api.model.SortingResponse;
 import fworks.algorithms.sorting.quicksort.Quick3wayService;
 import java.io.IOException;
 import lombok.extern.log4j.Log4j2;
@@ -62,15 +63,15 @@ public class SortingControllerIt {
     // request
     long[] array = {10, 2, 5, 86, 99, 1, 6, 0};
     long[] sorted = {0, 1, 2, 5, 6, 10, 86, 99};
-    SortingRequest sortingRequest = new SortingRequest(array);
+    SortingRequest sortingRequest = SortingRequest.builder().array(array).build();
 
     String url = SortingController.API + SortingController.SORTING_ALL;
-    ResponseEntity<SortingResponse[]> response =
-        template.postForEntity(url, sortingRequest, SortingResponse[].class);
+    ResponseEntity<SortingRequest> response =
+        template.postForEntity(url, sortingRequest, SortingRequest.class);
 
-    SortingResponse[] sortingAll = response.getBody();
-    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
-    for (SortingResponse sortingResponse : sortingAll) {
+    SortingRequest sortingAll = response.getBody();
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    for (SortingResponse sortingResponse : sortingAll.getResponses()) {
       Assert.assertArrayEquals(sorted, sortingResponse.getSortedArray());
       log.info(sortingResponse);
     }
@@ -83,15 +84,15 @@ public class SortingControllerIt {
   public void sortingAllSortedTest() {
     // request
     long[] array = {0, 10, 20, 30, 45, 68, 89, 112, 896};
-    SortingRequest sortingRequest = new SortingRequest(array);
+    SortingRequest sortingRequest = SortingRequest.builder().array(array).build();
 
     String url = SortingController.API + SortingController.SORTING_ALL;
-    ResponseEntity<SortingResponse[]> response =
-        template.postForEntity(url, sortingRequest, SortingResponse[].class);
+    ResponseEntity<SortingRequest> response =
+        template.postForEntity(url, sortingRequest, SortingRequest.class);
 
-    SortingResponse[] sortingAll = response.getBody();
-    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
-    for (SortingResponse sortingResponse : sortingAll) {
+    SortingRequest sortingAll = response.getBody();
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    for (SortingResponse sortingResponse : sortingAll.getResponses()) {
       Assert.assertArrayEquals(array, sortingResponse.getSortedArray());
       log.info(sortingResponse);
       if (!Quick3wayService.QUICK3WAY.equals(sortingResponse.getAlgorithm())) {
@@ -119,12 +120,12 @@ public class SortingControllerIt {
     HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
 
     String url = SortingController.API + SortingController.SORTING_ALL_FILE;
-    ResponseEntity<SortingResponse[]> response =
-        template.postForEntity(url, requestEntity, SortingResponse[].class);
+    ResponseEntity<SortingRequest> response =
+        template.postForEntity(url, requestEntity, SortingRequest.class);
 
-    SortingResponse[] sortingAll = response.getBody();
-    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.length, 0);
-    for (SortingResponse sortingResponse : sortingAll) {
+    SortingRequest sortingAll = response.getBody();
+    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    for (SortingResponse sortingResponse : sortingAll.getResponses()) {
       Assert.assertTrue(sortingResponse.getNumberOfExchanges() > 0);
     }
   }

@@ -57,14 +57,39 @@ services:
     hostname: problems-service
     container_name: problems-service          
 
+  # mongo
+  mongodb:
+    image: 'mongo'
+    ports:
+      - "27017:27017"
+    networks:
+      - net
+    volumes:
+      - 'mongodb_data:/data/db'
+    hostname: mongodb
+    container_name: mongodb   
+
+  # elk
+  elk:
+    image: sebp/elk
+    ports:
+      - "5601:5601"
+      - "9200:9200"
+      - "5044:5044"
+    networks:
+      - net
+    volumes:
+      - 'elk-data:/var/lib/elasticsearch'
+    hostname: elk
+    container_name: elk
 
 networks:
   net:
     driver: bridge
 
-#volumes:
-#  mongodb_data:
-#    driver: local
-#  elk-data:
-#    driver: local
+volumes:
+  mongodb_data:
+    driver: local
+  elk-data:
+    driver: local
     

@@ -1,6 +1,6 @@
 package fworks.algorithms.sorting.bubblesort;
 
-import fworks.algorithms.sorting.Counter;
+import fworks.algorithms.api.model.Counter;
 import org.springframework.stereotype.Service;
 
 /**

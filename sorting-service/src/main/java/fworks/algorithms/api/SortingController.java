@@ -1,7 +1,8 @@
-package fworks.algorithms.sorting.api;
+package fworks.algorithms.api;
 
-import fworks.algorithms.sorting.SortingRequest;
-import fworks.algorithms.sorting.SortingResponse;
+import fworks.algorithms.api.model.SortingRequest;
+import fworks.algorithms.api.model.SortingRequestService;
+import fworks.algorithms.api.model.SortingResponse;
 import fworks.algorithms.sorting.bubblesort.BubblesortService;
 import fworks.algorithms.sorting.insertion.InsertionSortService;
 import fworks.algorithms.sorting.mergesort.MergesortService;
@@ -11,7 +12,6 @@ import fworks.algorithms.sorting.selection.SelectionSortService;
 import fworks.algorithms.sorting.shellsort.ShellsortService;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.extern.log4j.Log4j2;
@@ -41,6 +41,7 @@ public class SortingController {
 
   protected static final int NUMBER_OF_ALGORITHMS = 7;
 
+  private final SortingRequestService sortingRequestService;
   private final InsertionSortService insertionSortService;
   private final SelectionSortService selectionSortService;
   private final ShellsortService shellsortService;
@@ -49,7 +50,6 @@ public class SortingController {
   private final Quick3wayService quick3wayService;
   private final BubblesortService bubblesortService;
 
-
   /**
    * Constructor default.<br>
    * Autowiring the constructor instead of the properties for easing the service mocking on the
@@ -57,10 +57,12 @@ public class SortingController {
    * 
    */
   @Autowired
-  public SortingController(InsertionSortService insertionSortService,
-      SelectionSortService selectionSortService, ShellsortService shellsortService,
-      MergesortService mergesortService, QuicksortService quicksortService,
-      Quick3wayService quick3wayService, BubblesortService bubblesortService) {
+  public SortingController(SortingRequestService sortingRequestService,
+      InsertionSortService insertionSortService, SelectionSortService selectionSortService,
+      ShellsortService shellsortService, MergesortService mergesortService,
+      QuicksortService quicksortService, Quick3wayService quick3wayService,
+      BubblesortService bubblesortService) {
+    this.sortingRequestService = sortingRequestService;
     this.insertionSortService = insertionSortService;
     this.selectionSortService = selectionSortService;
     this.shellsortService = shellsortService;
@@ -77,33 +79,28 @@ public class SortingController {
    * @return list of sorting results
    */
   @PostMapping(SORTING_ALL)
-  public SortingResponse[] sortingAll(@RequestBody @Validated SortingRequest sortingRequest) {
+  public SortingRequest sortingAll(@RequestBody @Validated SortingRequest sortingRequest) {
     log.info("Sorting all! {}", sortingRequest);
-    // keep the original
-    long[] original = sortingRequest.getArray();
+    // save the request on the db
+    sortingRequest = sortingRequestService.save(sortingRequest);
     SortingResponse[] responses = new SortingResponse[NUMBER_OF_ALGORITHMS];
     // insertion sort
-    long[] copyOf = Arrays.copyOf(original, original.length);
-    responses[0] = insertionSortService.sort(new SortingRequest(copyOf));
+    responses[0] = insertionSortService.sort(sortingRequest);
     // selection sort
-    copyOf = Arrays.copyOf(original, original.length);
-    responses[1] = selectionSortService.sort(new SortingRequest(copyOf));
+    responses[1] = selectionSortService.sort(sortingRequest);
     // shellsort
-    copyOf = Arrays.copyOf(original, original.length);
-    responses[2] = shellsortService.sort(new SortingRequest(copyOf));
+    responses[2] = shellsortService.sort(sortingRequest);
     // mergesort
-    copyOf = Arrays.copyOf(original, original.length);
-    responses[3] = mergesortService.sort(new SortingRequest(copyOf));
+    responses[3] = mergesortService.sort(sortingRequest);
     // quicksort
-    copyOf = Arrays.copyOf(original, original.length);
-    responses[4] = quicksortService.sort(new SortingRequest(copyOf));
+    responses[4] = quicksortService.sort(sortingRequest);
     // quick3way sort
-    copyOf = Arrays.copyOf(original, original.length);
-    responses[5] = quick3wayService.sort(new SortingRequest(copyOf));
+    responses[5] = quick3wayService.sort(sortingRequest);
     // bubble sort
-    copyOf = Arrays.copyOf(original, original.length);
-    responses[6] = bubblesortService.sort(new SortingRequest(copyOf));
-    return responses;
+    responses[6] = bubblesortService.sort(sortingRequest);
+    // update the request with the responses
+    sortingRequest.setResponses(responses);
+    return sortingRequestService.save(sortingRequest);
   }
 
   /**
@@ -113,15 +110,25 @@ public class SortingController {
    * @return list of sorting results
    */
   @PostMapping(SORTING_ALL_FILE)
-  public SortingResponse[] sortingAllFile(
+  public SortingRequest sortingAllFile(
       @RequestPart(required = true) @NotNull MultipartFile uploadfile) {
     log.info("Sorting all! {}", uploadfile.getName());
+    long[] array = readArrayFromFile(uploadfile);
+    return this.sortingAll(SortingRequest.builder().array(array).build());
+  }
+
+  /**
+   * Read an array from an uploaded file.
+   * @param uploadedfile file
+   * @return array of values
+   */
+  protected long[] readArrayFromFile(MultipartFile uploadedfile) {
     long[] array;
     try {
-      log.info("Sorting all! Request: File:{}", uploadfile.getName());
+      log.info("Sorting all! Request: File:{}", uploadedfile.getName());
       // get file
       Path uploadedTempFile = Files.createTempFile("upload", ".txt");
-      uploadfile.transferTo(uploadedTempFile.toFile());
+      uploadedfile.transferTo(uploadedTempFile.toFile());
       // read the file
       List<String> readAllLines = Files.readAllLines(uploadedTempFile);
       array = readAllLines.stream().mapToLong(t -> Long.parseLong(t)).toArray();
@@ -129,10 +136,6 @@ public class SortingController {
       log.error("Error reading array from file!", e);
       throw new RuntimeException("Error reading the file!", e);
     }
-    SortingRequest sortingRequest = new SortingRequest(array);
-    return this.sortingAll(sortingRequest);
+    return array;
   }
-
-
-
 }

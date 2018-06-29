@@ -1,6 +1,6 @@
 package fworks.algorithms.sorting.selection;
 
-import fworks.algorithms.sorting.Counter;
+import fworks.algorithms.api.model.Counter;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 

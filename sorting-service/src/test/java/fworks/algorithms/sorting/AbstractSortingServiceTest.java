@@ -1,5 +1,6 @@
 package fworks.algorithms.sorting;
 
+import fworks.algorithms.api.model.Counter;
 import java.util.Arrays;
 import java.util.Random;
 import lombok.extern.log4j.Log4j2;

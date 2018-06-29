@@ -1,7 +1,11 @@
 package fworks.algorithms.sorting;
 
+import fworks.algorithms.api.model.Counter;
+import fworks.algorithms.api.model.SortingRequest;
+import fworks.algorithms.api.model.SortingResponse;
 import java.time.Duration;
 import java.time.Instant;
+import java.util.Arrays;
 
 /**
  * Sorting Service.
@@ -15,11 +19,11 @@ public interface SortingService {
    * Execute a sort on an array.
    * 
    * @param array to be sorted
-   * @param counter of exchanges 
+   * @param counter of exchanges
    * @return sorted array.
    */
   long[] sort(long[] array, final Counter counter);
-  
+
   /**
    * Execute a sort on an array.
    * 
@@ -28,8 +32,8 @@ public interface SortingService {
    */
   @SuppressWarnings("rawtypes")
   Comparable[] sort(Comparable[] array, final Counter counter);
-  
-  
+
+
   /**
    * Execute a sort based on the request.
    * 
@@ -39,7 +43,7 @@ public interface SortingService {
   default SortingResponse sort(final SortingRequest request) {
     Counter counter = new Counter();
     // sort the array marking the time
-    var array = request.getArray();
+    var array = Arrays.copyOf(request.getArray(), request.getArray().length);
     Instant start = Instant.now();
     var sorted = this.sort(array, counter);
     Duration duration = Duration.between(start, Instant.now());
@@ -49,12 +53,14 @@ public interface SortingService {
         .sortedArray(sorted) //
         .numberOfExchanges(counter.getCounter()) //
         .duration(duration) //
+        //.sortingRequest(request) //
         .build();
     return sortingResponse;
   }
 
   /**
    * Return the algorithm name/implementation.
+   * 
    * @return name
    */
   String getAlgorithmName();
@@ -84,7 +90,7 @@ public interface SortingService {
     array[position1] = array[position2];
     array[position2] = position1Value;
   }
-  
+
   /**
    * Exchange position on an array.
    * 
