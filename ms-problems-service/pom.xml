@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.fworks</groupId>
-	<artifactId>app-algorithms</artifactId>
+	<artifactId>ms-problems-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>algorithms-app</name>
+	<name>problems-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -51,13 +51,6 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<version>2.0.0.RELEASE</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-zuul -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
 			<version>2.0.0.RELEASE</version>
 		</dependency>
 
@@ -123,7 +116,13 @@
 		<!-- core-lib -->
 		<dependency>
 			<groupId>com.github.fworks</groupId>
-			<artifactId>core-lib</artifactId>
+			<artifactId>lib-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- data-structures -->
+		<dependency>
+			<groupId>com.github.fworks</groupId>
+			<artifactId>lib-data-structures</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -201,7 +200,7 @@
 				<executions>
 					<execution>
 						<id>copy-resources</id>
-						<phase>install</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
@@ -242,7 +241,7 @@
 					<!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
 					<images>
 						<image>
-							<name>fworks/algorithmsboot-app</name>
+							<name>fworks/algorithmsboot-problems</name>
 							<build>
 								<args>
 									<JAR_FILE>${project.artifactId}-${project.version}.jar</JAR_FILE>

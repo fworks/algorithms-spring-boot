@@ -1,0 +1,32 @@
+output:
+  logstash:
+    enabled: true
+    hosts:
+      - elk:5044
+    timeout: 15
+    #ssl:
+     # certificate_authorities:
+      #  - /etc/pki/tls/certs/logstash-beats.crt
+        
+#setup:
+#  kibana:
+#    hosts:
+#      - elk:5601        
+
+filebeat:
+  prospectors:
+    -
+      type: log
+      paths:
+        - /application.log
+      document_type: log4j
+      multiline:
+        pattern: '^[[:digit:]]{4}-[[:digit:]]{2}-[[:digit:]]{2}'
+        negate: true
+        match:  after
+
+    -
+      paths:
+        - /var/log/syslog
+        - /var/log/auth.log
+      document_type: syslog

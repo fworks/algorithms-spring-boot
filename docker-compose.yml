@@ -3,15 +3,26 @@ version: "3.2"
 services:
 
   # service-discovery - Eureka
-  service-discovery:
-    image: fworks/algorithmsboot-discovery
+  server-eureka:
+    image: fworks/algorithmsboot-eureka
     ports:
       - 8761:8761
     restart: always
     networks:
       - net
-    hostname: service-discovery
-    container_name: service-discovery  
+    hostname: server-eureka
+    container_name: server-eureka
+    
+  # service admin
+  server-admin:
+    image: fworks/algorithmsboot-admin
+    ports:
+      - 9000:9000
+    restart: always
+    networks:
+      - net
+    hostname: server-admin
+    container_name: server-admin    
     
   # app-algorithms
   app-algorithms:
@@ -67,21 +78,38 @@ services:
     volumes:
       - 'mongodb_data:/data/db'
     hostname: mongodb
-    container_name: mongodb   
-
-  # elk
-  elk:
-    image: sebp/elk
+    container_name: mongodb
+       
+  # mysql
+  mysql:
+    image: 'mysql'
+    environment:
+      - MYSQL_ROOT_PASSWORD=fworks
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=fworks
+      - MYSQL_DATABASE=searching
     ports:
-      - "5601:5601"
-      - "9200:9200"
-      - "5044:5044"
+      - "3306:3306"
     networks:
       - net
     volumes:
-      - 'elk-data:/var/lib/elasticsearch'
-    hostname: elk
-    container_name: elk
+      - 'mysql_data:/var/lib/mysql'
+    hostname: mysql
+    container_name: mysql   
+
+  # elk
+  #elk:
+    #image: sebp/elk
+    #ports:
+     # - "5601:5601"
+     # - "9200:9200"
+     # - "5044:5044"
+    #networks:
+     # - net
+    #volumes:
+     # - 'elk-data:/var/lib/elasticsearch'
+    #hostname: elk
+    #container_name: elk
 
 networks:
   net:
@@ -89,6 +117,8 @@ networks:
 
 volumes:
   mongodb_data:
+    driver: local
+  mysql_data:
     driver: local
   elk-data:
     driver: local

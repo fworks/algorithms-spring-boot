@@ -1,7 +1,12 @@
 language: java
 sudo: true
+
+services:
+  - mysql  
+
 before_install:
   - chmod +x mvnw
+
 jobs:
   include:
   - stage: test
@@ -14,3 +19,4 @@ jobs:
 branches:
   only:
   - master
+  

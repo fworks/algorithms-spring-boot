@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.github.fworks</groupId>
-	<artifactId>app-algorithms</artifactId>
+	<artifactId>ms-searching-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>algorithms-app</name>
+	<name>searching-service</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>
@@ -34,7 +34,6 @@
 	</properties>
 
 	<dependencies>
-
 		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -54,39 +53,21 @@
 			<version>2.0.0.RELEASE</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-netflix-zuul -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-zuul</artifactId>
-			<version>2.0.0.RELEASE</version>
-		</dependency>
-
 		<!-- log4j2 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 
-		<!-- lombok -->
+		<!-- jpa / mysql -->
 		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<!-- // TODO: different version from spring for jdk 10 - remove it later 
-				when spring updates the version. -->
-			<version>1.18.0</version>
-			<optional>true</optional>
-		</dependency>
-
-		<!-- swagger -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.8.0</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.8.0</version>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- // TODO: remove it later - fixing jaxb on java 10 -->
@@ -104,7 +85,7 @@
 			<groupId>org.jolokia</groupId>
 			<artifactId>jolokia-core</artifactId>
 		</dependency>
-
+		
 		<!-- spring boot -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -123,7 +104,13 @@
 		<!-- core-lib -->
 		<dependency>
 			<groupId>com.github.fworks</groupId>
-			<artifactId>core-lib</artifactId>
+			<artifactId>lib-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- data-structures -->
+		<dependency>
+			<groupId>com.github.fworks</groupId>
+			<artifactId>lib-data-structures</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
@@ -201,7 +188,7 @@
 				<executions>
 					<execution>
 						<id>copy-resources</id>
-						<phase>install</phase>
+						<phase>package</phase>
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
@@ -242,7 +229,7 @@
 					<!-- <dockerHost>unix:///var/run/docker.sock</dockerHost> -->
 					<images>
 						<image>
-							<name>fworks/algorithmsboot-app</name>
+							<name>fworks/algorithmsboot-searching</name>
 							<build>
 								<args>
 									<JAR_FILE>${project.artifactId}-${project.version}.jar</JAR_FILE>

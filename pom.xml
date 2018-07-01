@@ -47,12 +47,20 @@
 	</build>
 
 	<modules>
-		<module>service-discovery</module>
-
+		<!-- app gateway -->
 		<module>app-algorithms</module>
-		<module>searching-service</module>
-		<module>sorting-service</module>
-		<module>problems-service</module>
-		<module>data-structures</module>
+
+		<!-- common libraries -->
+		<module>lib-data-structures</module>
+		<module>lib-core</module>
+
+		<!-- server -->
+		<module>server-eureka</module>
+		<module>server-admin</module>
+		
+		<!-- micro services -->
+		<module>ms-searching-service</module>
+		<module>ms-sorting-service</module>
+		<module>ms-problems-service</module>
 	</modules>
 </project>

@@ -1,0 +1,22 @@
+FROM openjdk:10-jdk-slim
+
+# install common bash tools
+RUN apt-get update && apt-get install -y --no-install-recommends curl
+
+# install filebeat to send logs to elastic search
+ENV FILEBEAT_VERSION 6.3.0
+ENV FILEBEAT_DOWNLOAD_URL=https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-${FILEBEAT_VERSION}-linux-x86_64.tar.gz
+RUN curl -s ${FILEBEAT_DOWNLOAD_URL} | tar zx -C /tmp && \
+    mv /tmp/filebeat-${FILEBEAT_VERSION}-linux-x86_64/ /etc/filebeat/
+ADD filebeat.yml /etc/filebeat/filebeat.yml
+RUN chmod 644 /etc/filebeat/filebeat.yml
+
+# add the jar
+ARG JAR_FILE
+COPY ${JAR_FILE} /app.jar
+
+# add start script
+ADD start.sh /usr/local/bin/start.sh
+RUN chmod +x /usr/local/bin/start.sh
+
+ENTRYPOINT ["sh", "/usr/local/bin/start.sh"]
