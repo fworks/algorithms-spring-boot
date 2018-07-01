@@ -107,6 +107,12 @@
 			<scope>test</scope>
 		</dependency>
 
+		<!-- core-lib -->
+		<dependency>
+			<groupId>com.github.fworks</groupId>
+			<artifactId>core-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 		<!-- data-structures -->
 		<dependency>
 			<groupId>com.github.fworks</groupId>

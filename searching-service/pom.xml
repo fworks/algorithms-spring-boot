@@ -58,6 +58,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
+		
+		<!-- jpa / mysql -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
 
 		<!-- lombok -->
 		<dependency>
@@ -104,6 +116,19 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<!-- core-lib -->
+		<dependency>
+			<groupId>com.github.fworks</groupId>
+			<artifactId>core-lib</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		<!-- data-structures -->
+		<dependency>
+			<groupId>com.github.fworks</groupId>
+			<artifactId>data-structures</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 

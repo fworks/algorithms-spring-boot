@@ -1,7 +1,9 @@
 package fworks.algorithms.searching.api;
 
-import fworks.algorithms.searching.SearchRequest;
-import fworks.algorithms.searching.SearchResponse;
+import fworks.algorithms.searching.api.SearchController;
+import fworks.algorithms.searching.model.SearchInput;
+import fworks.algorithms.searching.model.searchrequest.SearchRequest;
+import fworks.algorithms.searching.model.searchrequest.SearchResponse;
 import lombok.extern.log4j.Log4j2;
 import org.junit.Assert;
 import org.junit.Before;
@@ -59,14 +61,14 @@ public class SearchControllerIt {
   public void searchAllTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
 
     String url = SearchController.API + SearchController.SEARCH_ALL;
-    ResponseEntity<SearchResponse[]> response =
-        template.postForEntity(url, searchRequest, SearchResponse[].class);
+    ResponseEntity<SearchRequest> response =
+        template.postForEntity(url, searchInput, SearchRequest.class);
 
-    SearchResponse[] searchAll = response.getBody();
-    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
+    SearchResponse[] searchAll = response.getBody().getResponses();
+    Assert.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
     for (SearchResponse searchResponse : searchAll) {
       Assert.assertEquals(1, searchResponse.getIndex(), 0);
     }
@@ -89,11 +91,11 @@ public class SearchControllerIt {
     HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(bodyMap, headers);
 
     String url = SearchController.API + SearchController.SEARCH_ALL_FILE;
-    ResponseEntity<SearchResponse[]> response =
-        template.postForEntity(url, requestEntity, SearchResponse[].class);
+    ResponseEntity<SearchRequest> response =
+        template.postForEntity(url, requestEntity, SearchRequest.class);
 
-    SearchResponse[] searchAll = response.getBody();
-    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
+    SearchResponse[] searchAll = response.getBody().getResponses();
+    Assert.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
     for (SearchResponse searchResponse : searchAll) {
       Assert.assertEquals(10, searchResponse.getIndex(), 0);
     }
@@ -106,13 +108,13 @@ public class SearchControllerIt {
   public void searchBinaryTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
 
-    ResponseEntity<SearchResponse> response =
+    ResponseEntity<SearchRequest> response =
         template.postForEntity(SearchController.API + SearchController.SEARCH_BINARY_LOOP,
-            searchRequest, SearchResponse.class);
+            searchInput, SearchRequest.class);
     //
-    SearchResponse searchResponse = response.getBody();
+    SearchResponse searchResponse = response.getBody().getResponses()[0];
     Assert.assertEquals(1, searchResponse.getIndex(), 0);
     Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
   }
@@ -124,13 +126,13 @@ public class SearchControllerIt {
   public void searchBinaryRecursiveTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
 
     String url = SearchController.API + SearchController.SEARCH_BINARY_RECURSIVE;
-    ResponseEntity<SearchResponse> response =
-        template.postForEntity(url, searchRequest, SearchResponse.class);
+    ResponseEntity<SearchRequest> response =
+        template.postForEntity(url, searchInput, SearchRequest.class);
     //
-    SearchResponse searchResponse = response.getBody();
+    SearchResponse searchResponse = response.getBody().getResponses()[0];
     Assert.assertEquals(1, searchResponse.getIndex(), 0);
     Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
   }
@@ -142,13 +144,13 @@ public class SearchControllerIt {
   public void searchBruteForceTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
 
     String url = SearchController.API + SearchController.SEARCH_BRUTE_FORCE;
-    ResponseEntity<SearchResponse> response =
-        template.postForEntity(url, searchRequest, SearchResponse.class);
+    ResponseEntity<SearchRequest> response =
+        template.postForEntity(url, searchInput, SearchRequest.class);
     //
-    SearchResponse searchResponse = response.getBody();
+    SearchResponse searchResponse = response.getBody().getResponses()[0];
     Assert.assertEquals(1, searchResponse.getIndex(), 0);
     Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
   }

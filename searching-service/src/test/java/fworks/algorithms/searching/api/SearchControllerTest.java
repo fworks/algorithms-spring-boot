@@ -1,10 +1,7 @@
 package fworks.algorithms.searching.api;
 
-import fworks.algorithms.searching.SearchRequest;
-import fworks.algorithms.searching.SearchResponse;
-import fworks.algorithms.searching.binarysearch.BinarySearchRecursiveService;
-import fworks.algorithms.searching.binarysearch.BinarySearchService;
-import fworks.algorithms.searching.bruteforce.BruteForceSearchService;
+import fworks.algorithms.searching.model.SearchInput;
+import fworks.algorithms.searching.model.searchrequest.SearchRequest;
 import java.io.IOException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,9 +20,7 @@ public class SearchControllerTest {
 
   private SearchController searchController;
 
-  private BruteForceSearchService bruteForceSearchService;
-  private BinarySearchService binarySearch;
-  private BinarySearchRecursiveService binarySearchRecursiveService;
+  private SearchService searchService;
 
   /**
    * Setup the test with the mock services.
@@ -33,50 +28,39 @@ public class SearchControllerTest {
   @Before
   public void setUp() {
     // mock services
-    bruteForceSearchService = Mockito.mock(BruteForceSearchService.class);
-    binarySearch = Mockito.mock(BinarySearchService.class);
-    binarySearchRecursiveService = Mockito.mock(BinarySearchRecursiveService.class);
-    searchController =
-        new SearchController(bruteForceSearchService, binarySearch, binarySearchRecursiveService);
+    searchService = Mockito.mock(SearchService.class);
+    searchController = new SearchController(searchService);
   }
 
   @Test
   public void searchAllTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
+    SearchRequest searchRequestMocked = SearchRequest.builder().array(array).key(10).build();
 
     // mock services
-    SearchResponse searchResponseMocked = new SearchResponse();
-    Mockito.when(bruteForceSearchService.search(searchRequest)).thenReturn(searchResponseMocked);
-    Mockito.when(binarySearch.search(searchRequest)).thenReturn(searchResponseMocked);
-    Mockito.when(binarySearchRecursiveService.search(searchRequest))
-        .thenReturn(searchResponseMocked);
+    Mockito.when(searchService.searchAll(searchInput)).thenReturn(searchRequestMocked);
 
-    SearchResponse[] searchAll = searchController.searchAll(searchRequest);
-    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
-    for (SearchResponse searchResponse : searchAll) {
-      Assert.assertEquals(searchResponseMocked, searchResponse);
-    }
+    SearchRequest searchAll = searchController.searchAll(searchInput);
+    Assert.assertEquals(searchRequestMocked, searchAll);
   }
 
   @Test
   public void searchAllFileTest() throws IOException {
-    // mock services
-    SearchResponse searchResponseMocked = new SearchResponse();
-    Mockito.when(bruteForceSearchService.search(Mockito.any())).thenReturn(searchResponseMocked);
-    Mockito.when(binarySearch.search(Mockito.any())).thenReturn(searchResponseMocked);
-    Mockito.when(binarySearchRecursiveService.search(Mockito.any()))
-        .thenReturn(searchResponseMocked);
 
     MockMultipartFile mockMultipartFile = new MockMultipartFile("test.txt",
         new ClassPathResource("arraylong0to50_000.txt").getInputStream());
+    
+    long[] array = searchController.readArrayFromFile(mockMultipartFile);
+    
+    SearchRequest searchRequestMocked = SearchRequest.builder().array(array).key(10).build();
+    
+    // mock services
+    Mockito.when(searchService.searchAll(Mockito.any())).thenReturn(searchRequestMocked);
 
-    SearchResponse[] searchAll = searchController.searchAllFile(mockMultipartFile, 10);
-    Assert.assertEquals(SearchController.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
-    for (SearchResponse searchResponse : searchAll) {
-      Assert.assertEquals(searchResponseMocked, searchResponse);
-    }
+    SearchRequest searchAll = searchController.searchAllFile(mockMultipartFile, 10);
+    Assert.assertEquals(searchRequestMocked, searchAll);
   }
 
   @Test(expected = RuntimeException.class)
@@ -91,58 +75,48 @@ public class SearchControllerTest {
   public void searchBinaryTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
+    SearchRequest searchRequestMocked = SearchRequest.builder().array(array).key(10).build();
 
     // mock services
-    SearchResponse searchResponseMocked = SearchResponse.builder() //
-        .index(10) //
-        .numberOfKeysAnalized(1) //
-        .build();
+    Mockito.when(searchService.searchBinary(searchInput)).thenReturn(searchRequestMocked);
 
-    Mockito.when(binarySearch.search(searchRequest)).thenReturn(searchResponseMocked);
-
-    SearchResponse searchResponse = searchController.searchBinary(searchRequest);
-    Assert.assertEquals(10, searchResponse.getIndex(), 0);
-    Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
+    SearchRequest searchBinary = searchController.searchBinary(searchInput);
+    Assert.assertEquals(searchRequestMocked, searchBinary);
+    // Assert.assertEquals(10, searchResponse.getIndex(), 0);
+    // Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
   }
 
   @Test
   public void searchBinaryRecursiveTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
+    SearchRequest searchRequestMocked = SearchRequest.builder().array(array).key(10).build();
 
     // mock services
-    SearchResponse searchResponseMocked = SearchResponse.builder() //
-        .index(10) //
-        .numberOfKeysAnalized(1) //
-        .build();
+    Mockito.when(searchService.searchBinaryRecursive(searchInput)).thenReturn(searchRequestMocked);
 
-    Mockito.when(binarySearchRecursiveService.search(searchRequest))
-        .thenReturn(searchResponseMocked);
-
-    SearchResponse searchResponse = searchController.searchBinaryRecursive(searchRequest);
-    Assert.assertEquals(10, searchResponse.getIndex(), 0);
-    Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
+    SearchRequest searchBinaryRecursive = searchController.searchBinaryRecursive(searchInput);
+    Assert.assertEquals(searchRequestMocked, searchBinaryRecursive);
+    // Assert.assertEquals(10, searchResponse.getIndex(), 0);
+    // Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
   }
 
   @Test
   public void searchBruteForceTest() {
     // request
     long[] array = {0, 10};
-    SearchRequest searchRequest = new SearchRequest(10, array);
+    SearchInput searchInput = SearchInput.builder().array(array).key(10).build();
+    SearchRequest searchRequestMocked = SearchRequest.builder().array(array).key(10).build();
 
     // mock services
-    SearchResponse searchResponseMocked = SearchResponse.builder() //
-        .index(10) //
-        .numberOfKeysAnalized(1) //
-        .build();
+    Mockito.when(searchService.searchBruteForce(searchInput)).thenReturn(searchRequestMocked);
 
-    Mockito.when(bruteForceSearchService.search(searchRequest)).thenReturn(searchResponseMocked);
-
-    SearchResponse searchResponse = searchController.searchBruteForce(searchRequest);
-    Assert.assertEquals(10, searchResponse.getIndex(), 0);
-    Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
+    SearchRequest searchBruteForce = searchController.searchBruteForce(searchInput);
+    Assert.assertEquals(searchRequestMocked, searchBruteForce);
+    // Assert.assertEquals(10, searchResponse.getIndex(), 0);
+    // Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
   }
 
 }

@@ -1,10 +1,7 @@
 package fworks.algorithms.searching.api;
 
-import fworks.algorithms.searching.SearchRequest;
-import fworks.algorithms.searching.SearchResponse;
-import fworks.algorithms.searching.binarysearch.BinarySearchRecursiveService;
-import fworks.algorithms.searching.binarysearch.BinarySearchService;
-import fworks.algorithms.searching.bruteforce.BruteForceSearchService;
+import fworks.algorithms.searching.model.SearchInput;
+import fworks.algorithms.searching.model.searchrequest.SearchRequest;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
@@ -37,45 +34,31 @@ public class SearchController {
   protected static final String SEARCH_BRUTE_FORCE = "/bruteForce";
   protected static final String SEARCH_BINARY_LOOP = "/binaryLoop";
   protected static final String SEARCH_BINARY_RECURSIVE = "/binaryRecursive";
-  
-  protected static final int NUMBER_OF_ALGORITHMS = 3;
 
-  private final BruteForceSearchService bruteForceSearchService;
-  private final BinarySearchService binarySearch;
-  private final BinarySearchRecursiveService binarySearchRecursiveService;
+  private final SearchService searchService;
 
   /**
    * Constructor default.<br>
    * Autowiring the constructor instead of the properties for easing the service mocking on the
    * tests.
    * 
-   * @param bruteForceSearchService brute force service
-   * @param binarySearch binary service
-   * @param binarySearchRecursiveService binary recursive service
+   * @param searchService search service
    */
   @Autowired
-  public SearchController(BruteForceSearchService bruteForceSearchService,
-      BinarySearchService binarySearch, BinarySearchRecursiveService binarySearchRecursiveService) {
-    this.bruteForceSearchService = bruteForceSearchService;
-    this.binarySearch = binarySearch;
-    this.binarySearchRecursiveService = binarySearchRecursiveService;
+  public SearchController(SearchService searchService) {
+    this.searchService = searchService;
   }
 
   /**
    * Execute a search algorithm comparative.
    * 
-   * @param searchRequest request
+   * @param searchInput input for the search
    * @return list of search results
    */
   @PostMapping(SEARCH_ALL)
-  public SearchResponse[] searchAll(@RequestBody @Validated SearchRequest searchRequest) {
-    log.info("Searching all! Request {}", searchRequest);
-    // return a comparative between all algorithms
-    SearchResponse[] responses = new SearchResponse[NUMBER_OF_ALGORITHMS];
-    responses[0] = bruteForceSearchService.search(searchRequest);
-    responses[1] = binarySearch.search(searchRequest);
-    responses[2] = binarySearchRecursiveService.search(searchRequest);
-    return responses;
+  public SearchRequest searchAll(@RequestBody @Validated SearchInput searchInput) {
+    log.info("Searching all! Request {}", searchInput);
+    return searchService.searchAll(searchInput);
   }
 
   /**
@@ -86,16 +69,26 @@ public class SearchController {
    * @return list of search results
    */
   @PostMapping(SEARCH_ALL_FILE)
-  public SearchResponse[] searchAllFile(
+  public SearchRequest searchAllFile(
       @RequestPart(required = true) @NotNull MultipartFile uploadfile,
       @RequestParam @NotNull long key) {
-
+    long[] array = readArrayFromFile(uploadfile);
+    SearchInput searchInput = SearchInput.builder().key(key).array(array).build();
+    return this.searchAll(searchInput);
+  }
+  
+  /**
+   * Read an array from an uploaded file.
+   * @param uploadedfile file
+   * @return array of values
+   */
+  protected long[] readArrayFromFile(MultipartFile uploadedfile) {
     long[] array;
     try {
-      log.info("Searching all! Request: File:{} Key:{}", uploadfile.getName(), key);
+      log.info("Sorting all! Request: File:{}", uploadedfile.getName());
       // get file
       Path uploadedTempFile = Files.createTempFile("upload", ".txt");
-      uploadfile.transferTo(uploadedTempFile.toFile());
+      uploadedfile.transferTo(uploadedTempFile.toFile());
       // read the file
       List<String> readAllLines = Files.readAllLines(uploadedTempFile);
       array = readAllLines.stream().mapToLong(t -> Long.parseLong(t)).toArray();
@@ -103,43 +96,42 @@ public class SearchController {
       log.error("Error reading array from file!", e);
       throw new RuntimeException("Error reading the file!", e);
     }
-    SearchRequest searchRequest = SearchRequest.builder().key(key).array(array).build();
-    return this.searchAll(searchRequest);
+    return array;
   }
 
   /**
    * Execute a search using bruteForce.
    * 
-   * @param searchRequest request
+   * @param searchInput input for the search
    * @return search response object
    */
   @PostMapping(SEARCH_BRUTE_FORCE)
-  public SearchResponse searchBruteForce(@RequestBody @Validated SearchRequest searchRequest) {
-    log.info("Searching brute force! Request {}", searchRequest);
-    return bruteForceSearchService.search(searchRequest);
+  public SearchRequest searchBruteForce(@RequestBody @Validated SearchInput searchInput) {
+    log.info("Searching brute force! Request {}", searchInput);
+    return this.searchService.searchBruteForce(searchInput);
   }
 
   /**
    * Execute a search using binary search internal loop implementation.
    * 
-   * @param searchRequest request
+   * @param searchInput input for the search
    * @return search response object
    */
   @PostMapping(SEARCH_BINARY_LOOP)
-  public SearchResponse searchBinary(@RequestBody @Validated SearchRequest searchRequest) {
-    log.info("Searching binary loop! Request {}", searchRequest);
-    return binarySearch.search(searchRequest);
+  public SearchRequest searchBinary(@RequestBody @Validated SearchInput searchInput) {
+    log.info("Searching binary loop! Request {}", searchInput);
+    return this.searchService.searchBinary(searchInput);
   }
 
   /**
    * Execute a search using binary search recursive implementation.
    * 
-   * @param searchRequest request
+   * @param searchInput input for the search
    * @return search response object
    */
   @PostMapping(SEARCH_BINARY_RECURSIVE)
-  public SearchResponse searchBinaryRecursive(@RequestBody @Validated SearchRequest searchRequest) {
-    log.info("Searching binary recursive! Request {}", searchRequest);
-    return binarySearchRecursiveService.search(searchRequest);
+  public SearchRequest searchBinaryRecursive(@RequestBody @Validated SearchInput searchInput) {
+    log.info("Searching binary recursive! Request {}", searchInput);
+    return this.searchService.searchBinaryRecursive(searchInput);
   }
 }

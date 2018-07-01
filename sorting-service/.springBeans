@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:fworks.algorithms.SortingServiceApplication</config>
+		<config>java:fworks.algorithms.sorting.SortingServiceApplication</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>
