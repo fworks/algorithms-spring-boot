@@ -1,6 +1,8 @@
 package fworks.algorithms.sorting.sort;
 
 import fworks.algorithms.counter.Counter;
+import fworks.algorithms.sorting.model.sortingrequest.SortingRequest;
+import fworks.algorithms.sorting.model.sortingrequest.SortingResponse;
 import fworks.algorithms.sorting.sort.AlgorithmSortService;
 import java.util.Arrays;
 import java.util.Random;
@@ -25,9 +27,10 @@ public abstract class AbstractSortingServiceTest {
   protected void executeLongPrimitiveTest(AlgorithmSortService sortingService) {
     long[] array = {10, 2, 5, 86, 99, 1, 6, 0};
     long[] sorted = {0, 1, 2, 5, 6, 10, 86, 99};
+    this.validateSortingUsingSortingRequest(sortingService, array, sorted);
     this.validateSorting(sortingService, array, sorted);
   }
-
+  
   /**
    * Execute test over a String array.
    * 
@@ -107,8 +110,24 @@ public abstract class AbstractSortingServiceTest {
     log.info("Original: {}", Arrays.toString(array));
     log.info("Expected: {}", Arrays.toString(sorted));
     long[] sort = sortingService.sort(array, new Counter());
-    log.info("Sorted: {}", Arrays.toString(array));
+    log.info("Sorted: {}", Arrays.toString(sort));
     Assert.assertArrayEquals(sorted, sort);
+  }
+  
+  /**
+   * Validate sorting.
+   * 
+   * @param sortingService service to test
+   * @param array original
+   * @param sorted expected
+   */
+  private void validateSortingUsingSortingRequest(AlgorithmSortService sortingService, long[] array,
+      long[] sorted) {
+    log.info("Original: {}", Arrays.toString(array));
+    log.info("Expected: {}", Arrays.toString(sorted));
+    SortingResponse sortResponse = sortingService.sort(SortingRequest.builder().array(array).build());
+    log.info("Sorted: {}", Arrays.toString(sortResponse.getSortedArray()));
+    Assert.assertArrayEquals(sorted, sortResponse.getSortedArray());
   }
 
   /**
@@ -141,7 +160,7 @@ public abstract class AbstractSortingServiceTest {
   public void executeLongPrimitiveTest() {
     executeLongPrimitiveTest(getSortingService());
   }
-
+  
   /**
    * Test for String[]
    */
