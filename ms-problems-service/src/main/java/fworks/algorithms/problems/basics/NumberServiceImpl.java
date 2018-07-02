@@ -152,11 +152,6 @@ public class NumberServiceImpl implements NumberService {
     long old = -1;
     for (long dequeue : queue) {
       if (dequeue != old) {
-        if (old != -1) {
-          // not a perfect square
-          log.info("Not a perfect square: {}", number);
-          return Double.NaN;
-        }
         // keep the old value to match up
         old = dequeue;
       } else {

@@ -21,7 +21,7 @@ public class BubblesortServiceTest extends AbstractSortingServiceTest {
     sortingService = new BubblesortServiceImpl();
   }
 
-  //@Override
+  @Override
   protected AlgorithmSortService getSortingService() {
     return sortingService;
   }

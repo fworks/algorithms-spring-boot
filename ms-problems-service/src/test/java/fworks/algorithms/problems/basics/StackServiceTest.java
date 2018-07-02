@@ -27,7 +27,7 @@ public class StackServiceTest {
 
   @Test
   public void getBinaryRepresentationTest() {
-    Assert.assertEquals("0", stackService.getBinaryRepresentation(-0));
+    Assert.assertEquals("1", stackService.getBinaryRepresentation(-1));
     Assert.assertEquals("0", stackService.getBinaryRepresentation(0));
     Assert.assertEquals("1", stackService.getBinaryRepresentation(1));
     Assert.assertEquals("10", stackService.getBinaryRepresentation(2));

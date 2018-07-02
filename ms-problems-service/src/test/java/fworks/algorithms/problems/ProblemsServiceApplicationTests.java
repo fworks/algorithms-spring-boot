@@ -1,4 +1,4 @@
-package fworks.algorithms;
+package fworks.algorithms.problems;
 
 import fworks.algorithms.problems.ProblemsServiceApplication;
 import org.junit.Test;
