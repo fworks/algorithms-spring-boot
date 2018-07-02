@@ -5,6 +5,9 @@ services:
   - mysql  
 
 before_install:
+  - mysql -e 'CREATE DATABASE searching;'
+  - mysql -e 'CREATE USER admin@localhost identified by fworks;'
+  - mysql -e 'GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP ON *.* TO admin@localhost;'
   - chmod +x mvnw
 
 jobs:
