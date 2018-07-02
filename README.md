@@ -34,11 +34,13 @@ Technologies in the project:
 - String Web (using tomcat at moment, thinking about moving to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
 - Spring Cloud (eureka, zuul, etc.)
 - Spring DevTool / Actuator (for speeding up the development/restart, etc)
+- Spring Admin (for monitoring)
 - Lombok (for avoiding boilerplate code)
 - Swagger-ui / OpenApi (for exposing the rest services in an easy/user-friendly web page)
 - Log4j2 (for logging)
 - jUnit (for testing)
 - Docker (generate docker image for the microservices, run the application, etc)
+- Kubernetes (run in a k8s cluster)
 
 To be added:
 - Spring Security / Oauth2 - maybe (for authentication)
@@ -83,35 +85,59 @@ Sorting:
 
 For making thing easier, all microservices project are subproject/modules from this maven project. That will make things easier than have separated git repositories for each one.
 
+I've also added some module prefix for a better understading:
+- ms- : for microservices
+- lib- : for library/jar 
+- server- : for servers
+- app: for app gateway
+
 ### app-algorithms
 
 Sub project for the app gateway micro service project.
 
 [See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 
-### data-structures
+### lib-core
+
+Sub project with few reusable code for the microservices implementation. Just a library.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core)
+
+### lib-data-structures
 
 Sub project with data structures implementation. Just a library.
 
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/data-structures)
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures)
 
-### searching-service
+### ms-problems-service
 
-Sub project for the searching micro service.
+Sub project for the problems microservice.
 
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/searching-service)
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service)
 
-### service-discovery
+### ms-searching-service
+
+Sub project for the searching microservice.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service)
+
+### ms-sorting-service
+
+Sub project for the sorting microservice.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service)
+
+### server-admin
+
+Sub project for the server admin.
+
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin)
+
+### server-eureka
 
 Sub project for the service discovery - eureka server/service.
 
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/service-discovery)
-
-### sorting-service
-
-Sub project for the sorting micro service.
-
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/sorting-service)
+[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka)
 
 
 ## Running
