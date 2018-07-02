@@ -48,7 +48,7 @@ First, generate the jar and the docker image (skipping the tests for speeding up
 Now just run a container using the image
 
 ```
-docker run --name algorithmsboot-discovery -p 8761:8761 fworks/algorithmsboot-discovery
+docker run --name algorithmsboot-eureka -p 8761:8761 fworks/algorithmsboot-eureka
 ```
 
 ### Accessing:
@@ -65,5 +65,5 @@ http://127.0.0.1:8761
 docker hub image
 
 ```
-fworks/algorithmsboot-discovery
+fworks/algorithmsboot-eureka
 ```
