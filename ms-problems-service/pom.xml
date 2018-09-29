@@ -85,9 +85,36 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 		</dependency>
+		
+		<!-- tests -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<!-- <exclusions>
+				<exclusion>
+					<groupId>junit</groupId>
+					<artifactId>junit</artifactId>
+				</exclusion>
+			</exclusions> -->
+		</dependency>
+		<!-- junit 5-->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>2.22.0</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- TODO: fix for inline mock - mockito on jdk 11. Remove when it fix on the new release -->
+		<dependency>
+			<groupId>net.bytebuddy</groupId>
+			<artifactId>byte-buddy</artifactId>
+			<version>1.8.22</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -124,6 +151,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.0</version>
 				<configuration>
 					<!-- Sets the VM argument line used when unit tests are run. -->
 					<argLine>${surefireArgLine}</argLine>
@@ -244,6 +272,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-
 
 </project>

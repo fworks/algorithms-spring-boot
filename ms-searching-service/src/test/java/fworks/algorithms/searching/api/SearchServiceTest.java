@@ -7,10 +7,12 @@ import fworks.algorithms.searching.model.searchrequest.SearchResponse;
 import fworks.algorithms.searching.search.binarysearch.BinarySearchRecursiveService;
 import fworks.algorithms.searching.search.binarysearch.BinarySearchService;
 import fworks.algorithms.searching.search.bruteforce.BruteForceSearchService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 /**
  * Unit test for SearchService.
@@ -18,6 +20,7 @@ import org.mockito.Mockito;
  * @author flaviolcastro
  *
  */
+@ExtendWith(MockitoExtension.class)
 public class SearchServiceTest {
 
   private SearchService searchService;
@@ -30,7 +33,7 @@ public class SearchServiceTest {
   /**
    * Setup the test with the mock services.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     // mock services
     searchRequestService = Mockito.mock(SearchRequestService.class);
@@ -57,9 +60,9 @@ public class SearchServiceTest {
         .thenReturn(searchResponseMocked);
 
     SearchResponse[] searchAll = searchService.searchAll(searchInput).getResponses();
-    Assert.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
+    Assertions.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length);
     for (SearchResponse searchResponse : searchAll) {
-      Assert.assertEquals(searchResponseMocked, searchResponse);
+      Assertions.assertEquals(searchResponseMocked, searchResponse);
     }
   }
 
@@ -80,8 +83,8 @@ public class SearchServiceTest {
     Mockito.when(binarySearch.search(searchRequest)).thenReturn(searchResponseMocked);
 
     SearchResponse searchResponse = searchService.searchBinary(searchInput).getResponses()[0];
-    Assert.assertEquals(10, searchResponse.getIndex(), 0);
-    Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
+    Assertions.assertEquals(10, searchResponse.getIndex());
+    Assertions.assertEquals(1, searchResponse.getNumberOfKeysAnalized());
   }
 
   @Test
@@ -103,8 +106,8 @@ public class SearchServiceTest {
 
     SearchResponse searchResponse =
         searchService.searchBinaryRecursive(searchInput).getResponses()[0];
-    Assert.assertEquals(10, searchResponse.getIndex(), 0);
-    Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
+    Assertions.assertEquals(10, searchResponse.getIndex());
+    Assertions.assertEquals(1, searchResponse.getNumberOfKeysAnalized());
   }
 
   @Test
@@ -125,8 +128,8 @@ public class SearchServiceTest {
 
     SearchResponse searchResponse =
         searchService.searchBruteForce(searchInput).getResponses()[0];
-    Assert.assertEquals(10, searchResponse.getIndex(), 0);
-    Assert.assertEquals(1, searchResponse.getNumberOfKeysAnalized(), 0);
+    Assertions.assertEquals(10, searchResponse.getIndex());
+    Assertions.assertEquals(1, searchResponse.getNumberOfKeysAnalized());
   }
 
 }

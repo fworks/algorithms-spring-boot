@@ -1,16 +1,16 @@
 package fworks.algorithms.problems.josephus;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 @Log4j2
 public class JosephusProblemServiceTest {
 
   private JosephusProblemService josephusProblemService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     josephusProblemService = new JosephusProblemServiceImpl();
   }
@@ -28,6 +28,6 @@ public class JosephusProblemServiceTest {
   private void testJosephus(int m, int n, int last) {
     int lastPosition = josephusProblemService.solve(m, n);
     log.info("Josephus {} {} - Expected: {} Result: {}", m, n, last, lastPosition);
-    Assert.assertEquals(last, lastPosition, 0);
+    Assertions.assertEquals(last, lastPosition);
   }
 }

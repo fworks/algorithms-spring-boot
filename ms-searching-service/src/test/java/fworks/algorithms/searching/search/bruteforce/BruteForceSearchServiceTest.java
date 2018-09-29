@@ -4,13 +4,13 @@ import fworks.algorithms.searching.search.AbstractSearchServiceTest;
 import fworks.algorithms.searching.search.AlgorithmSearchService;
 import fworks.algorithms.searching.search.bruteforce.BruteForceSearchService;
 import fworks.algorithms.searching.search.bruteforce.BruteForceSearchServiceImpl;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public class BruteForceSearchServiceTest extends AbstractSearchServiceTest {
 
   private BruteForceSearchService bruteForce;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     bruteForce = new BruteForceSearchServiceImpl();
   }

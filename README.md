@@ -29,8 +29,8 @@ But I will be testing myself to create them and code them in a way which they wi
 
 Technologies in the project:
 
-- Java 10 (yes I know, should I wait for the 11, but it will be nice)
-- Spring Boot 2
+- Java 11
+- Spring Boot 2.0.5
 - String Web (using tomcat at moment, thinking about moving to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
 - Spring Cloud (eureka, zuul, etc.)
 - Spring DevTool / Actuator (for speeding up the development/restart, etc)
@@ -38,7 +38,7 @@ Technologies in the project:
 - Lombok (for avoiding boilerplate code)
 - Swagger-ui / OpenApi (for exposing the rest services in an easy/user-friendly web page)
 - Log4j2 (for logging)
-- jUnit (for testing)
+- jUnit5 (for testing)
 - Docker (generate docker image for the microservices, run the application, etc)
 - Kubernetes (run in a k8s cluster)
 

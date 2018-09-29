@@ -1,10 +1,8 @@
 package fworks.algorithms.sorting.sort.selection;
 
+import org.junit.jupiter.api.BeforeEach;
 import fworks.algorithms.sorting.sort.AbstractSortingServiceTest;
 import fworks.algorithms.sorting.sort.AlgorithmSortService;
-import fworks.algorithms.sorting.sort.selection.SelectionSortService;
-import fworks.algorithms.sorting.sort.selection.SelectionSortServiceImpl;
-import org.junit.Before;
 
 /**
  * Testing the SelectionSortService.
@@ -16,7 +14,7 @@ public class SelectionSortServiceTest extends AbstractSortingServiceTest {
 
   private SelectionSortService sortingService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sortingService = new SelectionSortServiceImpl();
   }

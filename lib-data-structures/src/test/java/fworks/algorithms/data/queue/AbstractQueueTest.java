@@ -1,7 +1,10 @@
 package fworks.algorithms.data.queue;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
 
 /**
  * Commmon tests for queues.
@@ -17,8 +20,8 @@ public abstract class AbstractQueueTest {
   protected void validateString(Queue<String> queue, String word) {
     // validate the initial values
     log.info("Queue: {}", queue.toString());
-    Assert.assertEquals(0, queue.size(), 0);
-    Assert.assertTrue(queue.isEmpty());
+    assertEquals(0, queue.size());
+    assertTrue(queue.isEmpty());
 
     String[] test = word.trim().split("");
     //
@@ -33,8 +36,8 @@ public abstract class AbstractQueueTest {
       }
       queue.enqueue(item1);
       // validate
-      Assert.assertEquals(i + 1, queue.size(), 0);
-      Assert.assertFalse(queue.isEmpty());
+      assertEquals(i + 1, queue.size());
+      assertFalse(queue.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Queue: {}", queue.toString());
@@ -46,8 +49,8 @@ public abstract class AbstractQueueTest {
       String peek = queue.peek();
       String item = queue.dequeue();
       log.info("-> Item '{}' dequeued.", item);
-      Assert.assertEquals(test[count++], item);
-      Assert.assertEquals(peek, item);
+      assertEquals(test[count++], item);
+      assertEquals(peek, item);
       //
       if (logInsideLoop) {
         log.info("Queue: {}", queue.toString());
@@ -55,8 +58,8 @@ public abstract class AbstractQueueTest {
     }
     log.info("Queue: {}", queue.toString());
 
-    Assert.assertNull(queue.dequeue());
-    Assert.assertNull(queue.peek());
+    assertNull(queue.dequeue());
+    assertNull(queue.peek());
   }
 
   protected void validateInteger(Queue<Integer> queue, int count) {
@@ -64,8 +67,8 @@ public abstract class AbstractQueueTest {
     boolean logInsideLoop = count > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
     // validate the initial values
     log.info("Queue: {}", queue);
-    Assert.assertEquals(0, queue.size(), 0);
-    Assert.assertTrue(queue.isEmpty());
+    assertEquals(0, queue.size());
+    assertTrue(queue.isEmpty());
 
     for (int i = 0; i < count; i++) {
       // add an item
@@ -76,8 +79,8 @@ public abstract class AbstractQueueTest {
       }
       queue.enqueue(item1);
       // validate
-      Assert.assertEquals(i + 1, queue.size(), 0);
-      Assert.assertFalse(queue.isEmpty());
+      assertEquals(i + 1, queue.size());
+      assertFalse(queue.isEmpty());
       //
       if (logInsideLoop) {
         log.info("Queue: {}", queue.toString());
@@ -93,8 +96,8 @@ public abstract class AbstractQueueTest {
       if (logInsideLoop) {
         log.info("-> Item '{}' dequeued.", item);
       }
-      Assert.assertEquals(position++, item, 0);
-      Assert.assertEquals(peek, item);
+      assertEquals(position++, item.intValue());
+      assertEquals(peek, item);
       //
       if (logInsideLoop) {
         log.info("-> Queue: {}", queue.toString());
@@ -102,7 +105,7 @@ public abstract class AbstractQueueTest {
     }
     log.info("-> Queue: {}", queue.toString());
 
-    Assert.assertNull(queue.dequeue());
-    Assert.assertNull(queue.peek());
+    assertNull(queue.dequeue());
+    assertNull(queue.peek());
   }
 }

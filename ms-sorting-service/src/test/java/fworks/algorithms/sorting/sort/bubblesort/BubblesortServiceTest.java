@@ -1,10 +1,8 @@
 package fworks.algorithms.sorting.sort.bubblesort;
 
+import org.junit.jupiter.api.BeforeEach;
 import fworks.algorithms.sorting.sort.AbstractSortingServiceTest;
 import fworks.algorithms.sorting.sort.AlgorithmSortService;
-import fworks.algorithms.sorting.sort.bubblesort.BubblesortService;
-import fworks.algorithms.sorting.sort.bubblesort.BubblesortServiceImpl;
-import org.junit.Before;
 
 /**
  * Testing the BubblesortService.
@@ -16,7 +14,7 @@ public class BubblesortServiceTest extends AbstractSortingServiceTest {
 
   private BubblesortService sortingService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sortingService = new BubblesortServiceImpl();
   }

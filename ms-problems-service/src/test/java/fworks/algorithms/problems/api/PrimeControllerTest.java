@@ -1,13 +1,15 @@
 package fworks.algorithms.problems.api;
 
 import static org.mockito.Mockito.when;
-
-import fworks.algorithms.problems.basics.NumberService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import fworks.algorithms.problems.basics.NumberService;
 
+@ExtendWith(MockitoExtension.class)
 public class PrimeControllerTest {
 
   private PrimeController primeController;
@@ -17,7 +19,7 @@ public class PrimeControllerTest {
   /**
    * Setting up mocking the services.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     numberService = Mockito.mock(NumberService.class);
     primeController = new PrimeController(numberService);
@@ -30,7 +32,7 @@ public class PrimeControllerTest {
     when(numberService.countAllPrimes(number)).thenReturn(expected);
 
     long value = primeController.countAllPrimesUntilNumber(number);
-    Assert.assertEquals(expected, value, 0);
+    Assertions.assertEquals(expected, value);
   }
 
   @Test
@@ -39,7 +41,7 @@ public class PrimeControllerTest {
     when(numberService.isPrime(number)).thenReturn(true);
 
     boolean value = primeController.isPrime(number);
-    Assert.assertTrue(value);
+    Assertions.assertTrue(value);
   }
 
 }

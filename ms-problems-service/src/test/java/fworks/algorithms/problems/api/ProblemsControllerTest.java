@@ -1,14 +1,16 @@
 package fworks.algorithms.problems.api;
 
 import static org.mockito.Mockito.when;
-
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import fworks.algorithms.problems.balancedparentheses.ParenthesesService;
 import fworks.algorithms.problems.basics.StackService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
 
+@ExtendWith(MockitoExtension.class)
 public class ProblemsControllerTest {
 
   private ProblemsController problemsController;
@@ -19,7 +21,7 @@ public class ProblemsControllerTest {
   /**
    * Setting up mocking the services.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     stackService = Mockito.mock(StackService.class);
     paranthesesService = Mockito.mock(ParenthesesService.class);
@@ -33,7 +35,7 @@ public class ProblemsControllerTest {
     when(stackService.getBinaryRepresentation(number)).thenReturn(expected);
 
     String value = problemsController.binaryRepresentation(number);
-    Assert.assertEquals(expected, value);
+    Assertions.assertEquals(expected, value);
   }
 
   @Test
@@ -42,7 +44,7 @@ public class ProblemsControllerTest {
     when(paranthesesService.isBalanced(input)).thenReturn(true);
 
     boolean value = problemsController.verifyBalancedParentheses(input);
-    Assert.assertTrue(value);
+    Assertions.assertTrue(value);
   }
 
 }

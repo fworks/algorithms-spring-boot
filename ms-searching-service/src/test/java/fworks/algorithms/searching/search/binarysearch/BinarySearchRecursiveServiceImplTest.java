@@ -4,13 +4,13 @@ import fworks.algorithms.searching.search.AbstractSearchServiceTest;
 import fworks.algorithms.searching.search.AlgorithmSearchService;
 import fworks.algorithms.searching.search.binarysearch.BinarySearchRecursiveService;
 import fworks.algorithms.searching.search.binarysearch.BinarySearchRecursiveServiceImpl;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 
 public class BinarySearchRecursiveServiceImplTest extends AbstractSearchServiceTest {
 
   private BinarySearchRecursiveService binarySearch;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     binarySearch = new BinarySearchRecursiveServiceImpl();
   }

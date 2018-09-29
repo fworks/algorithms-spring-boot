@@ -1,10 +1,8 @@
 package fworks.algorithms.sorting.sort.mergesort;
 
+import org.junit.jupiter.api.BeforeEach;
 import fworks.algorithms.sorting.sort.AbstractSortingServiceTest;
 import fworks.algorithms.sorting.sort.AlgorithmSortService;
-import fworks.algorithms.sorting.sort.mergesort.MergesortService;
-import fworks.algorithms.sorting.sort.mergesort.MergesortServiceImpl;
-import org.junit.Before;
 
 /**
  * Testing the MergesortService.
@@ -16,7 +14,7 @@ public class MergesortServiceTest extends AbstractSortingServiceTest {
 
   private MergesortService sortingService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sortingService = new MergesortServiceImpl();
   }

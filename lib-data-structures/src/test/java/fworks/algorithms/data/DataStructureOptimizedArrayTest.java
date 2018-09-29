@@ -1,16 +1,16 @@
 package fworks.algorithms.data;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 @Log4j2
 public class DataStructureOptimizedArrayTest {
 
   DataStructureOptimizedArray<String> optimizedArray;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     this.optimizedArray = new DataStructureOptimizedArray<>() {};
   }
@@ -23,28 +23,28 @@ public class DataStructureOptimizedArrayTest {
     // test decreasing for the same size
     this.optimizedArray.decreaseArraySize(size);
     // array shouldn't change
-    Assert.assertEquals(size, this.optimizedArray.array.length, 0);
+    assertEquals(size, this.optimizedArray.array.length);
 
     // test decreasing for the same size
     this.optimizedArray.decreaseArraySize(size + 1);
     // array shouldn't change
-    Assert.assertEquals(size, this.optimizedArray.array.length, 0);
+    assertEquals(size, this.optimizedArray.array.length);
 
     // test decreasing for invalid size
     this.optimizedArray.decreaseArraySize(size - 1);
     // array shouldn't change if size was 0
-    Assert.assertEquals(size, this.optimizedArray.array.length, 0);
+    assertEquals(size, this.optimizedArray.array.length);
     
     // test decreasing for valid size
     
     // first increase the size
     this.optimizedArray.increaseArraySize(1);
-    Assert.assertEquals(1, this.optimizedArray.array.length, 0);
+    assertEquals(1, this.optimizedArray.array.length);
     
     // now decreaset
     this.optimizedArray.decreaseArraySize(0);
     // array should change
-    Assert.assertEquals(0, this.optimizedArray.array.length, 0);
+    assertEquals(0, this.optimizedArray.array.length);
 
   }
   
@@ -58,17 +58,17 @@ public class DataStructureOptimizedArrayTest {
     // test increasing for the same size
     this.optimizedArray.increaseArraySize(size);
     // array shouldn't change
-    Assert.assertEquals(size, this.optimizedArray.array.length, 0);
+    assertEquals(size, this.optimizedArray.array.length);
 
     // test increasing for invalid size
     this.optimizedArray.increaseArraySize(size - 1);
     // array shouldn't change
-    Assert.assertEquals(size, this.optimizedArray.array.length, 0);
+    assertEquals(size, this.optimizedArray.array.length);
     
     // test increasing 
     this.optimizedArray.increaseArraySize(size + 1);
     // array should change
-    Assert.assertEquals(size + 1, this.optimizedArray.array.length, 0);
+    assertEquals(size + 1, this.optimizedArray.array.length);
 
   }
 }

@@ -2,16 +2,16 @@ package fworks.algorithms.problems.basics;
 
 import java.util.Comparator;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 @Log4j2
 public class ArrayServiceImplTest {
 
   ArrayService arrayService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     arrayService = new ArrayServiceImpl();
   }
@@ -27,7 +27,7 @@ public class ArrayServiceImplTest {
       }
     });
     log.info("Array: {} max: {}", array, max);
-    Assert.assertEquals(33.0, max, 0);
+    Assertions.assertEquals(33.0, max.doubleValue());
   }
 
   @Test
@@ -35,7 +35,7 @@ public class ArrayServiceImplTest {
     double[] array = {12.0, 2.0, 33.0, 0.3};
     double max = arrayService.getMax(array);
     log.info("Array: {} max: {}", array, max);
-    Assert.assertEquals(33.0, max, 0);
+    Assertions.assertEquals(33.0, max);
   }
   
   @Test
@@ -43,7 +43,7 @@ public class ArrayServiceImplTest {
     double[] array = {12.0, 2.0, 33.0, 0.3};
     double max = arrayService.getMin(array);
     log.info("Array: {} min: {}", array, max);
-    Assert.assertEquals(0.3, max, 0);
+    Assertions.assertEquals(0.3, max);
   }
 
 
@@ -52,7 +52,7 @@ public class ArrayServiceImplTest {
     double[] array = {12.7, 2.0, 33.0, 0.3};
     double avg = arrayService.getAvg(array);
     log.info("Array: {} avg: {}", array, avg);
-    Assert.assertEquals(12.0, avg, 0);
+    Assertions.assertEquals(12.0, avg);
   }
 
   @Test
@@ -60,7 +60,7 @@ public class ArrayServiceImplTest {
     double[] array = {12.7, 2.0, 33.0, 0.3};
     double sum = arrayService.getSum(array);
     log.info("Array: {} sum: {}", array, sum);
-    Assert.assertEquals(48.0, sum, 0);
+    Assertions.assertEquals(48.0, sum);
   }
 
   @Test
@@ -70,7 +70,7 @@ public class ArrayServiceImplTest {
     double[] reversed = arrayService.reverse(array);
     log.info("Original array: {}", array);
     log.info("Reversed array: {}", reversed);
-    Assert.assertArrayEquals(arrayReversed, reversed, 0);
+    Assertions.assertArrayEquals(arrayReversed, reversed);
   }
   
   @Test
@@ -80,19 +80,19 @@ public class ArrayServiceImplTest {
     double[] copy = arrayService.copy(array);
     log.info("Copied array: {}", copy);
     // validate equals
-    Assert.assertArrayEquals(array, copy, 0);
+    Assertions.assertArrayEquals(array, copy);
     
     // change the original array
     array[0] = 0;
     // it shouldn't change the copy
-    Assert.assertNotEquals(array[0], copy[0]);
+    Assertions.assertNotEquals(array[0], copy[0]);
     log.info("Original array: {}", array);
     log.info("Copy array: {}", copy);
     
     // change the copied array
     copy[1] = 10;
     // it shouldn't change the original
-    Assert.assertNotEquals(copy[1], array[1]);
+    Assertions.assertNotEquals(copy[1], array[1]);
     log.info("Original array: {}", array);
     log.info("Copy array: {}", copy);
   }
@@ -102,11 +102,11 @@ public class ArrayServiceImplTest {
     double[] array = {12.7, 2.0, 33.0, 0.3};
     boolean sorted = arrayService.isSorted(array);
     log.info("Array: {} Sorted: {}", array, sorted);
-    Assert.assertFalse(sorted);
+    Assertions.assertFalse(sorted);
     
     double[] arraySorted = {12.7, 22.0, 33.0, 500.3};
     sorted = arrayService.isSorted(arraySorted);
     log.info("Array: {} Sorted: {}", arraySorted, sorted);
-    Assert.assertTrue(sorted);
+    Assertions.assertTrue(sorted);
   }
 }

@@ -1,17 +1,21 @@
 package fworks.algorithms.problems.api;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.when;
-
+import javax.validation.ValidationException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.jupiter.api.function.Executable;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import fworks.algorithms.problems.fibonacci.nonrecursive.FibonacciNonRecursiveService;
 import fworks.algorithms.problems.fibonacci.nonrecursive.FibonacciNonRecursiveServiceImpl;
 import fworks.algorithms.problems.fibonacci.optimized.FibonacciOptimizedService;
 import fworks.algorithms.problems.fibonacci.simple.FibonacciSimpleService;
-import javax.validation.ValidationException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
 
+@ExtendWith(MockitoExtension.class)
 public class FibonacciControllerTest {
 
   private FibonacciController fibonacciController;
@@ -23,7 +27,7 @@ public class FibonacciControllerTest {
   /**
    * Setting up mocking the services.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     fibonacciNonRecursiveService = Mockito.mock(FibonacciNonRecursiveServiceImpl.class);
     fibonacciSimpleService = Mockito.mock(FibonacciSimpleService.class);
@@ -39,7 +43,7 @@ public class FibonacciControllerTest {
     when(fibonacciNonRecursiveService.fibonacci(number)).thenReturn(expected);
 
     long value = fibonacciController.fibonacciNonRecursiveFunction(number);
-    Assert.assertEquals(expected, value, 0);
+    Assertions.assertEquals(expected, value);
   }
 
   @Test
@@ -49,7 +53,7 @@ public class FibonacciControllerTest {
     when(fibonacciOptimizedService.fibonacci(number)).thenReturn(expected);
 
     long value = fibonacciController.fibonacciOptimizedFunction(number);
-    Assert.assertEquals(expected, value, 0);
+    Assertions.assertEquals(expected, value);
   }
 
   @Test
@@ -59,7 +63,7 @@ public class FibonacciControllerTest {
     when(fibonacciSimpleService.fibonacci(number)).thenReturn(expected);
 
     long value = fibonacciController.fibonacciSimpleFunction(number);
-    Assert.assertEquals(expected, value, 0);
+    Assertions.assertEquals(expected, value);
   }
 
   @Test
@@ -69,7 +73,7 @@ public class FibonacciControllerTest {
     when(fibonacciNonRecursiveService.calculateFibonacciSequence(number)).thenReturn(expected);
 
     long[] value = fibonacciController.fibonacciNonRecursiveSequence(number);
-    Assert.assertArrayEquals(expected, value);
+    Assertions.assertArrayEquals(expected, value);
   }
 
   @Test
@@ -79,7 +83,7 @@ public class FibonacciControllerTest {
     when(fibonacciOptimizedService.calculateFibonacciSequence(number)).thenReturn(expected);
 
     long[] value = fibonacciController.fibonacciOptimizedSequence(number);
-    Assert.assertArrayEquals(expected, value);
+    Assertions.assertArrayEquals(expected, value);
   }
 
   @Test
@@ -89,19 +93,31 @@ public class FibonacciControllerTest {
     when(fibonacciSimpleService.calculateFibonacciSequence(number)).thenReturn(expected);
 
     long[] value = fibonacciController.fibonacciSimpleSequence(number);
-    Assert.assertArrayEquals(expected, value);
+    Assertions.assertArrayEquals(expected, value);
   }
 
-  @Test(expected = ValidationException.class)
+  @Test
   public void fibonacciSimpleSequenceLargeTest() {
-    int number = 21;
-    fibonacciController.fibonacciSimpleSequence(number);
+    assertThrows(ValidationException.class, new Executable() {
+
+      @Override
+      public void execute() throws Throwable {
+        int number = 21;
+        fibonacciController.fibonacciSimpleSequence(number);
+      }
+    });
   }
 
-  @Test(expected = ValidationException.class)
+  @Test
   public void fibonacciSimpleFunctionLargeTest() {
-    int number = 21;
-    fibonacciController.fibonacciSimpleFunction(number);
+    assertThrows(ValidationException.class, new Executable() {
+
+      @Override
+      public void execute() throws Throwable {
+        int number = 21;
+        fibonacciController.fibonacciSimpleFunction(number);
+      }
+    });
   }
 
 }

@@ -1,10 +1,8 @@
 package fworks.algorithms.sorting.sort.quicksort;
 
+import org.junit.jupiter.api.BeforeEach;
 import fworks.algorithms.sorting.sort.AbstractSortingServiceTest;
 import fworks.algorithms.sorting.sort.AlgorithmSortService;
-import fworks.algorithms.sorting.sort.quicksort.Quick3wayService;
-import fworks.algorithms.sorting.sort.quicksort.Quick3wayServiceImpl;
-import org.junit.Before;
 
 /**
  * Testing the Quick3wayService.
@@ -16,7 +14,7 @@ public class Quick3wayServiceTest extends AbstractSortingServiceTest {
 
   private Quick3wayService sortingService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     sortingService = new Quick3wayServiceImpl();
   }

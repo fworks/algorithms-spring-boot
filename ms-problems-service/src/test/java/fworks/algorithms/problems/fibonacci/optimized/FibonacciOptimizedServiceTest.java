@@ -1,14 +1,14 @@
 package fworks.algorithms.problems.fibonacci.optimized;
 
+import org.junit.jupiter.api.BeforeEach;
 import fworks.algorithms.problems.fibonacci.FibonacciService;
 import fworks.algorithms.problems.fibonacci.FibonacciServiceTest;
-import org.junit.Before;
 
 public class FibonacciOptimizedServiceTest extends FibonacciServiceTest {
 
   FibonacciOptimizedService fibonacci;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     fibonacci = new FibonacciOptimizedServiceImpl();
   }

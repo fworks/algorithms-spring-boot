@@ -1,7 +1,10 @@
 package fworks.algorithms.data.deque;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
 
 /**
  * Commmon tests for deques.
@@ -17,8 +20,8 @@ public abstract class AbstractDequeTest {
   protected void validateString(Deque<String> deque, String word) {
     // validate the initial values
     log.info("Deque: {}", deque.toString());
-    Assert.assertEquals(0, deque.size(), 0);
-    Assert.assertTrue(deque.isEmpty());
+    assertEquals(0, deque.size());
+    assertTrue(deque.isEmpty());
 
     String[] test = word.trim().split("");
     //
@@ -33,8 +36,8 @@ public abstract class AbstractDequeTest {
       }
       deque.pushLeft(item1);
       // validate
-      Assert.assertEquals(i + 1, deque.size(), 0);
-      Assert.assertFalse(deque.isEmpty());
+      assertEquals(i + 1, deque.size());
+      assertFalse(deque.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Deque: {}", deque.toString());
@@ -51,8 +54,8 @@ public abstract class AbstractDequeTest {
       }
       // validate
       int position = test.length - 1;
-      Assert.assertEquals(test[position - count++], item);
-      Assert.assertEquals(peek, item);
+      assertEquals(test[position - count++], item);
+      assertEquals(peek, item);
       //
       if (logInsideLoop) {
         log.info("-> Deque: {}", deque.toString());
@@ -60,10 +63,10 @@ public abstract class AbstractDequeTest {
     }
     log.info("-> Deque: {}", deque.toString());
 
-    Assert.assertNull(deque.popRight());
-    Assert.assertNull(deque.peekRight());
-    Assert.assertNull(deque.popLeft());
-    Assert.assertNull(deque.peekLeft());
+    assertNull(deque.popRight());
+    assertNull(deque.peekRight());
+    assertNull(deque.popLeft());
+    assertNull(deque.peekLeft());
   }
 
   protected void validateInteger(Deque<Integer> deque, int count) {
@@ -72,8 +75,8 @@ public abstract class AbstractDequeTest {
 
     // validate the initial values
     log.info("Deque: {}", deque.toString());
-    Assert.assertEquals(0, deque.size(), 0);
-    Assert.assertTrue(deque.isEmpty());
+    assertEquals(0, deque.size());
+    assertTrue(deque.isEmpty());
 
     for (int i = 0; i < count; i++) {
       // add an item
@@ -84,8 +87,8 @@ public abstract class AbstractDequeTest {
       }
       deque.pushRight(item1);
       // validate
-      Assert.assertEquals(i + 1, deque.size(), 0);
-      Assert.assertFalse(deque.isEmpty());
+      assertEquals(i + 1, deque.size());
+      assertFalse(deque.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Deque: {}", deque.toString());
@@ -101,8 +104,8 @@ public abstract class AbstractDequeTest {
         log.info("-> Item '{}' popped.", item);
       }
       // validate
-      Assert.assertEquals(--count, item, 0);
-      Assert.assertEquals(peek, item);
+      assertEquals(--count, item.intValue());
+      assertEquals(peek, item);
       //
       if (logInsideLoop) {
         log.info("-> Deque: {}", deque.toString());
@@ -110,9 +113,9 @@ public abstract class AbstractDequeTest {
     }
     log.info("-> Deque: {}", deque.toString());
 
-    Assert.assertNull(deque.popRight());
-    Assert.assertNull(deque.peekRight());
-    Assert.assertNull(deque.popLeft());
-    Assert.assertNull(deque.peekLeft());
+    assertNull(deque.popRight());
+    assertNull(deque.peekRight());
+    assertNull(deque.popLeft());
+    assertNull(deque.peekLeft());
   }
 }

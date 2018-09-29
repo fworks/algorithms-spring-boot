@@ -3,8 +3,8 @@ package fworks.algorithms.searching.search;
 import fworks.algorithms.searching.model.searchrequest.SearchRequest;
 import fworks.algorithms.searching.model.searchrequest.SearchResponse;
 import fworks.algorithms.searching.search.AlgorithmSearchService;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Abstract test class for search service. <br>
@@ -30,7 +30,7 @@ public abstract class AbstractSearchServiceTest {
         .key(key) //
         .build();
     SearchResponse searchResponse = searchService.search(searchRequest);
-    Assert.assertEquals(-1, searchResponse.getIndex(), 0);
+    Assertions.assertEquals(-1, searchResponse.getIndex());
   }
 
   /**
@@ -49,7 +49,7 @@ public abstract class AbstractSearchServiceTest {
         .key(key) //
         .build();
     SearchResponse searchResponse = searchService.search(searchRequest);
-    Assert.assertEquals(index, searchResponse.getIndex(), 0);
+    Assertions.assertEquals(index, searchResponse.getIndex());
   }
 
   /**

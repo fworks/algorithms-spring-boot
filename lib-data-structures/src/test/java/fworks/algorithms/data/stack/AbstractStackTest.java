@@ -1,7 +1,10 @@
 package fworks.algorithms.data.stack;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
 
 /**
  * Commmon tests for stacks.
@@ -17,8 +20,8 @@ public abstract class AbstractStackTest {
   protected void validateString(Stack<String> stack, String word) {
     // validate the initial values
     log.info("Stack: {}", stack.toString());
-    Assert.assertEquals(0, stack.size(), 0);
-    Assert.assertTrue(stack.isEmpty());
+    assertEquals(0, stack.size());
+    assertTrue(stack.isEmpty());
 
     String[] test = word.trim().split("");
     //
@@ -33,8 +36,8 @@ public abstract class AbstractStackTest {
       }
       stack.push(item1);
       // validate
-      Assert.assertEquals(i + 1, stack.size(), 0);
-      Assert.assertFalse(stack.isEmpty());
+      assertEquals(i + 1, stack.size());
+      assertFalse(stack.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Stack: {}", stack.toString());
@@ -51,8 +54,8 @@ public abstract class AbstractStackTest {
       }
       // validate
       int position = test.length - 1;
-      Assert.assertEquals(test[position - count++], item);
-      Assert.assertEquals(peek, item);
+      assertEquals(test[position - count++], item);
+      assertEquals(peek, item);
       //
       if (logInsideLoop) {
         log.info("-> Stack: {}", stack.toString());
@@ -60,8 +63,8 @@ public abstract class AbstractStackTest {
     }
     log.info("-> Stack: {}", stack.toString());
 
-    Assert.assertNull(stack.pop());
-    Assert.assertNull(stack.peek());
+    assertNull(stack.pop());
+    assertNull(stack.peek());
   }
 
   protected void validateInteger(Stack<Integer> stack, int count) {
@@ -70,8 +73,8 @@ public abstract class AbstractStackTest {
 
     // validate the initial values
     log.info("Stack: {}", stack);
-    Assert.assertEquals(0, stack.size(), 0);
-    Assert.assertTrue(stack.isEmpty());
+    assertEquals(0, stack.size());
+    assertTrue(stack.isEmpty());
 
     for (int i = 0; i < count; i++) {
       // add an item
@@ -82,8 +85,8 @@ public abstract class AbstractStackTest {
       }
       stack.push(item1);
       // validate
-      Assert.assertEquals(i + 1, stack.size(), 0);
-      Assert.assertFalse(stack.isEmpty());
+      assertEquals(i + 1, stack.size());
+      assertFalse(stack.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Stack: {}", stack.toString());
@@ -99,8 +102,8 @@ public abstract class AbstractStackTest {
         log.info("-> Item '{}' popped.", item);
       }
       // validate
-      Assert.assertEquals(--count, item, 0);
-      Assert.assertEquals(peek, item);
+      assertEquals(--count, item.intValue());
+      assertEquals(peek, item);
       //
       if (logInsideLoop) {
         log.info("-> Stack: {}", stack);
@@ -108,8 +111,8 @@ public abstract class AbstractStackTest {
     }
     log.info("-> Stack: {}", stack.toString());
 
-    Assert.assertNull(stack.pop());
-    Assert.assertNull(stack.peek());
+    assertNull(stack.pop());
+    assertNull(stack.peek());
   }
   
 }

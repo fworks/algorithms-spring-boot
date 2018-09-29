@@ -1,5 +1,11 @@
 package fworks.algorithms.sorting.api;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
 import fworks.algorithms.sorting.model.SortingInput;
 import fworks.algorithms.sorting.model.sortingrequest.SortingRequest;
 import fworks.algorithms.sorting.model.sortingrequest.SortingRequestService;
@@ -11,10 +17,6 @@ import fworks.algorithms.sorting.sort.quicksort.Quick3wayService;
 import fworks.algorithms.sorting.sort.quicksort.QuicksortService;
 import fworks.algorithms.sorting.sort.selection.SelectionSortService;
 import fworks.algorithms.sorting.sort.shellsort.ShellsortService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.mockito.Mockito;
 
 /**
  * Unit testing the SortingService.
@@ -22,6 +24,7 @@ import org.mockito.Mockito;
  * @author flaviolcastro
  *
  */
+@ExtendWith(MockitoExtension.class)
 public class SortingServiceTest {
 
   private SortingService sortingService;
@@ -38,7 +41,7 @@ public class SortingServiceTest {
   /**
    * Setup the test with the mock services.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     // mock services
     insertionSortService = Mockito.mock(InsertionSortService.class);
@@ -73,9 +76,9 @@ public class SortingServiceTest {
     Mockito.when(bubblesortService.sort(sortingRequest)).thenReturn(sortingResponseMocked);
 
     SortingRequest sortingAll = sortingService.sortingAll(sortingInput);
-    Assert.assertEquals(SortingService.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    Assertions.assertEquals(SortingService.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length);
     for (SortingResponse sortingResponse : sortingAll.getResponses()) {
-      Assert.assertEquals(sortingResponseMocked, sortingResponse);
+      Assertions.assertEquals(sortingResponseMocked, sortingResponse);
     }
   }
 }

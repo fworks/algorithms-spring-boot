@@ -1,7 +1,7 @@
 package fworks.algorithms.counter;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Test;
 
 public class CounterTest {
 
@@ -9,10 +9,10 @@ public class CounterTest {
   public void test() {
     Counter counter = new Counter();
     // test initial value
-    Assert.assertEquals(0, counter.getCounter(), 0);
+    assertEquals(0, counter.getCounter());
     // test one increment
     counter.increaseCounter();
-    Assert.assertEquals(1, counter.getCounter(), 0);
+    assertEquals(1, counter.getCounter());
   }
   
 }

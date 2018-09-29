@@ -1,9 +1,12 @@
 package fworks.algorithms.data.bag;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import java.util.Arrays;
+import org.junit.jupiter.api.Test;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Commmon tests for bags.
@@ -25,8 +28,8 @@ public abstract class AbstractBagTest {
   protected void validateString(Bag<String> bag, String word) {
     // validate the initial values
     log.info("Bag: {}", bag.toString());
-    Assert.assertEquals(0, bag.size(), 0);
-    Assert.assertTrue(bag.isEmpty());
+    assertEquals(0, bag.size());
+    assertTrue(bag.isEmpty());
 
     String[] test = word.trim().split("");
     //
@@ -41,15 +44,15 @@ public abstract class AbstractBagTest {
       }
       bag.add(item1);
       // validate
-      Assert.assertEquals(i + 1, bag.size(), 0);
-      Assert.assertFalse(bag.isEmpty());
+      assertEquals(i + 1, bag.size());
+      assertFalse(bag.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Bag: {}", bag.toString());
       }
     }
     log.info("-> Bag: {}", bag.toString());
-    // Assert.assertTrue(test.length == bag.toArray().length);
+    // assertTrue(test.length == bag.toArray().length);
   }
 
   /**
@@ -63,8 +66,8 @@ public abstract class AbstractBagTest {
     boolean logInsideLoop = count > MAX_SIZE_FOR_LOGGING_INSIDE_LOOP ? false : true;
     // validate the initial values
     log.info("Bag: {}", bag.toString());
-    Assert.assertEquals(0, bag.size(), 0);
-    Assert.assertTrue(bag.isEmpty());
+    assertEquals(0, bag.size());
+    assertTrue(bag.isEmpty());
 
     for (int i = 0; i < count; i++) {
       // add an item
@@ -75,8 +78,8 @@ public abstract class AbstractBagTest {
       }
       bag.add(item1);
       // validate
-      Assert.assertEquals(i + 1, bag.size(), 0);
-      Assert.assertFalse(bag.isEmpty());
+      assertEquals(i + 1, bag.size());
+      assertFalse(bag.isEmpty());
       //
       if (logInsideLoop) {
         log.info("-> Bag: {}", bag.toString());
@@ -102,7 +105,7 @@ public abstract class AbstractBagTest {
       return (Bag<?>) getBagImplementationClass().getDeclaredConstructor().newInstance();
     } catch (Exception e) {
       log.error("Error getting the instance.", e);
-      Assert.fail("Error getting the instance.");
+      fail("Error getting the instance.");
     }
     return null;
   }

@@ -1,20 +1,22 @@
 package fworks.algorithms.problems.basics;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.function.Executable;
 import fworks.algorithms.data.bag.Bag;
 import fworks.algorithms.data.bag.BagArrayImpl;
 import fworks.algorithms.data.queue.Queue;
 import fworks.algorithms.data.queue.QueueArrayImpl;
 import fworks.algorithms.data.stack.Stack;
 import fworks.algorithms.data.stack.StackArrayImpl;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
 
 public class CopyServiceTest {
 
   private CopyService copyService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     this.copyService = new CopyService();
   }
@@ -27,45 +29,63 @@ public class CopyServiceTest {
     queue.enqueue("C");
 
     Queue<String> copied = copyService.copyQueue(queue);
-    Assert.assertArrayEquals(queue.toArray(), copied.toArray());
+    Assertions.assertArrayEquals(queue.toArray(), copied.toArray());
   }
-  
-  @Test(expected = Exception.class)
-  public void copyQueueExceptionTest() throws Exception {
-    copyService.copyQueue(null);
+
+  @Test
+  public void copyQueueExceptionTest() {
+    assertThrows(Exception.class, new Executable() {
+
+      @Override
+      public void execute() throws Throwable {
+        copyService.copyQueue(null);
+      }
+    });
   }
-  
+
   @Test
   public void copyStackTest() throws Exception {
     Stack<String> stack = new StackArrayImpl<>();
     stack.push("A");
     stack.push("B");
     stack.push("C");
-    
+
     Stack<String> copied = copyService.copyStack(stack);
-    Assert.assertArrayEquals(stack.toArray(), copied.toArray());
+    Assertions.assertArrayEquals(stack.toArray(), copied.toArray());
   }
-  
-  @Test(expected = Exception.class)
+
+  @Test
   public void copyStackExceptionTest() throws Exception {
-    copyService.copyStack(null);
+    assertThrows(Exception.class, new Executable() {
+
+      @Override
+      public void execute() throws Throwable {
+        copyService.copyStack(null);
+      }
+    });
   }
-  
+
   @Test
   public void copyBagTest() throws Exception {
     Bag<String> bag = new BagArrayImpl<>();
     bag.add("A");
     bag.add("B");
     bag.add("C");
-    
+
     Bag<String> copied = copyService.copyBag(bag);
-    Assert.assertArrayEquals(bag.toArray(), copied.toArray());
+    Assertions.assertArrayEquals(bag.toArray(), copied.toArray());
   }
-  
-  @Test(expected = Exception.class)
+
+  @Test
   public void copyBagExceptionTest() throws Exception {
-    copyService.copyBag(null);
+    assertThrows(Exception.class, new Executable() {
+
+      @Override
+      public void execute() throws Throwable {
+        copyService.copyBag(null);
+      }
+    });
   }
-  
-  
+
+
 }

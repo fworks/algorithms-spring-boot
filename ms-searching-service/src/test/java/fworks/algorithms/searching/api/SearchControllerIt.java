@@ -1,14 +1,9 @@
 package fworks.algorithms.searching.api;
 
-import fworks.algorithms.searching.api.SearchController;
-import fworks.algorithms.searching.model.SearchInput;
-import fworks.algorithms.searching.model.searchrequest.SearchRequest;
-import fworks.algorithms.searching.model.searchrequest.SearchResponse;
-import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -20,9 +15,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import fworks.algorithms.searching.model.SearchInput;
+import fworks.algorithms.searching.model.searchrequest.SearchRequest;
+import fworks.algorithms.searching.model.searchrequest.SearchResponse;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Integration test for SearchController.
@@ -31,7 +30,7 @@ import org.springframework.util.MultiValueMap;
  *
  */
 @Log4j2
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SearchControllerIt {
 
@@ -47,7 +46,7 @@ public class SearchControllerIt {
    * Setup the test rest template.<br>
    * Set the root url.
    */
-  @Before
+  @BeforeEach
   public void setUpForIntegration() {
     String url = String.format(URL_BASE, port);
     log.info("Base url for test: {}", url);
@@ -68,9 +67,9 @@ public class SearchControllerIt {
         template.postForEntity(url, searchInput, SearchRequest.class);
 
     SearchResponse[] searchAll = response.getBody().getResponses();
-    Assert.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
+    Assertions.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length);
     for (SearchResponse searchResponse : searchAll) {
-      Assert.assertEquals(1, searchResponse.getIndex(), 0);
+      Assertions.assertEquals(1, searchResponse.getIndex());
     }
   }
 
@@ -95,9 +94,9 @@ public class SearchControllerIt {
         template.postForEntity(url, requestEntity, SearchRequest.class);
 
     SearchResponse[] searchAll = response.getBody().getResponses();
-    Assert.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length, 0);
+    Assertions.assertEquals(SearchService.NUMBER_OF_ALGORITHMS, searchAll.length);
     for (SearchResponse searchResponse : searchAll) {
-      Assert.assertEquals(10, searchResponse.getIndex(), 0);
+      Assertions.assertEquals(10, searchResponse.getIndex());
     }
   }
 
@@ -115,8 +114,8 @@ public class SearchControllerIt {
             searchInput, SearchRequest.class);
     //
     SearchResponse searchResponse = response.getBody().getResponses()[0];
-    Assert.assertEquals(1, searchResponse.getIndex(), 0);
-    Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
+    Assertions.assertEquals(1, searchResponse.getIndex());
+    Assertions.assertEquals(2, searchResponse.getNumberOfKeysAnalized());
   }
 
   /**
@@ -133,8 +132,8 @@ public class SearchControllerIt {
         template.postForEntity(url, searchInput, SearchRequest.class);
     //
     SearchResponse searchResponse = response.getBody().getResponses()[0];
-    Assert.assertEquals(1, searchResponse.getIndex(), 0);
-    Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
+    Assertions.assertEquals(1, searchResponse.getIndex());
+    Assertions.assertEquals(2, searchResponse.getNumberOfKeysAnalized());
   }
 
   /**
@@ -151,8 +150,8 @@ public class SearchControllerIt {
         template.postForEntity(url, searchInput, SearchRequest.class);
     //
     SearchResponse searchResponse = response.getBody().getResponses()[0];
-    Assert.assertEquals(1, searchResponse.getIndex(), 0);
-    Assert.assertEquals(2, searchResponse.getNumberOfKeysAnalized(), 0);
+    Assertions.assertEquals(1, searchResponse.getIndex());
+    Assertions.assertEquals(2, searchResponse.getNumberOfKeysAnalized());
   }
 
 }

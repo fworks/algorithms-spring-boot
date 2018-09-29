@@ -1,15 +1,10 @@
 package fworks.algorithms.sorting.api;
 
-import fworks.algorithms.sorting.api.SortingController;
-import fworks.algorithms.sorting.model.sortingrequest.SortingRequest;
-import fworks.algorithms.sorting.model.sortingrequest.SortingResponse;
-import fworks.algorithms.sorting.sort.quicksort.Quick3wayService;
 import java.io.IOException;
-import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -21,9 +16,13 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import fworks.algorithms.sorting.model.sortingrequest.SortingRequest;
+import fworks.algorithms.sorting.model.sortingrequest.SortingResponse;
+import fworks.algorithms.sorting.sort.quicksort.Quick3wayService;
+import lombok.extern.log4j.Log4j2;
 
 /**
  * Integration testing for the SortingController.
@@ -32,7 +31,7 @@ import org.springframework.util.MultiValueMap;
  *
  */
 @Log4j2
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class SortingControllerIt {
 
@@ -48,7 +47,7 @@ public class SortingControllerIt {
    * Setup the test rest template.<br>
    * Set the root url.
    */
-  @Before
+  @BeforeEach
   public void setUpForIntegration() {
     String url = String.format(URL_BASE, port);
     log.info("Base url for test: {}", url);
@@ -70,9 +69,9 @@ public class SortingControllerIt {
         template.postForEntity(url, sortingRequest, SortingRequest.class);
 
     SortingRequest sortingAll = response.getBody();
-    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    Assertions.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length);
     for (SortingResponse sortingResponse : sortingAll.getResponses()) {
-      Assert.assertArrayEquals(sorted, sortingResponse.getSortedArray());
+      Assertions.assertArrayEquals(sorted, sortingResponse.getSortedArray());
       log.info(sortingResponse);
     }
   }
@@ -91,12 +90,12 @@ public class SortingControllerIt {
         template.postForEntity(url, sortingRequest, SortingRequest.class);
 
     SortingRequest sortingAll = response.getBody();
-    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    Assertions.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length);
     for (SortingResponse sortingResponse : sortingAll.getResponses()) {
-      Assert.assertArrayEquals(array, sortingResponse.getSortedArray());
+      Assertions.assertArrayEquals(array, sortingResponse.getSortedArray());
       log.info(sortingResponse);
       if (!Quick3wayService.QUICK3WAY.equals(sortingResponse.getAlgorithm())) {
-        Assert.assertEquals(0, sortingResponse.getNumberOfExchanges());
+        Assertions.assertEquals(0, sortingResponse.getNumberOfExchanges());
       }
     }
   }
@@ -124,9 +123,9 @@ public class SortingControllerIt {
         template.postForEntity(url, requestEntity, SortingRequest.class);
 
     SortingRequest sortingAll = response.getBody();
-    Assert.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length, 0);
+    Assertions.assertEquals(SortingController.NUMBER_OF_ALGORITHMS, sortingAll.getResponses().length);
     for (SortingResponse sortingResponse : sortingAll.getResponses()) {
-      Assert.assertTrue(sortingResponse.getNumberOfExchanges() > 0);
+      Assertions.assertTrue(sortingResponse.getNumberOfExchanges() > 0);
     }
   }
 }

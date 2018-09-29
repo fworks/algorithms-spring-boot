@@ -2,15 +2,15 @@ package fworks.algorithms.problems.basics;
 
 import fworks.algorithms.data.queue.Queue;
 import fworks.algorithms.data.queue.QueueArrayImpl;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class StackServiceTest {
 
   private StackService stackService;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     this.stackService = new StackService();
   }
@@ -18,21 +18,21 @@ public class StackServiceTest {
   @Test
   public void evaluateDijkstraTest() {
     double value = stackService.evaluateDijkstra("((1+2)/(6-3))");
-    Assert.assertEquals(1.0, value, 0);
+    Assertions.assertEquals(1.0, value);
 
     double value2 =
         stackService.evaluateDijkstra("( 1 + ( ( 2 + 3 ) * ( ( 4 * 5 ) - ( 4 / 2 )  ) ) ");
-    Assert.assertEquals(90, value2, 0);
+    Assertions.assertEquals(90, value2);
   }
 
   @Test
   public void getBinaryRepresentationTest() {
-    Assert.assertEquals("1", stackService.getBinaryRepresentation(-1));
-    Assert.assertEquals("0", stackService.getBinaryRepresentation(0));
-    Assert.assertEquals("1", stackService.getBinaryRepresentation(1));
-    Assert.assertEquals("10", stackService.getBinaryRepresentation(2));
-    Assert.assertEquals("11", stackService.getBinaryRepresentation(3));
-    Assert.assertEquals("100", stackService.getBinaryRepresentation(4));
+    Assertions.assertEquals("1", stackService.getBinaryRepresentation(-1));
+    Assertions.assertEquals("0", stackService.getBinaryRepresentation(0));
+    Assertions.assertEquals("1", stackService.getBinaryRepresentation(1));
+    Assertions.assertEquals("10", stackService.getBinaryRepresentation(2));
+    Assertions.assertEquals("11", stackService.getBinaryRepresentation(3));
+    Assertions.assertEquals("100", stackService.getBinaryRepresentation(4));
   }
 
   @Test
@@ -48,8 +48,8 @@ public class StackServiceTest {
     queueExpected.enqueue("A");
 
     Queue<String> reversedQueue = stackService.reverse(queue);
-    Assert.assertArrayEquals(queueExpected.toArray(), reversedQueue.toArray());
+    Assertions.assertArrayEquals(queueExpected.toArray(), reversedQueue.toArray());
     
-    Assert.assertNull(stackService.reverse(null));
+    Assertions.assertNull(stackService.reverse(null));
   }
 }

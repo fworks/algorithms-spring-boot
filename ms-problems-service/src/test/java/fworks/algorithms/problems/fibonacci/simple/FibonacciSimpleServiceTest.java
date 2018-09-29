@@ -1,15 +1,15 @@
 package fworks.algorithms.problems.fibonacci.simple;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import fworks.algorithms.problems.fibonacci.FibonacciService;
 import fworks.algorithms.problems.fibonacci.FibonacciServiceTest;
-import org.junit.Before;
-import org.junit.Ignore;
 
 public class FibonacciSimpleServiceTest extends FibonacciServiceTest {
 
   FibonacciSimpleService fibonacci;
 
-  @Before
+  @BeforeEach
   public void setUp() {
     fibonacci = new FibonacciSimpleServiceImpl();
   }
@@ -19,7 +19,7 @@ public class FibonacciSimpleServiceTest extends FibonacciServiceTest {
     return fibonacci;
   }
   
-  @Ignore
+  @Disabled
   public void calculateFibonacciSequenceLargeTest() {
   }
 

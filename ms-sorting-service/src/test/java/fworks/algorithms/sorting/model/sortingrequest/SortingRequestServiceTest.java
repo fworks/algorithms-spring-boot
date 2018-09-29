@@ -1,11 +1,8 @@
 package fworks.algorithms.sorting.model.sortingrequest;
 
-import fworks.algorithms.sorting.model.sortingrequest.SortingRequest;
-import fworks.algorithms.sorting.model.sortingrequest.SortingRequestRepository;
-import fworks.algorithms.sorting.model.sortingrequest.SortingRequestService;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class SortingRequestServiceTest {
@@ -16,7 +13,7 @@ public class SortingRequestServiceTest {
   /**
    * Setup the test with the mock services.
    */
-  @Before
+  @BeforeEach
   public void setUp() {
     // mock services
     repository = Mockito.mock(SortingRequestRepository.class);
@@ -34,7 +31,7 @@ public class SortingRequestServiceTest {
 
     Mockito.when(repository.save(request)).thenReturn(mockedRequest);
     SortingRequest saved = sortingRequestService.save(request);
-    Assert.assertArrayEquals(request.getArray(), saved.getArray());
-    Assert.assertEquals(saved.getId(), id);
+    Assertions.assertArrayEquals(request.getArray(), saved.getArray());
+    Assertions.assertEquals(saved.getId(), id);
   }
 }

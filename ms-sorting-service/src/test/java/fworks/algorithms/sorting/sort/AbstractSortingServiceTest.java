@@ -1,14 +1,13 @@
 package fworks.algorithms.sorting.sort;
 
+import java.util.Arrays;
+import java.util.Random;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import fworks.algorithms.counter.Counter;
 import fworks.algorithms.sorting.model.sortingrequest.SortingRequest;
 import fworks.algorithms.sorting.model.sortingrequest.SortingResponse;
-import fworks.algorithms.sorting.sort.AlgorithmSortService;
-import java.util.Arrays;
-import java.util.Random;
 import lombok.extern.log4j.Log4j2;
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * Common tests for sorting services.
@@ -111,7 +110,7 @@ public abstract class AbstractSortingServiceTest {
     log.info("Expected: {}", Arrays.toString(sorted));
     long[] sort = sortingService.sort(array, new Counter());
     log.info("Sorted: {}", Arrays.toString(sort));
-    Assert.assertArrayEquals(sorted, sort);
+    Assertions.assertArrayEquals(sorted, sort);
   }
   
   /**
@@ -127,7 +126,7 @@ public abstract class AbstractSortingServiceTest {
     log.info("Expected: {}", Arrays.toString(sorted));
     SortingResponse sortResponse = sortingService.sort(SortingRequest.builder().array(array).build());
     log.info("Sorted: {}", Arrays.toString(sortResponse.getSortedArray()));
-    Assert.assertArrayEquals(sorted, sortResponse.getSortedArray());
+    Assertions.assertArrayEquals(sorted, sortResponse.getSortedArray());
   }
 
   /**
@@ -143,7 +142,7 @@ public abstract class AbstractSortingServiceTest {
     log.info("Expected: {}", Arrays.toString(sorted));
     Comparable<?>[] sort = sortingService.sort(array, new Counter());
     log.info("Sorted: {}", Arrays.toString(array));
-    Assert.assertArrayEquals(sorted, sort);
+    Assertions.assertArrayEquals(sorted, sort);
   }
 
   /**
