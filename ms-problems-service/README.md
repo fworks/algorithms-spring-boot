@@ -2,6 +2,13 @@
 
 Problems microservice application.
 
+Problems:
+- [x] Balanced Parentheses (using stack)
+- [ ] Binary Representation (using stack)
+- [x] Josephus Problem (using queue)
+- [x] Fibonacci
+- [x] Prime Numbers
+
 ### Running:
 
 Few options:
