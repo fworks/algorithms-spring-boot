@@ -2,6 +2,16 @@
 
 Sorting microservice application.
 
+## Sorting
+- [x] Selection Sort
+- [x] Insertion Sort
+- [x] Shellsort
+- [x] Mergesort
+- [x] Quicksort
+- [x] Quick3way
+- [x] Bubblesort
+- [ ] Heapsort
+
 ### Running:
 
 Few options:
