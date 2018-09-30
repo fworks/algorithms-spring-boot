@@ -11,9 +11,7 @@ This project is a test bed for microservices applications running on the latest 
 5) code coverage > 90%
 6) clear code
 7) build always passing
-
-## Notes
-1) always a work in progress
+8) always a work in progress
  
 ## Techs
 - [x] Java 11
@@ -52,37 +50,30 @@ I've also added some module prefix for a better understanding:
 - __server-__ : for servers
 - __app-__: for app gateway
 
-### app-algorithms
+## Subprojects
+### [app-algorithms](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 Subproject for the app gateway microservice project.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 
-### lib-core
+### [lib-core](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core)
 Subproject with few reusable codes for the microservices implementation. Just a library.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core)
 
-### lib-data-structures
+### [lib-data-structures](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures)
 Subproject with data structures implementation. Just a library.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures)
 
-### ms-problems-service
+### [ms-problems-service](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service)
 Subproject for the problems microservice.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service)
 
-### ms-searching-service
+### [ms-searching-service](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service)
 Subproject for the searching microservice.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service)
 
-### ms-sorting-service
+### [ms-sorting-service](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service)
 Subproject for the sorting microservice.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service)
 
-### server-admin
+### [server-admin](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin)
 Subproject for the server admin.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin)
 
-### server-eureka
+### [server-eureka](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka)
 Subproject for the service discovery - eureka server/service.
-[See the README.md for the subproject](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka)
 
 
 ## Running
