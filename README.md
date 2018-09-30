@@ -51,28 +51,28 @@ I've also added some module prefix for a better understanding:
 - __app-__: for app gateway
 
 ## Subprojects
-### [app-algorithms](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
+[__app-algorithms__](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
 Subproject for the app gateway microservice project.
 
-### [lib-core](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core)
+[__lib-core__](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core)
 Subproject with few reusable codes for the microservices implementation. Just a library.
 
-### [lib-data-structures](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures)
+[__lib-data-structures__](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures)
 Subproject with data structures implementation. Just a library.
 
-### [ms-problems-service](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service)
+[__ms-problems-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service)
 Subproject for the problems microservice.
 
-### [ms-searching-service](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service)
+[__ms-searching-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service)
 Subproject for the searching microservice.
 
-### [ms-sorting-service](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service)
+[__ms-sorting-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service)
 Subproject for the sorting microservice.
 
-### [server-admin](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin)
+[__server-admin__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin)
 Subproject for the server admin.
 
-### [server-eureka](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka)
+[__server-eureka__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka)
 Subproject for the service discovery - eureka server/service.
 
 
