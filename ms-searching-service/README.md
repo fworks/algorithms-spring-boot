@@ -2,6 +2,10 @@
 
 Searching microservice application.
 
+## Searching
+- [x] Brute Force / Sequential
+- [x] Binary Search
+
 ### Running:
 
 Few options:
