@@ -2,7 +2,7 @@
 
 Problems microservice application.
 
-Problems:
+## Problems
 - [x] Balanced Parentheses (using stack)
 - [ ] Binary Representation (using stack)
 - [x] Josephus Problem (using queue)
