@@ -51,29 +51,21 @@ I've also added some module prefix for a better understanding:
 - __app-__: for app gateway
 
 ## Subprojects
-[__app-algorithms__](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms)
-Subproject for the app gateway microservice project.
+[__app-algorithms__](https://github.com/fworks/algorithms-spring-boot/tree/master/app-algorithms) > Subproject for the app gateway microservice project.
 
-[__lib-core__](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core)
-Subproject with few reusable codes for the microservices implementation. Just a library.
+[__lib-core__](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-core) > Subproject with few reusable codes for the microservices implementation. Just a library.
 
-[__lib-data-structures__](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures)
-Subproject with data structures implementation. Just a library.
+[__lib-data-structures__](https://github.com/fworks/algorithms-spring-boot/tree/master/lib-data-structures) > Subproject with data structures implementation. Just a library.
 
-[__ms-problems-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service)
-Subproject for the problems microservice.
+[__ms-problems-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-problems-service) > Subproject for the problems microservice.
 
-[__ms-searching-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service)
-Subproject for the searching microservice.
+[__ms-searching-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-searching-service) > Subproject for the searching microservice.
 
-[__ms-sorting-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service)
-Subproject for the sorting microservice.
+[__ms-sorting-service__](https://github.com/fworks/algorithms-spring-boot/tree/master/ms-sorting-service) > Subproject for the sorting microservice.
 
-[__server-admin__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin)
-Subproject for the server admin.
+[__server-admin__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-admin) > Subproject for the server admin.
 
-[__server-eureka__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka)
-Subproject for the service discovery - eureka server/service.
+[__server-eureka__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka) > Subproject for the service discovery - eureka server/service.
 
 
 ## Running
@@ -81,9 +73,7 @@ Subproject for the service discovery - eureka server/service.
 #### Option A) 
 
 The faster way, running using the docker images that the last successful build generated.
-
 ###### Step 1) Download the file docker-compose.yml
-
 ###### Step 2) Open a terminal/powershell, go to the directory of the docker-compose.yml file and run:
 
 ```
@@ -97,9 +87,7 @@ That is it. Play around and have fun! :)
 #### Option B)
 
 Getting the code and compiling and running it.
-
 ###### Step 1) Clone the code
-
 ###### Step 2) Open a terminal/powershell, go to project root directory and run maven to generate the jars
 
 ```
