@@ -67,6 +67,26 @@ I've also added some module prefix for a better understanding:
 
 [__server-eureka__](https://github.com/fworks/algorithms-spring-boot/tree/master/server-eureka) > Subproject for the service discovery - eureka server/service.
 
+## See it running
+The apps are deployed as containers on the cloud. Please feel free to test it.
+
+Eureka Server:
+[![Website](https://img.shields.io/website-up-down-green-red/http/algorithms-spring-boot.fworks.tech:8761.svg)](http://algorithms-spring-boot.fworks.tech:8761/)
+
+Admin Server:
+[![Website](https://img.shields.io/website-up-down-green-red/http/algorithms-spring-boot.fworks.tech:9000.svg)](http://algorithms-spring-boot.fworks.tech:9000/)
+
+App Algorithms:
+[![Website](https://img.shields.io/website-up-down-green-red/http/algorithms-spring-boot.fworks.tech:8080/swagger-ui.html.svg)](http://algorithms-spring-boot.fworks.tech:8080/swagger-ui.html)
+
+Searching Service:
+[![Website](https://img.shields.io/website-up-down-green-red/http/algorithms-spring-boot.fworks.tech:8081/swagger-ui.html.svg)](http://algorithms-spring-boot.fworks.tech:8081/swagger-ui.html)
+
+Sorting Service:
+[![Website](https://img.shields.io/website-up-down-green-red/http/algorithms-spring-boot.fworks.tech:8082/swagger-ui.html.svg)](http://algorithms-spring-boot.fworks.tech:8082/swagger-ui.html)
+
+Problems Service:
+[![Website](https://img.shields.io/website-up-down-green-red/http/algorithms-spring-boot.fworks.tech:8083/swagger-ui.html.svg)](http://algorithms-spring-boot.fworks.tech:8083/swagger-ui.html)
 
 ## Running
 
