@@ -54,7 +54,7 @@
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-			<version>2.0.2.RELEASE</version>
+			<version>2.1.0.M1</version>
 		</dependency>
 
 		<!-- log4j2 -->
@@ -72,13 +72,6 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.javassist/javassist -->
-		<!-- fixing error jpa on jdk 11 -->
-		<dependency>
-			<groupId>org.javassist</groupId>
-			<artifactId>javassist</artifactId>
-			<version>3.23.1-GA</version>
 		</dependency>
 
 		<!-- // TODO: remove it later - fixing jaxb on java 10/11 -->

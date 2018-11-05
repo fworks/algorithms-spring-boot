@@ -1,5 +1,5 @@
 ## Algorithms Microservices Spring Boot Application 
-[![CircleCI](https://circleci.com/gh/fworks/algorithms-spring-boot.svg?style=svg)](https://circleci.com/gh/fworks/algorithms-spring-boot)[![Build Status](https://travis-ci.org/fworks/algorithms-spring-boot.svg?branch=master)](https://travis-ci.org/fworks/algorithms-spring-boot) [![codecov](https://codecov.io/gh/fworks/algorithms-spring-boot/branch/master/graph/badge.svg)](https://codecov.io/gh/fworks/algorithms-spring-boot)
+[![CircleCI](https://circleci.com/gh/fworks/algorithms-spring-boot.svg?style=svg)](https://circleci.com/gh/fworks/algorithms-spring-boot) [![Build Status](https://travis-ci.org/fworks/algorithms-spring-boot.svg?branch=master)](https://travis-ci.org/fworks/algorithms-spring-boot) [![codecov](https://codecov.io/gh/fworks/algorithms-spring-boot/branch/master/graph/badge.svg)](https://codecov.io/gh/fworks/algorithms-spring-boot)
 
 This project is a test bed for microservices applications running on the latest technologies around Java + Spring + Containers.
 
@@ -15,7 +15,7 @@ This project is a test bed for microservices applications running on the latest 
  
 ## Techs
 - [x] Java 11
-- [x] Spring Boot 2.0.5
+- [x] Spring Boot 2.1.0
 - [x] Spring Web (using tomcat at moment, thinking about moving to undertow -[because of that](https://examples.javacodegeeks.com/enterprise-java/spring/tomcat-vs-jetty-vs-undertow-comparison-of-spring-boot-embedded-servlet-containers/))
 - [x] Spring Cloud (eureka, zuul, etc.)
 - [x] Spring DevTool / Actuator (for speeding up the development/restart, etc)
