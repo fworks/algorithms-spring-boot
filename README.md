@@ -1,5 +1,5 @@
 ## Algorithms Microservices Spring Boot Application 
-[![Build Status](https://travis-ci.org/fworks/algorithms-spring-boot.svg?branch=master)](https://travis-ci.org/fworks/algorithms-spring-boot) [![codecov](https://codecov.io/gh/fworks/algorithms-spring-boot/branch/master/graph/badge.svg)](https://codecov.io/gh/fworks/algorithms-spring-boot)
+[![CircleCI](https://circleci.com/gh/fworks/algorithms-spring-boot.svg?style=svg)](https://circleci.com/gh/fworks/algorithms-spring-boot)[![Build Status](https://travis-ci.org/fworks/algorithms-spring-boot.svg?branch=master)](https://travis-ci.org/fworks/algorithms-spring-boot) [![codecov](https://codecov.io/gh/fworks/algorithms-spring-boot/branch/master/graph/badge.svg)](https://codecov.io/gh/fworks/algorithms-spring-boot)
 
 This project is a test bed for microservices applications running on the latest technologies around Java + Spring + Containers.
 
